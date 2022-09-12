@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="field_height_size">48dp</dimen>
+    <dimen name="margin_borders_fields">24dp</dimen>
+    <dimen name="top_dim_margin">58dp</dimen>
+    <dimen name="left_dim_margin">20dp</dimen>
+</resources>

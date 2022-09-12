@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">ProChat</string>
+    <string name="login">Login</string>
+    <string name="mobile_number_email_hint">Mobile Number / Email</string>
+    <string name="password">Password</string>
+    <string name="forget_your_password">Forget Your Password?</string>
+    <string name="new_user">New User?</string>
+    <string name="forgot_your_password">Forgot Your Password?</string>
+    <string name="forgot_password_desc">Please add your Email to receive a verification mail to change your password.</string>
+    <string name="email">Email</string>
+    <string name="send">Send</string>
+    <string name="recieve_email_msg">You should receive the email within <font color='#99DFC3'>60</font> seconds</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="sign_in">Sign In</string>
+    <string name="accept_terms_conditions">Accept <font color='#99DFC3'>Terms &amp; Conditions</font> and <font color='#99DFC3'>Privacy Policy</font></string>
+    <string name="verify_account">Verify Account</string>
+    <string name="verify_account_desc">Please add the 4 digits code we sent to you on the number +20 10 27 18 11111 to verify your account.</string>
+    <string name="verify">Verify</string>
+    <string name="verification_code_message">You should receive the verification code message within <font color='#99DFC3'>60</font> seconds</string>
+</resources>

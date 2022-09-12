@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#0B3C6D</color>
+    <color name="colorPrimaryDark">#0B3C6D</color>
+    <color name="colorSecondary">#99DFC3</color>
+    <color name="DarkSky">#5E93C8</color>
+    <color name="LightBlue">#E1F0FF</color>
+    <color name="GreenyShadeOne">#E0F5ED</color>
+    <color name="GreenyShadeTwo">#EFFAF6</color>
+    <color name="DarkGray">#333333</color>
+    <color name="SecondaryGray">#6A6A6A</color>
+    <color name="LighterGray">#BDBDBD</color>
+    <color name="SoftGray">#F8F8F8</color>
+    <color name="PinkyShade">#ED9595</color>
+    <color name="Pinky">#FFB1B1</color>
+    <color name="ShinyOrange">#FFAB37</color>
+    <color name="White">#FFFFFF</color>
+</resources>
