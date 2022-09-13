@@ -1,4 +1,4 @@
-package com.egrobots.prochat.authentication;
+package com.egrobots.prochat.presentation.authentication;
 
 import androidx.appcompat.app.AppCompatActivity;
 

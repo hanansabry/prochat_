@@ -3,17 +3,26 @@
     package="com.egrobots.prochat">
 
     <application
+        android:name=".presentation.BaseActivity"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".authentication.VerifyAccount"></activity>
-        <activity android:name=".authentication.SignUpActivity" />
-        <activity android:name=".authentication.ForgotPasswordActivity" />
-        <activity android:name=".authentication.LoginActivity" />
-        <activity android:name=".SplashActivity">
+        <activity
+            android:name=".presentation.authentication.VerifyAccount"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".presentation.authentication.SignUpActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".presentation.authentication.ForgotPasswordActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".presentation.authentication.LoginActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".presentation.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

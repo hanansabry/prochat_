@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/White"
-    tools:context=".authentication.LoginActivity">
+    tools:context=".presentation.authentication.LoginActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -72,7 +72,7 @@
             android:id="@+id/login_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/ubuntu_mono"
+            app:fontFamily="@font/ubuntu_mono"
             android:text="@string/login"
             android:textSize="40sp"
             android:textColor="@color/colorPrimary"
@@ -93,6 +93,7 @@
             android:hint="@string/mobile_number_email_hint"
             android:padding="16dp"
             android:textSize="16sp"
+            android:inputType="textEmailAddress"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/login_textview" />
@@ -106,6 +107,7 @@
             android:layout_marginEnd="@dimen/margin_borders_fields"
             android:background="@drawable/textfield_default_placeholder_bg"
             android:fontFamily="@font/roboto"
+            android:inputType="textPassword"
             android:hint="@string/password"
             android:padding="16dp"
             android:textSize="16sp"
@@ -123,6 +125,7 @@
             android:textColor="@color/colorSecondary"
             android:textFontWeight="700"
             android:textSize="18sp"
+            app:fontFamily="@font/ubuntu_mono"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/password_edit_text" />
@@ -166,6 +169,7 @@
                 android:textSize="18sp"
                 android:textColor="@color/colorSecondary"
                 android:textFontWeight="700"
+                app:fontFamily="@font/ubuntu_mono"
                 android:text="@string/sign_up"/>
 
 

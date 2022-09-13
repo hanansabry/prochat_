@@ -5,9 +5,10 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/White"
-    tools:context=".authentication.SignUpActivity">
+    tools:context=".presentation.authentication.SignUpActivity">
 
     <LinearLayout
+        android:id="@+id/main_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -36,6 +37,7 @@
             android:layout_marginTop="40dp"
             android:layout_weight="700"
             android:text="@string/sign_up"
+            app:fontFamily="@font/ubuntu_mono"
             android:textColor="@color/colorPrimary"
             android:textSize="40sp" />
 
@@ -57,34 +59,37 @@
             android:weightSum="2">
 
             <Button
+                android:id="@+id/signup_mobile_button"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/field_height_size"
                 android:layout_weight="1"
                 android:background="@drawable/button_tab_selected"
                 android:drawableStart="@drawable/mobile_icon"
                 android:drawableTint="@color/White"
-                app:fontFamily="@font/roboto"
-                android:textSize="16sp"
                 android:paddingStart="48dp"
                 android:paddingEnd="48dp"
                 android:text="Mobile"
-                android:textColor="@color/White" />
+                android:textColor="@color/White"
+                android:textSize="16sp"
+                app:fontFamily="@font/roboto" />
 
             <Button
+                android:id="@+id/signup_email_button"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/field_height_size"
                 android:layout_weight="1"
                 android:drawableStart="@drawable/email"
-                app:fontFamily="@font/roboto"
-                android:textSize="16sp"
+                android:drawableTint="@color/DarkGray"
                 android:paddingStart="48dp"
                 android:paddingEnd="48dp"
                 android:text="Email"
-                android:textColor="@color/DarkGray" />
+                android:textColor="@color/DarkGray"
+                android:textSize="16sp"
+                app:fontFamily="@font/roboto" />
         </LinearLayout>
 
         <EditText
-            android:id="@+id/mobile_edit_text"
+            android:id="@+id/mobile_email_edit_text"
             android:layout_width="match_parent"
             android:layout_height="@dimen/field_height_size"
             android:layout_marginStart="@dimen/margin_borders_fields"
@@ -92,8 +97,8 @@
             android:layout_marginEnd="@dimen/margin_borders_fields"
             android:background="@drawable/textfield_default_placeholder_bg"
             android:fontFamily="@font/roboto"
-            android:hint="Mobile Number"
-            android:inputType="phone"
+            android:hint="@string/mobile"
+            android:inputType="phone|textEmailAddress"
             android:padding="16dp"
             android:textSize="16sp" />
 
@@ -126,11 +131,14 @@
             android:textSize="16sp" />
 
         <CheckBox
+            android:id="@+id/accept_terms_checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/accept_terms_conditions"
+            android:layout_gravity="start"
             android:layout_marginTop="40sp"
-            android:textColor="@color/SecondaryGray"/>
+            android:layout_marginStart="@dimen/margin_borders_fields"
+            android:text="@string/accept_terms_conditions"
+            android:textColor="@color/SecondaryGray" />
 
         <Button
             android:id="@+id/signup_button"
@@ -163,6 +171,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
                 android:textColor="@color/colorSecondary"
+                app:fontFamily="@font/ubuntu_mono"
                 android:textFontWeight="700"
                 android:text="@string/sign_in"/>
 

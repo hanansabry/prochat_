@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/White"
-    tools:context=".authentication.VerifyAccount">
+    tools:context=".presentation.authentication.VerifyAccount">
 
     <ImageButton
         android:id="@+id/back_button"
@@ -56,6 +56,7 @@
         android:textColor="@color/colorPrimary"
         android:textFontWeight="700"
         android:textSize="40sp"
+        app:fontFamily="@font/ubuntu_mono"
         app:layout_constraintBottom_toBottomOf="@id/transparent_rectangle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
