@@ -9,10 +9,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.egrobots.prochat.R;
 import com.egrobots.prochat.di.ViewModelProviderFactory;
+import com.egrobots.prochat.utils.Constants;
 import com.egrobots.prochat.utils.Utils;
 import com.egrobots.prochat.viewmodels.AuthenticationViewModel;
 import com.google.android.material.snackbar.Snackbar;
@@ -51,6 +53,8 @@ public class SignUpActivity extends DaggerAppCompatActivity {
     Button signUpButton;
     @BindView(R.id.accept_terms_checkbox)
     CheckBox acceptTermsCheckbox;
+    @BindView(R.id.mobile_country_code_textview)
+    TextView mobileCountryCodeTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,17 +63,17 @@ public class SignUpActivity extends DaggerAppCompatActivity {
         ButterKnife.bind(this);
 
         authenticationViewModel = new ViewModelProvider(getViewModelStore(), providerFactory).get(AuthenticationViewModel.class);
-        observeSigningUp();
+        observeSigningUpWithEmail();
         observeError();
     }
 
-    private void observeSigningUp() {
+    private void observeSigningUpWithEmail() {
         authenticationViewModel.observeAuthenticateState().observe(this, success -> {
             if (success) {
                 //show the user that email verification is sent
                 Snackbar snackbar = Snackbar.make(mainLayout, "Email verification has been sent to your mail, Please check it.", Snackbar.LENGTH_INDEFINITE);
                 snackbar.show();
-                startActivity(new Intent(SignUpActivity.this, VerifyAccount.class));
+                startActivity(new Intent(this, MainActivity.class));
             } else {
                 Toast.makeText(SignUpActivity.this, "Can't verify your email", Toast.LENGTH_LONG).show();
             }
@@ -77,6 +81,9 @@ public class SignUpActivity extends DaggerAppCompatActivity {
     }
 
     private void observeError() {
+        authenticationViewModel.observeErrorState().observe(this, error -> {
+            Toast.makeText(SignUpActivity.this, error, Toast.LENGTH_LONG).show();
+        });
     }
 
     @OnClick(R.id.signup_button)
@@ -85,7 +92,16 @@ public class SignUpActivity extends DaggerAppCompatActivity {
         String userName = usernameEditText.getText().toString();
         String password = passwordEditText.getText().toString();
 
-        authenticationViewModel.signUp(mobileOrEmail, userName, password, signUpWithEmail);
+        if (signUpWithEmail) {
+            authenticationViewModel.signUpWithEmail(mobileOrEmail, userName, password);
+        } else {
+            String phoneNumber = "+20" + (mobileOrEmail.startsWith("0") ? mobileOrEmail.replaceFirst("0", "") : mobileOrEmail);
+            Intent intent = new Intent(this, VerifyAccount.class);
+            intent.putExtra(Constants.PHONE, phoneNumber);
+            intent.putExtra(Constants.USER_NAME, userName);
+            intent.putExtra(Constants.PASSWORD, password);
+            startActivity(intent);
+        }
     }
 
     @OnClick(R.id.sign_in_textview)
@@ -111,6 +127,7 @@ public class SignUpActivity extends DaggerAppCompatActivity {
         mobileEmailEditText.setText("");
         mobileEmailEditText.setError(null);
         mobileEmailEditText.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+        mobileCountryCodeTextView.setVisibility(View.GONE);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -131,6 +148,7 @@ public class SignUpActivity extends DaggerAppCompatActivity {
         mobileEmailEditText.setText("");
         mobileEmailEditText.setError(null);
         mobileEmailEditText.setInputType(InputType.TYPE_CLASS_PHONE);
+        mobileCountryCodeTextView.setVisibility(View.VISIBLE);
     }
 
     @OnTextChanged(R.id.mobile_email_edit_text)
@@ -153,8 +171,10 @@ public class SignUpActivity extends DaggerAppCompatActivity {
 
         if (userName.length() > 0 && password.length() > PASSWORD_MIN_LENGTH) {
             signUpButton.setBackground(getResources().getDrawable(R.drawable.active_button_bg));
+            signUpButton.setEnabled(true);
         } else {
             signUpButton.setBackground(getResources().getDrawable(R.drawable.dimmed_button_bg));
+            signUpButton.setEnabled(false);
         }
 
     }
@@ -167,8 +187,10 @@ public class SignUpActivity extends DaggerAppCompatActivity {
         boolean mobileEmailValid = signUpWithEmail ? Utils.isEmailValid(mobileEmail) : Utils.isPhoneValid(mobileEmail);
         if (mobileEmailValid && s.length() > 0 && password.length() >= PASSWORD_MIN_LENGTH) {
             signUpButton.setBackground(getResources().getDrawable(R.drawable.active_button_bg));
+            signUpButton.setEnabled(true);
         } else {
             signUpButton.setBackground(getResources().getDrawable(R.drawable.dimmed_button_bg));
+            signUpButton.setEnabled(false);
         }
     }
 
@@ -180,8 +202,10 @@ public class SignUpActivity extends DaggerAppCompatActivity {
         boolean mobileEmailValid = signUpWithEmail ? Utils.isEmailValid(mobileEmail) : Utils.isPhoneValid(mobileEmail);
         if (mobileEmailValid && userName.length() > 0 && s.length() >= PASSWORD_MIN_LENGTH) {
             signUpButton.setBackground(getResources().getDrawable(R.drawable.active_button_bg));
+            signUpButton.setEnabled(true);
         } else {
             signUpButton.setBackground(getResources().getDrawable(R.drawable.dimmed_button_bg));
+            signUpButton.setEnabled(false);
         }
     }
 }

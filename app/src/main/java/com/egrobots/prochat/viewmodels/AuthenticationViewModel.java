@@ -3,11 +3,13 @@ package com.egrobots.prochat.viewmodels;
 import com.egrobots.prochat.data.DatabaseRepository;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
+import com.google.firebase.auth.PhoneAuthCredential;
 
 import javax.inject.Inject;
 
 import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.ViewModel;
+import io.reactivex.Single;
 import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -19,6 +21,7 @@ public class AuthenticationViewModel extends ViewModel {
     private DatabaseRepository databaseRepository;
     private CompositeDisposable disposable = new CompositeDisposable();
     private MediatorLiveData<Boolean> authenticateState = new MediatorLiveData<>();
+    private MediatorLiveData<Boolean> resetPasswordSentState = new MediatorLiveData<>();
     private MediatorLiveData<String> errorState = new MediatorLiveData<>();
 
     @Inject
@@ -26,7 +29,7 @@ public class AuthenticationViewModel extends ViewModel {
         this.databaseRepository = databaseRepository;
     }
 
-    public void signIn(String emailOrPhone, String password) {
+    public void signInWithEmail(String emailOrPhone, String password) {
         SingleObserver<Boolean> singleObserver = databaseRepository.signIn(emailOrPhone, password)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -52,8 +55,30 @@ public class AuthenticationViewModel extends ViewModel {
                 });
     }
 
-    public void signUp(String emailOrPhone, String userName, String password, boolean signUpWithMail) {
-        SingleObserver<Boolean> singleObserver = databaseRepository.signUp(emailOrPhone, userName, password, signUpWithMail)
+    public void signInWithPhone(String phone, String password) {
+        SingleObserver<Boolean> singleObserver = databaseRepository.signInWithPhone(phone, password)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new SingleObserver<Boolean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        disposable.add(d);
+                    }
+
+                    @Override
+                    public void onSuccess(Boolean state) {
+                        authenticateState.setValue(state);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        errorState.setValue("Wrong phone/password");
+                    }
+                });
+    }
+
+    public void signUpWithEmail(String emailOrPhone, String userName, String password) {
+        SingleObserver<Boolean> singleObserver = databaseRepository.signUpWithEmail(emailOrPhone, userName, password)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new SingleObserver<Boolean>() {
@@ -74,8 +99,56 @@ public class AuthenticationViewModel extends ViewModel {
                 });
     }
 
+    public void signUpWithPhone(PhoneAuthCredential credential, String phone, String phoneVerificationId, String username, String password) {
+        SingleObserver<Boolean> singleObserver = databaseRepository.signUpWithPhone(credential, phone, phoneVerificationId, username, password)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new SingleObserver<Boolean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        disposable.add(d);
+                    }
+
+                    @Override
+                    public void onSuccess(Boolean state) {
+                        authenticateState.setValue(state);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        errorState.setValue(e.getMessage());
+                    }
+                });
+    }
+
+    public void sendPasswordResetEmail(String email) {
+        SingleObserver<Boolean> singleObserver = databaseRepository.sendPasswordResetEmail(email)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new SingleObserver<Boolean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        disposable.add(d);
+                    }
+
+                    @Override
+                    public void onSuccess(Boolean state) {
+                        resetPasswordSentState.setValue(state);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        errorState.setValue(e.getMessage());
+                    }
+                });
+    }
+
     public MediatorLiveData<Boolean> observeAuthenticateState() {
         return authenticateState;
+    }
+
+    public MediatorLiveData<Boolean> observeResetPasswordSentState() {
+        return resetPasswordSentState;
     }
 
     public MediatorLiveData<String> observeErrorState() {

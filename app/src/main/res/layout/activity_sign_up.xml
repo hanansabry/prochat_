@@ -88,19 +88,35 @@
                 app:fontFamily="@font/roboto" />
         </LinearLayout>
 
-        <EditText
-            android:id="@+id/mobile_email_edit_text"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/field_height_size"
+            android:layout_height="wrap_content"
+            android:gravity="center"
             android:layout_marginStart="@dimen/margin_borders_fields"
             android:layout_marginTop="40dp"
             android:layout_marginEnd="@dimen/margin_borders_fields"
             android:background="@drawable/textfield_default_placeholder_bg"
-            android:fontFamily="@font/roboto"
-            android:hint="@string/mobile"
-            android:inputType="phone|textEmailAddress"
-            android:padding="16dp"
-            android:textSize="16sp" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/mobile_country_code_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="16dp"
+                android:text="+20"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/mobile_email_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/field_height_size"
+                android:background="@null"
+                android:fontFamily="@font/roboto"
+                android:hint="@string/mobile"
+                android:inputType="phone|textEmailAddress"
+                android:padding="16dp"
+                android:textSize="16sp" />
+        </LinearLayout>
 
         <EditText
             android:id="@+id/username_edit_text"
@@ -149,7 +165,8 @@
             android:layout_marginEnd="@dimen/margin_borders_fields"
             android:background="@drawable/dimmed_button_bg"
             android:text="Sign Up"
-            android:textColor="@color/White"/>
+            android:textColor="@color/White"
+            android:enabled="false"/>
 
         <LinearLayout
             android:layout_width="match_parent"

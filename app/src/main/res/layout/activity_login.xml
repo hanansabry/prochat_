@@ -140,6 +140,7 @@
             android:background="@drawable/dimmed_button_bg"
             android:text="@string/login"
             android:textColor="@color/White"
+            android:enabled="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/forget_password_textview" />

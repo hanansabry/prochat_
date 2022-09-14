@@ -18,4 +18,6 @@
     <string name="verify">Verify</string>
     <string name="verification_code_message">You should receive the verification code message within <font color='#99DFC3'>60</font> seconds</string>
     <string name="mobile">Mobile</string>
+    <string name="check_your_email">Check Your Email</string>
+    <string name="check_your_email_msg">A message has been sent to your email, check the message so you can to change your password.</string>
 </resources>

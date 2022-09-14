@@ -2,7 +2,6 @@ package com.egrobots.prochat.presentation.authentication;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Patterns;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -53,7 +52,12 @@ public class LoginActivity extends DaggerAppCompatActivity {
 
     private void observeSignIn() {
         authenticationViewModel.observeAuthenticateState().observe(this, success -> {
-            Toast.makeText(LoginActivity.this, "Login successfully", Toast.LENGTH_SHORT).show();
+            if (success) {
+                Toast.makeText(LoginActivity.this, "Login successfully", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, MainActivity.class));
+            } else {
+                Toast.makeText(LoginActivity.this, "invalid credentials", Toast.LENGTH_SHORT).show();
+            }
         });
     }
 
@@ -65,9 +69,17 @@ public class LoginActivity extends DaggerAppCompatActivity {
 
     @OnClick(R.id.login_button)
     public void onLoginClicked() {
-        String email = mobileEmailEditText.getText().toString();
+        String emailOrPhone = mobileEmailEditText.getText().toString();
         String password = passwordEditText.getText().toString();
-        authenticationViewModel.signIn(email, password);
+
+        if (Utils.isEmailValid(emailOrPhone)) {
+            //login with email
+            authenticationViewModel.signInWithEmail(emailOrPhone, password);
+        } else if (Utils.isPhoneValid(emailOrPhone)) {
+            authenticationViewModel.signInWithPhone(emailOrPhone, password);
+        } else {
+            Toast.makeText(this, "Not valid email or phone", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @OnClick(R.id.forget_password_textview)
@@ -87,16 +99,17 @@ public class LoginActivity extends DaggerAppCompatActivity {
             return;
         }
         //validate email
-        boolean isEmailValid = Utils.isEmailValid(s.toString());
-        if (!isEmailValid) {
-            mobileEmailEditText.setError("The email is not valid");
+        if (!Utils.isEmailValid(s.toString()) && !Utils.isPhoneValid(s.toString())) {
+            mobileEmailEditText.setError("Not valid email or phone");
             loginButton.setBackground(getResources().getDrawable(R.drawable.dimmed_button_bg));
             return;
         }
         String password = passwordEditText.getText().toString();
         if (password.length() >= PASSWORD_MIN_LENGTH) {
+            loginButton.setEnabled(true);
             loginButton.setBackground(getResources().getDrawable(R.drawable.active_button_bg));
         } else {
+            loginButton.setEnabled(false);
             loginButton.setBackground(getResources().getDrawable(R.drawable.dimmed_button_bg));
         }
     }
@@ -104,9 +117,11 @@ public class LoginActivity extends DaggerAppCompatActivity {
     @OnTextChanged(R.id.password_edit_text)
     public void onPasswordTextChanged(CharSequence s, int start, int count, int after) {
         String emailPhone = mobileEmailEditText.getText().toString();
-        if (Utils.isEmailValid(emailPhone) && s.length() >= PASSWORD_MIN_LENGTH) {
+        if ((Utils.isEmailValid(emailPhone) || Utils.isPhoneValid(emailPhone)) && s.length() >= PASSWORD_MIN_LENGTH) {
+            loginButton.setEnabled(true);
             loginButton.setBackground(getResources().getDrawable(R.drawable.active_button_bg));
         } else {
+            loginButton.setEnabled(false);
             loginButton.setBackground(getResources().getDrawable(R.drawable.dimmed_button_bg));
         }
     }

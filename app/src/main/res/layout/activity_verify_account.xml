@@ -91,12 +91,27 @@
         app:layout_constraintTop_toBottomOf="@id/verify_account_desc">
 
         <EditText
-            android:id="@+id/code_2_edit_text"
+            android:id="@+id/code_1_edit_text"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginEnd="4dp"
             android:background="@drawable/top_bottom_left_cornered_stroke_bg_gray"
             android:gravity="center"
+            android:inputType="numberDecimal"
+            android:maxLength="1"
+            android:maxLines="1"
+            android:hint="-" />
+
+        <EditText
+            android:id="@+id/code_2_edit_text"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/stroke_bg_gray"
+            android:gravity="center"
+            android:inputType="numberDecimal"
+            android:maxLength="1"
+            android:maxLines="1"
             android:hint="-" />
 
         <EditText
@@ -106,6 +121,9 @@
             android:layout_marginEnd="4dp"
             android:background="@drawable/stroke_bg_gray"
             android:gravity="center"
+            android:inputType="numberDecimal"
+            android:maxLength="1"
+            android:maxLines="1"
             android:hint="-" />
 
         <EditText
@@ -115,15 +133,33 @@
             android:layout_marginEnd="4dp"
             android:background="@drawable/stroke_bg_gray"
             android:gravity="center"
+            android:inputType="numberDecimal"
+            android:maxLength="1"
+            android:maxLines="1"
             android:hint="-" />
 
         <EditText
-            android:id="@+id/code_1_edit_text"
+            android:id="@+id/code_5_edit_text"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/stroke_bg_gray"
+            android:gravity="center"
+            android:inputType="numberDecimal"
+            android:maxLength="1"
+            android:maxLines="1"
+            android:hint="-" />
+
+        <EditText
+            android:id="@+id/code_6_edit_text"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginEnd="4dp"
             android:background="@drawable/top_bottom_right_cornered_stroke_bg_gray"
             android:gravity="center"
+            android:inputType="numberDecimal"
+            android:maxLength="1"
+            android:maxLines="1"
             android:hint="-" />
     </LinearLayout>
 
@@ -153,6 +189,7 @@
         android:background="@drawable/dimmed_button_bg"
         android:text="@string/verify"
         android:textColor="@color/White"
+        android:enabled="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
