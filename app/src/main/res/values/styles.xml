@@ -13,6 +13,7 @@
         <item name="buttonStyle">@style/ButtonStyle</item>
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+        <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
     </style>
 
     <style name="LightAppTheme" parent="AppTheme">
@@ -34,6 +35,20 @@
 
     <style name="RobotoEditTextStyle" parent="android:Widget.EditText">
         <item name="android:fontFamily">@font/roboto</item>
+    </style>
+
+    <style name="AppBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/AppModalStyle</item>
+    </style>
+
+    <style name="AppModalStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/white_cornered_bg</item>
+        <item name="behavior_peekHeight">680dp</item>
+    </style>
+
+    <style name="roundedImageViewRounded">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
     </style>
 
 </resources>

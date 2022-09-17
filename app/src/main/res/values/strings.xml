@@ -20,4 +20,10 @@
     <string name="mobile">Mobile</string>
     <string name="check_your_email">Check Your Email</string>
     <string name="check_your_email_msg">A message has been sent to your email, check the message so you can to change your password.</string>
+    <string name="search_for_friends_quickly">Search For Friends Quickly</string>
+    <string name="search">Search</string>
+    <string name="scan">Scan</string>
+    <string name="search_user_desc">Reach your friend quickly by using the search box to search your friend’s code, or scanning his QR code.</string>
+    <string name="not_found_user_text">We didn’t found any results with this code, please ask your friend about the correct code or try to scan his QR code.</string>
+    <string name="no_results_found">No Results Found</string>
 </resources>

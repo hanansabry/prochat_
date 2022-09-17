@@ -2,6 +2,7 @@ package com.egrobots.prochat.presentation.authentication;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -9,6 +10,7 @@ import android.widget.Toast;
 
 import com.egrobots.prochat.R;
 import com.egrobots.prochat.di.ViewModelProviderFactory;
+import com.egrobots.prochat.presentation.dialogs.SearchForFriendsBottomSheetDialog;
 import com.egrobots.prochat.utils.Utils;
 import com.egrobots.prochat.viewmodels.AuthenticationViewModel;
 
@@ -18,6 +20,7 @@ import androidx.lifecycle.ViewModelProvider;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.OnFocusChange;
 import butterknife.OnTextChanged;
 import dagger.android.support.DaggerAppCompatActivity;
 
@@ -38,6 +41,8 @@ public class LoginActivity extends DaggerAppCompatActivity {
     TextView forgotPasswordTextView;
     @BindView(R.id.sign_up_textview)
     TextView signUpTextView;
+    @BindView(R.id.search_user_edit_text)
+    EditText searchUserEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +71,17 @@ public class LoginActivity extends DaggerAppCompatActivity {
             Toast.makeText(LoginActivity.this, error, Toast.LENGTH_LONG).show();
         });
     }
+
+    @OnFocusChange(R.id.search_user_edit_text)
+    public void onSearchEditTextFocusChange(View v, boolean hasFocus) {
+        SearchForFriendsBottomSheetDialog searchDialog = new SearchForFriendsBottomSheetDialog(this);
+        if (hasFocus) {
+            searchDialog.show();
+        } else {
+            searchDialog.dismiss();
+        }
+    }
+
 
     @OnClick(R.id.login_button)
     public void onLoginClicked() {
