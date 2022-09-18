@@ -15,4 +15,5 @@
     <color name="Pinky">#FFB1B1</color>
     <color name="ShinyOrange">#FFAB37</color>
     <color name="White">#FFFFFF</color>
+    <color name="white_opacity_low">#64FFFFFF</color>
 </resources>

@@ -26,4 +26,10 @@
     <string name="search_user_desc">Reach your friend quickly by using the search box to search your friend’s code, or scanning his QR code.</string>
     <string name="not_found_user_text">We didn’t found any results with this code, please ask your friend about the correct code or try to scan his QR code.</string>
     <string name="no_results_found">No Results Found</string>
+    <string name="no_messages">No Messages</string>
+    <string name="no_messages_desc">There are no previous messages between you and this user.</string>
+    <string name="type_message">Type Message</string>
+    <string name="contact">Contact</string>
+    <string name="select_a_group">Select A Group</string>
+    <string name="select_group_desc">Choose the group you want to the message send to it</string>
 </resources>

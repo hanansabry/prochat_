@@ -1,12 +1,14 @@
 package com.egrobots.prochat.presentation.dialogs;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.egrobots.prochat.R;
+import com.egrobots.prochat.presentation.user.UserProfileActivity;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import androidx.annotation.NonNull;
@@ -56,6 +58,9 @@ public class SearchForFriendsBottomSheetDialog extends BottomSheetDialog {
     public void onSearchBackButtonClicked() {
         deactivatedSearchLayout.setVisibility(View.VISIBLE);
         activatedSearchLayout.setVisibility(View.INVISIBLE);
+        userFoundLayout.setVisibility(View.GONE);
+        notFoundUserSearchLayout.setVisibility(View.GONE);
+        notSearchYetLayout.setVisibility(View.VISIBLE);
     }
 
     @OnTextChanged(R.id.activated_search_edit_text)
@@ -66,6 +71,7 @@ public class SearchForFriendsBottomSheetDialog extends BottomSheetDialog {
             notSearchYetLayout.setVisibility(View.VISIBLE);
         } else if (s.toString().equals("am1234")) {
             //show the user
+            userFoundLayout.requestFocus();
             userFoundLayout.setVisibility(View.VISIBLE);
             notFoundUserSearchLayout.setVisibility(View.GONE);
             notSearchYetLayout.setVisibility(View.GONE);
@@ -80,5 +86,10 @@ public class SearchForFriendsBottomSheetDialog extends BottomSheetDialog {
     @OnClick(R.id.close_dialog_button)
     public void onCloseDialogClicked() {
         dismiss();
+    }
+
+    @OnClick(R.id.contact_button)
+    public void onContactUserButtonClicked() {
+        getContext().startActivity(new Intent(getContext(), UserProfileActivity.class));
     }
 }

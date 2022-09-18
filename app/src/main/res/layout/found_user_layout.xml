@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal">
+
+        <ImageView
+            android:layout_width="280dp"
+            android:layout_height="280dp"
+            android:src="@drawable/user_profile_vector_bg"
+            android:layout_gravity="center"/>
 
         <ImageView
             android:layout_width="wrap_content"
@@ -34,7 +40,7 @@
         android:text="Ahmed Morsi"
         android:textColor="@color/colorPrimary"
         android:textSize="24sp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="-24dp"
         app:fontFamily="@font/ubuntu_mono" />
 
     <TextView
@@ -69,10 +75,11 @@
         android:background="@drawable/active_button_bg"
         android:paddingStart="24dp"
         android:paddingEnd="24dp"
-        android:text="Contact"
+        android:text="@string/contact"
         android:textColor="@color/White"
         android:textFontWeight="700"
         android:textSize="18sp"
+        android:focusableInTouchMode="true"
         app:fontFamily="@font/ubuntu_mono" />
 
 </LinearLayout>

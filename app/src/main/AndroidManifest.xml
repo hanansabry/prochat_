@@ -10,7 +10,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".presentation.user.UserProfileActivity"></activity>
+        <activity
+            android:name=".presentation.user.UserProfileActivity"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".presentation.authentication.MainActivity" />
         <activity
             android:name=".presentation.authentication.VerifyAccount"
@@ -38,6 +40,7 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
