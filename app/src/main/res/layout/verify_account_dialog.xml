@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.authentication.VerifyAccount">
+
+    <ImageButton
+        android:id="@+id/close_dialog_button"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+        android:src="@drawable/close_black_24dp_1"
+        android:background="@null"
+        android:tint="@color/colorSecondary"
+        android:layout_marginEnd="34dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/verfiy_account_text"
+        app:layout_constraintBottom_toBottomOf="@id/verfiy_account_text"/>
+
+    <TextView
+        android:id="@+id/verfiy_account_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:gravity="center"
+        android:lineSpacingExtra="20sp"
+        android:text="@string/verify_account"
+        android:textColor="@color/colorPrimary"
+        android:textFontWeight="700"
+        android:textSize="24sp"
+        app:fontFamily="@font/ubuntu_mono"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/separator_view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/linear_gradient_primary_accent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/verfiy_account_text" />
+
+    <TextView
+        android:id="@+id/verify_account_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginEnd="42dp"
+        android:fontFamily="@font/roboto"
+        android:gravity="center"
+        android:text="@string/verify_account_desc"
+        android:textSize="14sp"
+        android:lineSpacingExtra="8sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/separator_view" />
+
+    <LinearLayout
+        android:id="@+id/verfication_code_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_borders_fields"
+        android:layout_marginTop="42dp"
+        android:layout_marginEnd="@dimen/margin_borders_fields"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/verify_account_desc">
+
+        <EditText
+            android:id="@+id/code_1_edit_text"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/top_bottom_left_cornered_stroke_bg_gray"
+            android:gravity="center"
+            android:inputType="numberDecimal"
+            android:maxLength="1"
+            android:maxLines="1"
+            android:hint="-" />
+
+        <EditText
+            android:id="@+id/code_2_edit_text"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/stroke_bg_gray"
+            android:gravity="center"
+            android:inputType="numberDecimal"
+            android:maxLength="1"
+            android:maxLines="1"
+            android:hint="-" />
+
+        <EditText
+            android:id="@+id/code_3_edit_text"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/stroke_bg_gray"
+            android:gravity="center"
+            android:inputType="numberDecimal"
+            android:maxLength="1"
+            android:maxLines="1"
+            android:hint="-" />
+
+        <EditText
+            android:id="@+id/code_4_edit_text"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/stroke_bg_gray"
+            android:gravity="center"
+            android:inputType="numberDecimal"
+            android:maxLength="1"
+            android:maxLines="1"
+            android:hint="-" />
+
+        <EditText
+            android:id="@+id/code_5_edit_text"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/stroke_bg_gray"
+            android:gravity="center"
+            android:inputType="numberDecimal"
+            android:maxLength="1"
+            android:maxLines="1"
+            android:hint="-" />
+
+        <EditText
+            android:id="@+id/code_6_edit_text"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/top_bottom_right_cornered_stroke_bg_gray"
+            android:gravity="center"
+            android:inputType="numberDecimal"
+            android:maxLength="1"
+            android:maxLines="1"
+            android:hint="-" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/receive_mail_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:text="@string/verification_code_message"
+        android:textColor="@color/LighterGray"
+        android:textSize="12sp"
+        app:layout_constraintTop_toBottomOf="@id/verfication_code_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/verify_button"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/field_height_size"
+        android:layout_marginStart="@dimen/margin_borders_fields"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="@dimen/margin_borders_fields"
+        android:layout_marginBottom="58dp"
+        android:background="@drawable/dimmed_button_bg"
+        android:text="@string/verify"
+        android:textColor="@color/White"
+        android:enabled="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/receive_mail_text"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

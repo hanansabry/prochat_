@@ -43,7 +43,7 @@
 
     <style name="AppModalStyle" parent="Widget.Design.BottomSheet.Modal">
         <item name="android:background">@drawable/white_cornered_bg</item>
-        <item name="behavior_peekHeight">680dp</item>
+<!--        <item name="behavior_peekHeight">680dp</item>-->
     </style>
 
     <style name="roundedImageViewRounded">

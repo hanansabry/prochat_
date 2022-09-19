@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 
 import com.egrobots.prochat.R;
 import com.egrobots.prochat.adapters.UserGroupsAdapter;
+import com.egrobots.prochat.presentation.dialogs.LoginBottomSheetDialog;
 import com.egrobots.prochat.presentation.dialogs.SearchForFriendsBottomSheetDialog;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -119,7 +120,7 @@ public class UserProfileActivity extends AppCompatActivity {
     @OnClick(R.id.send_message_button)
     public void onSendMessageClicked() {
         //if user is not logged, show login bottom sheet dialog
-        SearchForFriendsBottomSheetDialog dialog = new SearchForFriendsBottomSheetDialog(this);
+        LoginBottomSheetDialog dialog = new LoginBottomSheetDialog(this);
         dialog.show();
     }
 }

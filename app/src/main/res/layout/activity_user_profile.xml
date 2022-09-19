@@ -106,6 +106,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/no_messages_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -169,29 +170,32 @@
             android:orientation="horizontal"
             android:weightSum="8"
             android:paddingStart="16dp"
-            android:paddingEnd="16dp">
+            android:paddingEnd="16dp"
+            android:padding="12dp">
 
             <ImageButton
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@null"
-                android:layout_gravity="center_vertical"
+                android:layout_gravity="top"
                 android:src="@drawable/sentiment_very_satisfied_black_24dp_1" />
 
             <EditText
                 android:id="@+id/type_message_edit_text"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/field_height_size"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
                 android:layout_weight="5"
                 android:background="@null"
-                android:hint="@string/type_message"
-                android:textSize="16sp"
-                android:layout_marginStart="16dp"
-                android:layout_gravity="center_vertical"
                 android:focusable="true"
                 android:focusableInTouchMode="true"
-                android:maxLines="5"/>
+                android:gravity="top"
+                android:hint="@string/type_message"
+                android:inputType="textMultiLine"
+                android:lines="5"
+                android:minLines="1"
+                android:textSize="16sp" />
 
             <ImageButton
                 android:id="@+id/attach_button"
@@ -199,14 +203,14 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@null"
-                android:layout_gravity="center_vertical"
+                android:layout_gravity="top"
                 android:src="@drawable/attachment_black_24dp_1" />
 
             <FrameLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_gravity="center_vertical">
+                android:layout_gravity="top">
 
                 <ImageButton
                     android:id="@+id/add_photo_button"
