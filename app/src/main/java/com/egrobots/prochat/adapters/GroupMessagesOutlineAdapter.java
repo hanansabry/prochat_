@@ -7,12 +7,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.egrobots.prochat.R;
+import com.egrobots.prochat.callbacks.OnGroupSelectedCallback;
 import com.egrobots.prochat.model.GroupMessageOutline;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,10 +20,12 @@ import butterknife.ButterKnife;
 
 public class GroupMessagesOutlineAdapter extends RecyclerView.Adapter<GroupMessagesOutlineAdapter.GroupMessageOutlineViewHolder> {
 
-    private List<GroupMessageOutline> groupMessageOutlineList = new ArrayList<>();
+    private List<GroupMessageOutline> groupMessageOutlineList;
+    private OnGroupSelectedCallback onGroupSelectedCallback;
 
-    public GroupMessagesOutlineAdapter(List<GroupMessageOutline> groupMessageOutlineList) {
+    public GroupMessagesOutlineAdapter(List<GroupMessageOutline> groupMessageOutlineList, OnGroupSelectedCallback onGroupSelectedCallback) {
         this.groupMessageOutlineList = groupMessageOutlineList;
+        this.onGroupSelectedCallback = onGroupSelectedCallback;
     }
 
     @NonNull
@@ -44,6 +45,8 @@ public class GroupMessagesOutlineAdapter extends RecyclerView.Adapter<GroupMessa
             holder.itemView.setBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.GreenyShadeTwo));
             holder.groupMessageTitle.setTypeface(Typeface.DEFAULT_BOLD);
         }
+
+        holder.itemView.setOnClickListener(v -> onGroupSelectedCallback.onGroupSelected(groupMessageOutline));
     }
 
     @Override

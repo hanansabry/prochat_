@@ -9,25 +9,23 @@ import android.widget.ImageButton;
 
 import com.egrobots.prochat.R;
 import com.egrobots.prochat.adapters.UserGroupsAdapter;
-import com.egrobots.prochat.adapters.UserGroupsFragmentAdapter;
+import com.egrobots.prochat.callbacks.OnGroupSelectedCallback;
+import com.egrobots.prochat.model.GroupMessageOutline;
 import com.egrobots.prochat.presentation.dialogs.LoginBottomSheetDialog;
 import com.egrobots.prochat.utils.AppBarStateChangeListener;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
-import com.google.android.material.tabs.TabLayout;
-import com.google.android.material.tabs.TabLayoutMediator;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.widget.ViewPager2;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnTextChanged;
 
-public class UserProfileActivity extends AppCompatActivity {
+public class UserProfileActivity extends AppCompatActivity implements OnGroupSelectedCallback{
 
     @BindView(R.id.appbar)
     AppBarLayout appBarLayout;
@@ -36,10 +34,6 @@ public class UserProfileActivity extends AppCompatActivity {
     @BindView(R.id.collapsed_header_layout)
     View collapsedHeaderLayout;
 
-    @BindView(R.id.group_tabs_viewpager)
-    ViewPager2 groupTabsViewPager;
-    @BindView(R.id.groups_tablayout)
-    TabLayout groupTabsLayout;
     @BindView(R.id.type_message_edit_text)
     EditText typeMessageEditText;
     @BindView(R.id.record_audio_button)
@@ -57,6 +51,7 @@ public class UserProfileActivity extends AppCompatActivity {
     @BindView(R.id.attach_button)
     ImageButton attachButton;
     private InputMethodManager imm;
+    private FragmentTransaction fragmentTransaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +71,10 @@ public class UserProfileActivity extends AppCompatActivity {
                 }
             }
         });
+
+        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.content_fragment, UserProfileContentFragment.newInstance());
+        fragmentTransaction.commit();
 
         sendMessageButton.setEnabled(false);
         sendMessageButton.setClickable(false);
@@ -112,31 +111,6 @@ public class UserProfileActivity extends AppCompatActivity {
 
         //init user groups
         initUserGroups();
-        //setup groups tab
-        setupGroupTabs();
-    }
-
-    private void setupGroupTabs() {
-        UserGroupsFragmentAdapter groupsFragmentAdapter = new UserGroupsFragmentAdapter(getSupportFragmentManager(), getLifecycle());
-        groupTabsViewPager.setAdapter(groupsFragmentAdapter);
-        TabLayoutMediator tabLayoutMediator = new TabLayoutMediator(groupTabsLayout, groupTabsViewPager, (tab, position) -> {
-            if (position == 0) {
-                tab.setText("All");
-            } else if (position == 1) {
-                tab.setText("My Groups");
-            } else if (position == 2) {
-                tab.setText("Group 1");
-            } else if (position == 3) {
-                tab.setText("Group 2");
-            } else if (position == 4) {
-                tab.setText("Group 3");
-            } else if (position == 5) {
-                tab.setText("Group 4");
-            } else if (position == 6) {
-                tab.setText("Group 5");
-            }
-        });
-        tabLayoutMediator.attach();
     }
 
     private void initUserGroups() {
@@ -175,5 +149,17 @@ public class UserProfileActivity extends AppCompatActivity {
         //if user is not logged, show login bottom sheet dialog
         LoginBottomSheetDialog dialog = new LoginBottomSheetDialog(this);
         dialog.show();
+    }
+
+    @Override
+    public void onGroupSelected(GroupMessageOutline groupMessageOutline) {
+        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.content_fragment, UserChatFragment.newInstance());
+        fragmentTransaction.commit();
+    }
+
+    @OnClick(R.id.back_button)
+    public void onBackClicked() {
+        getSupportFragmentManager().popBackStack();
     }
 }

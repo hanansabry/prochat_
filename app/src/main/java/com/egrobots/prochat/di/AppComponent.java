@@ -1,8 +1,11 @@
 package com.egrobots.prochat.di;
 
 import android.app.Application;
+
 import com.egrobots.prochat.presentation.BaseActivity;
+
 import javax.inject.Singleton;
+
 import dagger.BindsInstance;
 import dagger.Component;
 import dagger.android.AndroidInjector;
@@ -13,6 +16,7 @@ import dagger.android.support.AndroidSupportInjectionModule;
 @Component(modules = {ActivityBuildersModule.class,
         AndroidSupportInjectionModule.class,
         AppModule.class,
+        FragmentBuildersModule.class,
         ViewModelFactoryModule.class})
 public interface AppComponent extends AndroidInjector<BaseActivity> {
 
