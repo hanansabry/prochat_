@@ -78,6 +78,7 @@
             android:layout_gravity="center"
             android:text="Ahmed Morsi"
             android:textColor="@color/colorPrimary"
+            android:textFontWeight="700"
             android:textSize="24sp"
             app:fontFamily="@font/ubuntu_mono" />
 
@@ -86,11 +87,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginTop="8dp"
             android:text="Designer"
             android:textColor="@color/SecondaryGray"
-            android:textFontWeight="400"
-            android:textSize="14sp"
-            android:layout_marginTop="8dp" />
+            android:textFontWeight="700"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/user_id_text_view"

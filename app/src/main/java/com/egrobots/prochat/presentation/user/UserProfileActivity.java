@@ -2,19 +2,15 @@ package com.egrobots.prochat.presentation.user;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.TableLayout;
 
 import com.egrobots.prochat.R;
 import com.egrobots.prochat.adapters.UserGroupsAdapter;
 import com.egrobots.prochat.adapters.UserGroupsFragmentAdapter;
 import com.egrobots.prochat.presentation.dialogs.LoginBottomSheetDialog;
-import com.egrobots.prochat.presentation.dialogs.SearchForFriendsBottomSheetDialog;
 import com.egrobots.prochat.utils.AppBarStateChangeListener;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
@@ -22,6 +18,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
@@ -73,6 +70,7 @@ public class UserProfileActivity extends AppCompatActivity {
             public void onStateChanged(AppBarLayout appBarLayout, State state) {
                 if (state == State.COLLAPSED) {
                     collapsedHeaderLayout.setVisibility(View.VISIBLE);
+//                    collapsedHeaderLayout.setBackgroundColor(ContextCompat.getColor(UserProfileActivity.this, R.color.GreenyShadeTwo));
                 } else {
                     collapsedHeaderLayout.setVisibility(View.GONE);
                 }
