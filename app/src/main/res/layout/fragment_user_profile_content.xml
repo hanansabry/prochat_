@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/White"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".presentation.user.UserProfileActivity">
+    android:background="@color/White">
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/groups_tablayout"

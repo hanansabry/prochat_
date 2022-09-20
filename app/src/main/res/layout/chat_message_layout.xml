@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="30dp"
+    android:gravity="end"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/chat_message_text"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/chat_message_sent_bg"
+        android:lineHeight="21dp"
+        android:paddingStart="24dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="24dp"
+        android:paddingBottom="16dp"
+        android:text="Hi Ahmed, I texting you because weneed some bla bla tomorrow. So whatdo you think ablout making bla bla?"
+        android:textColor="@color/SecondaryGray"
+        android:textFontWeight="400"
+        android:textSize="14sp"/>
+
+    <TextView
+        android:id="@+id/chat_message_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="08:24 pm"
+        android:textColor="@color/LighterGray"
+        android:textFontWeight="400"
+        android:textSize="14sp"/>
+
+</LinearLayout>

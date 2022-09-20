@@ -10,6 +10,7 @@
     <color name="DarkGray">#333333</color>
     <color name="SecondaryGray">#6A6A6A</color>
     <color name="LighterGray">#BDBDBD</color>
+    <color name="DimmedGray">#E2E2E2</color>
     <color name="SoftGray">#F8F8F8</color>
     <color name="PinkyShade">#ED9595</color>
     <color name="Pinky">#FFB1B1</color>
