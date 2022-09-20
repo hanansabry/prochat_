@@ -33,4 +33,6 @@
     <string name="select_a_group">Select A Group</string>
     <string name="select_group_desc">Choose the group you want to the message send to it</string>
     <string name="sign_up_method_text">What do you want to sign up with?</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

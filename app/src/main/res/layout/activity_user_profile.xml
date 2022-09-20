@@ -1,336 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/White"
-    tools:context=".presentation.user.UserProfileActivity">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/shape_bg"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scaleType="fitXY"
-        android:src="@drawable/main_pages_cover"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageButton
-        android:id="@+id/back_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/back_arrorw"
-        android:background="@null"
-        android:layout_marginTop="@dimen/top_dim_margin"
-        android:layout_marginStart="@dimen/left_dim_margin"
-        android:tint="@color/colorSecondary"
+        android:layout_height="0dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintBottom_toTopOf="@+id/send_message_layout">
 
-    <FrameLayout
-        android:id="@+id/user_profile_image_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        app:layout_constraintTop_toBottomOf="@id/shape_bg"
-        app:layout_constraintBottom_toBottomOf="@id/shape_bg"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <ImageView
-            android:layout_width="wrap_content"
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/user_profile_vector_bg_circle"
-            android:layout_gravity="bottom|center"/>
+            android:background="@color/White">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/user_icon"
-            android:layout_gravity="center"/>
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/collapsing_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:layout_width="132dp"
-            android:layout_height="132dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="-8dp"
-            app:strokeColor="@color/White"
-            android:src="@drawable/user_image_temp"/>
-
-    </FrameLayout>
-
-    <LinearLayout
-        android:id="@+id/user_info_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@id/user_profile_image_layout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-
-        <TextView
-            android:id="@+id/user_name_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Ahmed Morsi"
-            android:textColor="@color/colorPrimary"
-            android:textSize="24sp"
-            app:fontFamily="@font/ubuntu_mono" />
-
-            <TextView
-                android:id="@+id/user_job_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Designer"
-                android:textColor="@color/SecondaryGray"
-                android:textFontWeight="400"
-                android:textSize="14sp"
-                android:layout_marginTop="8dp" />
-
-            <TextView
-                android:id="@+id/user_id_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="#am1234"
-                android:textColor="@color/LighterGray"
-                android:textFontWeight="400"
-                android:textSize="12sp"
-                android:layout_marginTop="8dp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/no_messages_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@id/user_info_layout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:gravity="center"
-        android:layout_marginTop="24dp">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/no_messages_icon" />
-        <TextView
-            android:id="@+id/no_results_found_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="24dp"
-            android:gravity="center"
-            android:text="@string/no_messages"
-            android:textColor="@color/colorPrimary"
-            android:textFontWeight="700"
-            android:textSize="24sp"
-            app:fontFamily="@font/ubuntu_mono" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/no_messages_desc"
-            android:layout_marginStart="58dp"
-            android:layout_marginEnd="58dp"
-            android:layout_marginTop="8dp"
-            android:textSize="14sp"
-            android:gravity="center"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/send_message_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/top_border_bg_cornered"
-        android:orientation="horizontal"
-        android:paddingStart="16dp"
-        android:paddingTop="16dp"
-        android:paddingEnd="16dp"
-        android:paddingBottom="58dp"
-        android:weightSum="6"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_weight="6"
-            android:background="@drawable/textfield_default_placeholder_bg"
-            android:orientation="horizontal"
-            android:weightSum="8"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:padding="12dp">
-
-            <ImageButton
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@null"
-                android:layout_gravity="top"
-                android:src="@drawable/sentiment_very_satisfied_black_24dp_1" />
-
-            <EditText
-                android:id="@+id/type_message_edit_text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_weight="5"
-                android:background="@null"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:gravity="top"
-                android:hint="@string/type_message"
-                android:inputType="textMultiLine"
-                android:lines="5"
-                android:minLines="1"
-                android:textSize="16sp" />
-
-            <ImageButton
-                android:id="@+id/attach_button"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@null"
-                android:layout_gravity="top"
-                android:src="@drawable/attachment_black_24dp_1" />
-
-            <FrameLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_gravity="top">
-
-                <ImageButton
-                    android:id="@+id/add_photo_button"
-                    android:layout_width="wrap_content"
+                <include
+                    android:id="@+id/profile_header_layout"
+                    layout="@layout/user_profile_header"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@null"
-                    android:src="@drawable/add_a_photo_black_24dp_copy_1" />
+                    app:layout_collapseMode="parallax" />
 
-                <ImageButton
-                    android:id="@+id/apps_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@null"
-                    android:src="@drawable/apps_black_24dp_1"
-                    android:visibility="gone" />
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
 
-            </FrameLayout>
-
-        </LinearLayout>
-
-        <FrameLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <ImageButton
-                android:id="@+id/record_audio_button"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:background="@drawable/active_button_bg"
-                android:scaleType="center"
-                android:src="@drawable/mic_none_black_24dp_1"
-                android:tint="@color/White" />
-
-            <ImageButton
-                android:id="@+id/send_message_button"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:background="@drawable/dimmed_button_bg"
-                android:scaleType="center"
-                android:src="@drawable/send_black_24dp_1"
-                android:tint="@color/White"
-                android:enabled="false"
-                android:clickable="false"
+            <include
+                android:id="@+id/collapsed_header_layout"
+                layout="@layout/collapsed_header_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:visibility="gone" />
 
-        </FrameLayout>
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/groups_tablayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:background="@color/White"
+                app:tabBackground="@drawable/group_tabs_bg_selector"
+                app:tabIndicatorColor="@android:color/transparent"
+                app:tabIndicatorHeight="0dp"
+                app:tabIndicatorFullWidth="true"
+                app:tabMode="scrollable"
+                app:tabSelectedTextColor="@color/White"
+                app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
+                app:tabTextColor="@color/SecondaryGray" />
+        </com.google.android.material.appbar.AppBarLayout>
 
-    </LinearLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/White"
+            tools:context=".presentation.user.UserProfileActivity"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <LinearLayout
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/group_tabs_viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="24dp"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/no_messages_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/no_messages_icon" />
+                <TextView
+                    android:id="@+id/no_results_found_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:gravity="center"
+                    android:text="@string/no_messages"
+                    android:textColor="@color/colorPrimary"
+                    android:textFontWeight="700"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/ubuntu_mono" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/no_messages_desc"
+                    android:layout_marginStart="58dp"
+                    android:layout_marginEnd="58dp"
+                    android:layout_marginTop="8dp"
+                    android:textSize="14sp"
+                    android:gravity="center"/>
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <include
         android:id="@+id/select_group_layout"
+        layout="@layout/select_group_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="-16dp"
-        android:background="@drawable/top_border_bg_cornered"
-        android:orientation="vertical"
-        android:visibility="invisible"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@id/send_message_layout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_max="wrap"
         app:layout_constraintHeight_percent="0.4"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="24dp">
-
-            <ImageButton
-                android:id="@+id/collapse_select_group_image_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:background="@null"
-                android:src="@drawable/expand_more_black_24dp_1"
-                android:tint="@color/colorSecondary" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                app:fontFamily="@font/ubuntu_mono"
-                android:text="@string/select_a_group"
-                android:textColor="@color/colorPrimary"
-                android:textFontWeight="700"
-                android:textSize="24sp" />
-
-        </RelativeLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/select_group_desc"
-            android:textColor="@color/LighterGray"
-            android:textSize="12sp"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/user_groups_recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            tools:listitem="@layout/group_item_layout"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_margin="16dp"
-            android:background="@color/LighterGray"/>
-
-
-    </LinearLayout>
-
-
+    <include
+        android:id="@+id/send_message_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/send_message_layout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

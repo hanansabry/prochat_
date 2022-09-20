@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/send_message_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/top_border_bg_cornered"
+    android:orientation="horizontal"
+    android:paddingStart="16dp"
+    android:paddingTop="16dp"
+    android:paddingEnd="16dp"
+    android:paddingBottom="58dp"
+    android:weightSum="6">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_weight="6"
+        android:background="@drawable/textfield_default_placeholder_bg"
+        android:orientation="horizontal"
+        android:weightSum="8"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:padding="12dp">
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:layout_gravity="top"
+            android:src="@drawable/sentiment_very_satisfied_black_24dp_1" />
+
+        <EditText
+            android:id="@+id/type_message_edit_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_weight="5"
+            android:background="@null"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="top"
+            android:hint="@string/type_message"
+            android:inputType="textMultiLine"
+            android:lines="5"
+            android:minLines="1"
+            android:textSize="16sp" />
+
+        <ImageButton
+            android:id="@+id/attach_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:layout_gravity="top"
+            android:src="@drawable/attachment_black_24dp_1" />
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="top">
+
+            <ImageButton
+                android:id="@+id/add_photo_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@null"
+                android:src="@drawable/add_a_photo_black_24dp_copy_1" />
+
+            <ImageButton
+                android:id="@+id/apps_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@null"
+                android:src="@drawable/apps_black_24dp_1"
+                android:visibility="gone" />
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/record_audio_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/active_button_bg"
+            android:scaleType="center"
+            android:src="@drawable/mic_none_black_24dp_1"
+            android:tint="@color/White" />
+
+        <ImageButton
+            android:id="@+id/send_message_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/dimmed_button_bg"
+            android:scaleType="center"
+            android:src="@drawable/send_black_24dp_1"
+            android:tint="@color/White"
+            android:enabled="false"
+            android:clickable="false"
+            android:visibility="gone" />
+
+    </FrameLayout>
+
+</LinearLayout>
