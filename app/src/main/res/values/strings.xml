@@ -38,4 +38,13 @@
     <string name="group_details_text_temp">The messages of this group are viewed on
         <b>Sunday, Monday, Tuesday, Wednesday </b>
         and <b>Thursday</b> from <b>8 am</b> to <b>5 pm</b>.</string>
+    <string name="actions">Actions</string>
+    <string name="view_profile">View Profile</string>
+    <string name="shared_media">Shared Media</string>
+    <string name="move_to_other_classification">Move to Other Classification</string>
+    <string name="report_user">Report User</string>
+    <string name="block_user">Block User</string>
+    <string name="delete_message">Delete Message?</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
 </resources>

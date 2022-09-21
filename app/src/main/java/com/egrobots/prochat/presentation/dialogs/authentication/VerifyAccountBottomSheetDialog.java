@@ -1,4 +1,4 @@
-package com.egrobots.prochat.presentation.dialogs;
+package com.egrobots.prochat.presentation.dialogs.authentication;
 
 import android.content.Context;
 
@@ -9,17 +9,11 @@ import androidx.annotation.NonNull;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class LoginBottomSheetDialog extends BottomSheetDialog {
-    public LoginBottomSheetDialog(@NonNull Context context) {
+public class VerifyAccountBottomSheetDialog extends BottomSheetDialog {
+    public VerifyAccountBottomSheetDialog(@NonNull Context context) {
         super(context);
-        setContentView(R.layout.login_bottom_dialog);
+        setContentView(R.layout.verify_account_dialog);
         ButterKnife.bind(this);
-    }
-
-    @OnClick(R.id.sign_up_textview)
-    public void onSignUpClicked() {
-        dismiss();
-        new SignUpBottomSheetDialog(getContext()).show();
     }
 
     @OnClick(R.id.close_dialog_button)

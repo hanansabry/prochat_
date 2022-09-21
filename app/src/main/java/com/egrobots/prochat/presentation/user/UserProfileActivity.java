@@ -11,14 +11,14 @@ import com.egrobots.prochat.R;
 import com.egrobots.prochat.adapters.UserGroupsAdapter;
 import com.egrobots.prochat.callbacks.OnGroupSelectedCallback;
 import com.egrobots.prochat.model.GroupChatOutline;
-import com.egrobots.prochat.presentation.dialogs.LoginBottomSheetDialog;
+import com.egrobots.prochat.presentation.dialogs.authentication.LoginBottomSheetDialog;
+import com.egrobots.prochat.presentation.dialogs.userprofile.UserProfileActionsBottomSheetDialog;
 import com.egrobots.prochat.utils.AppBarStateChangeListener;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -197,10 +197,11 @@ public class UserProfileActivity extends AppCompatActivity implements OnGroupSel
         onBackPressed();
     }
 
-//    @OnClick(R.id.back_button)
-//    public void onCollapsedBackArrowClicked() {
-//        onBackPressed();
-//    }
+    @OnClick(R.id.actions_button)
+    public void onActionsButtonClicked() {
+        UserProfileActionsBottomSheetDialog actionsDialog = new UserProfileActionsBottomSheetDialog(this);
+        actionsDialog.show();
+    }
 
     @Override
     public void onBackPressed() {

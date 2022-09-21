@@ -44,7 +44,7 @@
     </style>
 
     <style name="AppModalStyle" parent="Widget.Design.BottomSheet.Modal">
-        <item name="android:background">@drawable/white_cornered_bg</item>
+        <item name="android:background">@drawable/white_cornered_bg_radious_50</item>
 <!--        <item name="behavior_peekHeight">680dp</item>-->
     </style>
 

@@ -1,5 +1,6 @@
 package com.egrobots.prochat.adapters;
 
+import android.content.DialogInterface;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import com.egrobots.prochat.R;
 import com.egrobots.prochat.model.ChatMessage;
+import com.egrobots.prochat.presentation.dialogs.userprofile.ChatMessageActionsDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +47,27 @@ public class ChatMessagesAdapter extends RecyclerView.Adapter<ChatMessagesAdapte
             holder.chatMessage.setBackground(holder.itemView.getContext().getDrawable(R.drawable.chat_message_recieved_bg));
             holder.mainLayout.setGravity(Gravity.START);
         }
+
+        //add long click action to message
+        holder.itemView.setOnLongClickListener(v -> {
+            if (chatMessage.isSent()) {
+                holder.chatMessage.setBackground(holder.itemView.getContext().getDrawable(R.drawable.chat_message_sent_selected_bg));
+            } else {
+                holder.chatMessage.setBackground(holder.itemView.getContext().getDrawable(R.drawable.chat_message_recieved_selected_bg));
+            }
+            holder.chatMessage.setTextColor(holder.itemView.getContext().getColor(R.color.White));
+            ChatMessageActionsDialog chatMessageActionsDialog = new ChatMessageActionsDialog(holder.itemView.getContext());
+            chatMessageActionsDialog.show();
+            chatMessageActionsDialog.setOnDismissListener(dialog -> {
+                if (chatMessage.isSent()) {
+                    holder.chatMessage.setBackground(holder.itemView.getContext().getDrawable(R.drawable.chat_message_sent_bg));
+                } else {
+                    holder.chatMessage.setBackground(holder.itemView.getContext().getDrawable(R.drawable.chat_message_recieved_bg));
+                }
+                holder.chatMessage.setTextColor(holder.itemView.getContext().getColor(R.color.SecondaryGray));
+            });
+            return false;
+        });
     }
 
     @Override

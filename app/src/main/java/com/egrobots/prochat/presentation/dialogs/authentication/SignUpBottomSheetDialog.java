@@ -1,4 +1,4 @@
-package com.egrobots.prochat.presentation.dialogs;
+package com.egrobots.prochat.presentation.dialogs.authentication;
 
 import android.content.Context;
 
