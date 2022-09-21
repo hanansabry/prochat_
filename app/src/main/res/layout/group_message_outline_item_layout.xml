@@ -40,6 +40,8 @@
         android:textColor="@color/SecondaryGray"
         android:textFontWeight="400"
         android:textSize="14sp"
+        android:ellipsize="end"
+        android:singleLine="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/group_message_title" />
 

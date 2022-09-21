@@ -10,7 +10,7 @@ import android.widget.ImageButton;
 import com.egrobots.prochat.R;
 import com.egrobots.prochat.adapters.UserGroupsAdapter;
 import com.egrobots.prochat.callbacks.OnGroupSelectedCallback;
-import com.egrobots.prochat.model.GroupMessageOutline;
+import com.egrobots.prochat.model.GroupChatOutline;
 import com.egrobots.prochat.presentation.dialogs.LoginBottomSheetDialog;
 import com.egrobots.prochat.utils.AppBarStateChangeListener;
 import com.google.android.material.appbar.AppBarLayout;
@@ -18,6 +18,7 @@ import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,6 +35,9 @@ public class UserProfileActivity extends AppCompatActivity implements OnGroupSel
     CollapsingToolbarLayout collapsingToolbarLayout;
     @BindView(R.id.collapsed_header_layout)
     View collapsedHeaderLayout;
+
+    @BindView(R.id.user_profile_main_header)
+    View mainProfileHeader;
 
     @BindView(R.id.type_message_edit_text)
     EditText typeMessageEditText;
@@ -75,8 +79,10 @@ public class UserProfileActivity extends AppCompatActivity implements OnGroupSel
             }
         });
 
-        fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.content_fragment, UserProfileContentFragment.newInstance());
+        fragmentTransaction
+                = getSupportFragmentManager().beginTransaction()
+                .add(R.id.content_fragment, UserProfileContentFragment.newInstance());
+//        fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
 
         sendMessageButton.setEnabled(false);
@@ -176,16 +182,36 @@ public class UserProfileActivity extends AppCompatActivity implements OnGroupSel
     }
 
     @Override
-    public void onGroupSelected(GroupMessageOutline groupMessageOutline) {
+    public void onGroupChatSelected(GroupChatOutline groupChatOutline) {
         isChatFragmentCurrentlyOpened = true;
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.content_fragment, UserChatFragment.newInstance(), "Chat Fragment");
+        fragmentTransaction.add(R.id.content_fragment, UserChatFragment.newInstance(), "Chat Fragment");
+        fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
+        appBarLayout.setExpanded(false);
         collapsedHeaderLayout.setBackgroundColor(ContextCompat.getColor(UserProfileActivity.this, R.color.colorSecondary));
     }
 
     @OnClick(R.id.back_button)
-    public void onBackArrowClicked() {
-        getSupportFragmentManager().popBackStack();
+    public void onMainBackArrowClicked() {
+        onBackPressed();
+    }
+
+//    @OnClick(R.id.back_button)
+//    public void onCollapsedBackArrowClicked() {
+//        onBackPressed();
+//    }
+
+    @Override
+    public void onBackPressed() {
+        UserChatFragment chatFragment = (UserChatFragment)getSupportFragmentManager().findFragmentByTag("Chat Fragment");
+        if (chatFragment != null && chatFragment.isVisible()) {
+            collapsedHeaderLayout.setBackgroundColor(ContextCompat.getColor(UserProfileActivity.this, R.color.White));
+        }
+        if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+            getSupportFragmentManager().popBackStack();
+        } else {
+            super.onBackPressed();
+        }
     }
 }

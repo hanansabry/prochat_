@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import dagger.android.support.DaggerFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,12 +16,10 @@ import android.view.ViewGroup;
 import com.egrobots.prochat.R;
 import com.egrobots.prochat.adapters.GroupMessagesOutlineAdapter;
 import com.egrobots.prochat.callbacks.OnGroupSelectedCallback;
-import com.egrobots.prochat.model.GroupMessageOutline;
+import com.egrobots.prochat.model.GroupChatOutline;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.inject.Inject;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -66,13 +63,13 @@ public class GroupFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_group, container, false);
         ButterKnife.bind(this, view);
 
-        List<GroupMessageOutline> groupMessages = new ArrayList<>();
-        groupMessages.add(new GroupMessageOutline("Morsi’s Work Group", "Hi Ahmed, I am texting you because we need to discu...", "21 Aug 2022"));
-        groupMessages.add(new GroupMessageOutline("Ask Me", "Hi, Please check your mail.", "21 Aug 2022"));
-        groupMessages.add(new GroupMessageOutline("A.Morsi General Group", "Hi Ahmed, I am texting you because we need to discu...", "10:50 pm"));
-        groupMessages.add(new GroupMessageOutline("Company Team", "Hi, Please check your mail.", "Yesterday"));
-        groupMessages.add(new GroupMessageOutline("Morsi’s Work Group", "Hi Ahmed, I am texting you because we need to discu...", "21 Aug 2022"));
-        groupMessages.add(new GroupMessageOutline("Ask Me", "Hi, Please check your mail.", "10:50 pm"));
+        List<GroupChatOutline> groupMessages = new ArrayList<>();
+        groupMessages.add(new GroupChatOutline("Morsi’s Work Group", "Hi Ahmed, I am texting you because we need to discusu our new matters in this concers...", "21 Aug 2022"));
+        groupMessages.add(new GroupChatOutline("Ask Me", "Hi, Please check your mail.", "21 Aug 2022"));
+        groupMessages.add(new GroupChatOutline("A.Morsi General Group", "Hi Ahmed, I am texting you because we need to discu...", "10:50 pm"));
+        groupMessages.add(new GroupChatOutline("Company Team", "Hi, Please check your mail.", "Yesterday"));
+        groupMessages.add(new GroupChatOutline("Morsi’s Work Group", "Hi Ahmed, I am texting you because we need to discu...", "21 Aug 2022"));
+        groupMessages.add(new GroupChatOutline("Ask Me", "Hi, Please check your mail.", "10:50 pm"));
 
         GroupMessagesOutlineAdapter adapter = new GroupMessagesOutlineAdapter(groupMessages, onGroupSelectedCallback);
         groupMessagesRecyclerView.setAdapter(adapter);

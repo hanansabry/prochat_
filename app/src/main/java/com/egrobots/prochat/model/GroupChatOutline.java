@@ -1,12 +1,12 @@
 package com.egrobots.prochat.model;
 
-public class GroupMessageOutline {
+public class GroupChatOutline {
 
     private String groupMessageTitle;
     private String groupMessageSubTitle;
     private String groupMessageDate;
 
-    public GroupMessageOutline(String groupMessageTitle, String groupMessageSubTitle, String groupMessageDate) {
+    public GroupChatOutline(String groupMessageTitle, String groupMessageSubTitle, String groupMessageDate) {
         this.groupMessageTitle = groupMessageTitle;
         this.groupMessageSubTitle = groupMessageSubTitle;
         this.groupMessageDate = groupMessageDate;
