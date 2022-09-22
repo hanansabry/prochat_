@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.egrobots.prochat.R;
-import com.egrobots.prochat.adapters.ChatMessagesAdapter;
+import com.egrobots.prochat.presentation.adapters.ChatMessagesAdapter;
 import com.egrobots.prochat.model.ChatMessage;
 
 import java.util.ArrayList;

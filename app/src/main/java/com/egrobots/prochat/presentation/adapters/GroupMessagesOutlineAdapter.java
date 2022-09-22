@@ -1,4 +1,4 @@
-package com.egrobots.prochat.adapters;
+package com.egrobots.prochat.presentation.adapters;
 
 import android.graphics.Typeface;
 import android.view.LayoutInflater;

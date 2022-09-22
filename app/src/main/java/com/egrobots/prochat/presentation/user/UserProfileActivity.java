@@ -8,7 +8,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.egrobots.prochat.R;
-import com.egrobots.prochat.adapters.UserGroupsAdapter;
+import com.egrobots.prochat.presentation.adapters.UserGroupsAdapter;
 import com.egrobots.prochat.callbacks.OnGroupSelectedCallback;
 import com.egrobots.prochat.model.GroupChatOutline;
 import com.egrobots.prochat.presentation.dialogs.authentication.LoginBottomSheetDialog;

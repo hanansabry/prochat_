@@ -1,4 +1,4 @@
-package com.egrobots.prochat.adapters;
+package com.egrobots.prochat.presentation.adapters;
 
 import com.egrobots.prochat.presentation.user.groups.GroupFragment;
 

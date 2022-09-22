@@ -1,4 +1,4 @@
-package com.egrobots.prochat.adapters;
+package com.egrobots.prochat.presentation.adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +10,6 @@ import com.egrobots.prochat.R;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.zip.Inflater;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;

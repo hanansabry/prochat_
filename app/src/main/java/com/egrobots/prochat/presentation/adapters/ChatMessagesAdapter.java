@@ -1,6 +1,5 @@
-package com.egrobots.prochat.adapters;
+package com.egrobots.prochat.presentation.adapters;
 
-import android.content.DialogInterface;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +11,6 @@ import com.egrobots.prochat.R;
 import com.egrobots.prochat.model.ChatMessage;
 import com.egrobots.prochat.presentation.dialogs.userprofile.ChatMessageActionsDialog;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;

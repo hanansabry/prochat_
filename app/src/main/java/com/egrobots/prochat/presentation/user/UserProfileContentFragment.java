@@ -6,8 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.egrobots.prochat.R;
-import com.egrobots.prochat.adapters.UserGroupsFragmentAdapter;
-import com.egrobots.prochat.di.FragmentBuildersModule;
+import com.egrobots.prochat.presentation.adapters.UserGroupsFragmentAdapter;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
@@ -15,7 +14,6 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import dagger.android.support.DaggerFragment;
 
 /**
  * A simple {@link Fragment} subclass.

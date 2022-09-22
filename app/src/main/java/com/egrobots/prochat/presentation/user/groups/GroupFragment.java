@@ -14,7 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.egrobots.prochat.R;
-import com.egrobots.prochat.adapters.GroupMessagesOutlineAdapter;
+import com.egrobots.prochat.presentation.adapters.GroupMessagesOutlineAdapter;
 import com.egrobots.prochat.callbacks.OnGroupSelectedCallback;
 import com.egrobots.prochat.model.GroupChatOutline;
 
