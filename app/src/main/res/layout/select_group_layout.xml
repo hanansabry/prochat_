@@ -5,10 +5,8 @@
     android:id="@+id/select_group_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="-16dp"
     android:background="@drawable/top_border_bg_cornered"
-    android:orientation="vertical"
-    android:visibility="gone">
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"

@@ -22,7 +22,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/close_dialog_button"
-            android:layout_marginBottom="64dp"
             android:orientation="vertical"
             android:visibility="visible">
 
@@ -164,6 +163,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/search_user_illustration"
                 android:layout_alignParentTop="true"
+                android:layout_marginTop="32dp"
                 android:layout_centerHorizontal="true"/>
 
             <TextView
