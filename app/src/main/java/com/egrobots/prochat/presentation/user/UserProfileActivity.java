@@ -12,6 +12,7 @@ import com.egrobots.prochat.presentation.adapters.UserGroupsAdapter;
 import com.egrobots.prochat.callbacks.OnGroupSelectedCallback;
 import com.egrobots.prochat.model.GroupChatOutline;
 import com.egrobots.prochat.presentation.dialogs.authentication.LoginBottomSheetDialog;
+import com.egrobots.prochat.presentation.dialogs.authentication.SignUpBottomSheetDialog;
 import com.egrobots.prochat.presentation.dialogs.userprofile.UserProfileActionsBottomSheetDialog;
 import com.egrobots.prochat.utils.AppBarStateChangeListener;
 import com.google.android.material.appbar.AppBarLayout;
@@ -58,7 +59,7 @@ public class UserProfileActivity extends AppCompatActivity implements OnGroupSel
 
     private InputMethodManager imm;
     private FragmentTransaction fragmentTransaction;
-    private boolean isLogged = true;
+    private boolean isLogged = false;
     private boolean isChatFragmentCurrentlyOpened;
 
     @Override
@@ -176,8 +177,8 @@ public class UserProfileActivity extends AppCompatActivity implements OnGroupSel
             userChatFragment.addMessage(typeMessageEditText.getText().toString(), "11:20 am");
             typeMessageEditText.setText("");
         } else {
-            LoginBottomSheetDialog dialog = new LoginBottomSheetDialog(this);
-            dialog.show();
+            LoginBottomSheetDialog loginDialog = LoginBottomSheetDialog.newInstance();
+            loginDialog.show(getSupportFragmentManager(), LoginBottomSheetDialog.TAG);
         }
     }
 
