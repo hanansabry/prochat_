@@ -33,7 +33,6 @@ public class LoginBottomSheetDialog extends DaggerBottomSheetDialogFragment {
 
     public static final String TAG = "LoginBottomSheetDialog";
 
-
     private DialogLoginAuthentication loginAuthentication;
 
     @Inject
@@ -115,7 +114,8 @@ public class LoginBottomSheetDialog extends DaggerBottomSheetDialogFragment {
 
         @Override
         protected void goToForgetPasswordScreen() {
-
+            ForgotPasswordBottomSheetDialog forgotPasswordDialog = ForgotPasswordBottomSheetDialog.newInstance();
+            forgotPasswordDialog.show(getParentFragmentManager(), ForgotPasswordBottomSheetDialog.TAG);
         }
 
         @Override

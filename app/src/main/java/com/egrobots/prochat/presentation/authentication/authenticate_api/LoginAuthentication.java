@@ -1,18 +1,11 @@
 package com.egrobots.prochat.presentation.authentication.authenticate_api;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.egrobots.prochat.R;
-import com.egrobots.prochat.presentation.authentication.ForgotPasswordActivity;
-import com.egrobots.prochat.presentation.authentication.LoginActivity;
-import com.egrobots.prochat.presentation.authentication.MainActivity;
-import com.egrobots.prochat.presentation.authentication.SignUpActivity;
 import com.egrobots.prochat.presentation.dialogs.SearchForFriendsBottomSheetDialog;
 import com.egrobots.prochat.utils.Utils;
 import com.egrobots.prochat.viewmodels.AuthenticationViewModel;
