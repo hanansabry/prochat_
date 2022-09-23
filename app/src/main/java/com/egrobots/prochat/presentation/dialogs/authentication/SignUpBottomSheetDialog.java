@@ -88,8 +88,7 @@ public class SignUpBottomSheetDialog extends DaggerBottomSheetDialogFragment {
                 emailSignUpButton,
                 signUpButton,
                 acceptTermsCheckbox,
-                mobileCountryCodeTextView,
-                true);
+                mobileCountryCodeTextView);
         signUpAuthentication.initializeObservers(this);
     }
 

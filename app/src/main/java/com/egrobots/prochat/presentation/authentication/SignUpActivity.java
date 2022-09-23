@@ -72,8 +72,7 @@ public class SignUpActivity extends DaggerAppCompatActivity {
                 emailSignUpButton,
                 signUpButton,
                 acceptTermsCheckbox,
-                mobileCountryCodeTextView,
-                false);
+                mobileCountryCodeTextView);
         signUpAuthentication.initializeObservers(this);
     }
 

@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.egrobots.prochat.R;
 import com.egrobots.prochat.di.ViewModelProviderFactory;
+import com.egrobots.prochat.presentation.authentication.authenticate_api.LoginAuthentication;
 import com.egrobots.prochat.presentation.dialogs.SearchForFriendsBottomSheetDialog;
 import com.egrobots.prochat.utils.Utils;
 import com.egrobots.prochat.viewmodels.AuthenticationViewModel;
@@ -28,7 +29,6 @@ public class LoginActivity extends DaggerAppCompatActivity {
 
     private static final int PASSWORD_MIN_LENGTH = 6;
 
-    private AuthenticationViewModel authenticationViewModel;
     @Inject
     ViewModelProviderFactory providerFactory;
     @BindView(R.id.mobile_email_edit_text)
@@ -43,6 +43,7 @@ public class LoginActivity extends DaggerAppCompatActivity {
     TextView signUpTextView;
     @BindView(R.id.search_user_edit_text)
     EditText searchUserEditText;
+    private ActivityLoginAuthentication loginAuthentication;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,95 +51,67 @@ public class LoginActivity extends DaggerAppCompatActivity {
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
 
-        authenticationViewModel = new ViewModelProvider(getViewModelStore(), providerFactory).get(AuthenticationViewModel.class);
-        observeSignIn();
-        observeError();
-    }
-
-    private void observeSignIn() {
-        authenticationViewModel.observeAuthenticateState().observe(this, success -> {
-            if (success) {
-                Toast.makeText(LoginActivity.this, "Login successfully", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(this, MainActivity.class));
-            } else {
-                Toast.makeText(LoginActivity.this, "invalid credentials", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    private void observeError() {
-        authenticationViewModel.observeErrorState().observe(this, error -> {
-            Toast.makeText(LoginActivity.this, error, Toast.LENGTH_LONG).show();
-        });
+        AuthenticationViewModel authenticationViewModel = new ViewModelProvider(getViewModelStore(), providerFactory).get(AuthenticationViewModel.class);
+        loginAuthentication = new ActivityLoginAuthentication();
+        loginAuthentication.initializeViews(this,
+                authenticationViewModel,
+                mobileEmailEditText,
+                passwordEditText,
+                loginButton);
+        loginAuthentication.initializeObservers(this);
     }
 
     @OnFocusChange(R.id.search_user_edit_text)
     public void onSearchEditTextFocusChange(View v, boolean hasFocus) {
-        SearchForFriendsBottomSheetDialog searchDialog = new SearchForFriendsBottomSheetDialog(this);
-        if (hasFocus) {
-            searchDialog.show();
-        } else {
-            searchDialog.dismiss();
-        }
+        loginAuthentication.onSearchEditTextFocusChange(v, hasFocus);
     }
-
 
     @OnClick(R.id.login_button)
     public void onLoginClicked() {
-        String emailOrPhone = mobileEmailEditText.getText().toString();
-        String password = passwordEditText.getText().toString();
-
-        if (Utils.isEmailValid(emailOrPhone)) {
-            //login with email
-            authenticationViewModel.signInWithEmail(emailOrPhone, password);
-        } else if (Utils.isPhoneValid(emailOrPhone)) {
-            authenticationViewModel.signInWithPhone(emailOrPhone, password);
-        } else {
-            Toast.makeText(this, "Not valid email or phone", Toast.LENGTH_SHORT).show();
-        }
+        loginAuthentication.onLoginClicked();
     }
 
     @OnClick(R.id.forget_password_textview)
     public void onForgotPasswordClicked() {
-        startActivity(new Intent(LoginActivity.this, ForgotPasswordActivity.class));
+        loginAuthentication.onForgotPasswordClicked();
     }
 
     @OnClick(R.id.sign_up_textview)
     public void onSignUpClicked() {
-        startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
+        loginAuthentication.onSignUpClicked();
     }
 
     @OnTextChanged(R.id.mobile_email_edit_text)
     public void onEmailTextChanged(CharSequence s, int start, int count, int after) {
-        if (s.length() == 0) {
-            mobileEmailEditText.setError(null);
-            return;
-        }
-        //validate email
-        if (!Utils.isEmailValid(s.toString()) && !Utils.isPhoneValid(s.toString())) {
-            mobileEmailEditText.setError("Not valid email or phone");
-            loginButton.setBackground(getResources().getDrawable(R.drawable.dimmed_button_bg));
-            return;
-        }
-        String password = passwordEditText.getText().toString();
-        if (password.length() >= PASSWORD_MIN_LENGTH) {
-            loginButton.setEnabled(true);
-            loginButton.setBackground(getResources().getDrawable(R.drawable.active_button_bg));
-        } else {
-            loginButton.setEnabled(false);
-            loginButton.setBackground(getResources().getDrawable(R.drawable.dimmed_button_bg));
-        }
+        loginAuthentication.onEmailTextChanged(s, start, count, after);
     }
 
     @OnTextChanged(R.id.password_edit_text)
     public void onPasswordTextChanged(CharSequence s, int start, int count, int after) {
-        String emailPhone = mobileEmailEditText.getText().toString();
-        if ((Utils.isEmailValid(emailPhone) || Utils.isPhoneValid(emailPhone)) && s.length() >= PASSWORD_MIN_LENGTH) {
-            loginButton.setEnabled(true);
-            loginButton.setBackground(getResources().getDrawable(R.drawable.active_button_bg));
-        } else {
-            loginButton.setEnabled(false);
-            loginButton.setBackground(getResources().getDrawable(R.drawable.dimmed_button_bg));
+        loginAuthentication.onPasswordTextChanged(s, start, count, after);
+    }
+
+    private class ActivityLoginAuthentication extends LoginAuthentication {
+
+        @Override
+        protected void loginSuccessAction() {
+            Toast.makeText(LoginActivity.this, "Login successfully", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+        }
+
+        @Override
+        protected void loginErrorAction(String error) {
+            Toast.makeText(LoginActivity.this, error, Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        protected void goToForgetPasswordScreen() {
+            startActivity(new Intent(LoginActivity.this, ForgotPasswordActivity.class));
+        }
+
+        @Override
+        protected void goToSignUpScreen() {
+            startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
         }
     }
 }

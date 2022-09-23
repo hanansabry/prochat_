@@ -28,7 +28,6 @@ public abstract class SignUpAuthentication {
     private boolean signUpWithEmail;
     private Context activity;
     private AuthenticationViewModel authenticationViewModel;
-    private boolean isDialog;
 
     View mainLayout;
     EditText mobileEmailEditText;
@@ -49,8 +48,7 @@ public abstract class SignUpAuthentication {
                                 Button emailSignUpButton,
                                 Button signUpButton,
                                 CheckBox acceptTermsCheckbox,
-                                TextView mobileCountryCodeTextView,
-                                boolean isDialog) {
+                                TextView mobileCountryCodeTextView) {
         this.activity = activity;
         this.authenticationViewModel = authenticationViewModel;
         this.mainLayout = mainLayout;
@@ -62,7 +60,6 @@ public abstract class SignUpAuthentication {
         this.signUpButton = signUpButton;
         this.acceptTermsCheckbox = acceptTermsCheckbox;
         this.mobileCountryCodeTextView = mobileCountryCodeTextView;
-        this.isDialog = isDialog;
     }
 
     public void initializeObservers(LifecycleOwner lifecycleOwner) {
