@@ -2,17 +2,17 @@ package com.egrobots.prochat.presentation.user;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.egrobots.prochat.R;
-import com.egrobots.prochat.presentation.adapters.UserGroupsAdapter;
 import com.egrobots.prochat.callbacks.OnGroupSelectedCallback;
 import com.egrobots.prochat.model.GroupChatOutline;
+import com.egrobots.prochat.presentation.adapters.UserGroupsAdapter;
 import com.egrobots.prochat.presentation.dialogs.authentication.LoginBottomSheetDialog;
-import com.egrobots.prochat.presentation.dialogs.authentication.SignUpBottomSheetDialog;
 import com.egrobots.prochat.presentation.dialogs.userprofile.UserProfileActionsBottomSheetDialog;
 import com.egrobots.prochat.utils.AppBarStateChangeListener;
 import com.google.android.material.appbar.AppBarLayout;
@@ -36,6 +36,10 @@ public class UserProfileActivity extends AppCompatActivity implements OnGroupSel
     CollapsingToolbarLayout collapsingToolbarLayout;
     @BindView(R.id.collapsed_header_layout)
     View collapsedHeaderLayout;
+    @BindView(R.id.no_messages_layout)
+    View noMessagesLayout;
+    @BindView(R.id.content_fragment)
+    View contentFragment;
 
     @BindView(R.id.user_profile_main_header)
     View mainProfileHeader;
@@ -61,6 +65,7 @@ public class UserProfileActivity extends AppCompatActivity implements OnGroupSel
     private FragmentTransaction fragmentTransaction;
     private boolean isLogged = false;
     private boolean isChatFragmentCurrentlyOpened;
+    private boolean data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +74,73 @@ public class UserProfileActivity extends AppCompatActivity implements OnGroupSel
         ButterKnife.bind(this);
         imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 
+        //set scrolling behavior
+        setScrollingBehavior();
+        //set send message button behavior
+        sendMessageButton.setEnabled(false);
+        sendMessageButton.setClickable(false);
+        setTypeMessageEditTextTouchListener();
+
+        //if there are group chats for the group, show the UserProfileContentFragment
+        if (data) {
+            fragmentTransaction
+                    = getSupportFragmentManager().beginTransaction()
+                    .add(R.id.content_fragment, UserProfileContentFragment.newInstance());
+            fragmentTransaction.commit();
+            noMessagesLayout.setVisibility(View.GONE);
+            contentFragment.setVisibility(View.VISIBLE);
+        } else {
+            noMessagesLayout.setVisibility(View.VISIBLE);
+            contentFragment.setVisibility(View.GONE);
+        }
+        //init user groups
+        initUserGroups();
+    }
+
+    private void setTypeMessageEditTextTouchListener() {
+        typeMessageEditText.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    if (!isChatFragmentCurrentlyOpened) {
+                        if (selectGroupLayout.getVisibility() == View.VISIBLE) {
+                            selectGroupLayout.setVisibility(View.GONE);
+                            sendMessageButton.setVisibility(View.GONE);
+                            recordAudioButton.setVisibility(View.VISIBLE);
+                            appsButton.setVisibility(View.GONE);
+                            addPhotoButton.setVisibility(View.VISIBLE);
+                            attachButton.setVisibility(View.VISIBLE);
+                            //hide keypad
+                            hideKeypad();
+                        } else {
+                            selectGroupLayout.setVisibility(View.VISIBLE);
+                            sendMessageButton.setVisibility(View.VISIBLE);
+                            recordAudioButton.setVisibility(View.GONE);
+                            appsButton.setVisibility(View.VISIBLE);
+                            addPhotoButton.setVisibility(View.GONE);
+                            attachButton.setVisibility(View.INVISIBLE);
+
+                            //show keypad
+                            hideKeypad();
+                        }
+                    } else {
+                        sendMessageButton.setVisibility(View.VISIBLE);
+                        recordAudioButton.setVisibility(View.GONE);
+                        appsButton.setVisibility(View.VISIBLE);
+                        addPhotoButton.setVisibility(View.GONE);
+                        attachButton.setVisibility(View.INVISIBLE);
+
+                        //show keypad
+                        showKeypad();
+                    }
+                }
+                return false;
+            }
+        });
+
+    }
+
+    private void setScrollingBehavior() {
         appBarLayout.addOnOffsetChangedListener(new AppBarStateChangeListener() {
             @Override
             public void onStateChanged(AppBarLayout appBarLayout, State state) {
@@ -79,62 +151,6 @@ public class UserProfileActivity extends AppCompatActivity implements OnGroupSel
                 }
             }
         });
-
-        fragmentTransaction
-                = getSupportFragmentManager().beginTransaction()
-                .add(R.id.content_fragment, UserProfileContentFragment.newInstance());
-//        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
-
-        sendMessageButton.setEnabled(false);
-        sendMessageButton.setClickable(false);
-        typeMessageEditText.setShowSoftInputOnFocus(false);
-        typeMessageEditText.requestFocus();
-        typeMessageEditText.setOnClickListener(v -> {
-            if (!isChatFragmentCurrentlyOpened) {
-                if (selectGroupLayout.getVisibility() == View.VISIBLE) {
-                    selectGroupLayout.setVisibility(View.GONE);
-                    sendMessageButton.setVisibility(View.GONE);
-                    recordAudioButton.setVisibility(View.VISIBLE);
-                    appsButton.setVisibility(View.GONE);
-                    addPhotoButton.setVisibility(View.VISIBLE);
-                    attachButton.setVisibility(View.VISIBLE);
-                    //hide keypad
-                    View view = this.getCurrentFocus();
-                    if (view != null) {
-                        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-                    }
-                } else {
-                    selectGroupLayout.setVisibility(View.VISIBLE);
-                    sendMessageButton.setVisibility(View.VISIBLE);
-                    recordAudioButton.setVisibility(View.GONE);
-                    appsButton.setVisibility(View.VISIBLE);
-                    addPhotoButton.setVisibility(View.GONE);
-                    attachButton.setVisibility(View.INVISIBLE);
-
-                    //show keypad
-                    View view = this.getCurrentFocus();
-                    if (view != null) {
-                        imm.showSoftInput(view, 0);
-                    }
-                }
-            } else {
-                sendMessageButton.setVisibility(View.VISIBLE);
-                recordAudioButton.setVisibility(View.GONE);
-                appsButton.setVisibility(View.VISIBLE);
-                addPhotoButton.setVisibility(View.GONE);
-                attachButton.setVisibility(View.INVISIBLE);
-
-                //show keypad
-                View view = this.getCurrentFocus();
-                if (view != null) {
-                    imm.showSoftInput(view, 0);
-                }
-            }
-        });
-
-        //init user groups
-        initUserGroups();
     }
 
     private void initUserGroups() {
@@ -146,25 +162,22 @@ public class UserProfileActivity extends AppCompatActivity implements OnGroupSel
     @OnClick(R.id.collapse_select_group_image_button)
     public void onCollapseUserGroupsClicked() {
         selectGroupLayout.setVisibility(View.GONE);
-        sendMessageButton.setVisibility(View.GONE);
-        recordAudioButton.setVisibility(View.VISIBLE);
-        //hide keypad
-        View view = this.getCurrentFocus();
-        if (view != null) {
-            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        if (typeMessageEditText.getText().toString().isEmpty()) {
+            setSendMessageInvisible();
+        } else {
+            setSendMessageVisible();
         }
+        //hide keypad
+        hideKeypad();
     }
 
     @OnTextChanged(R.id.type_message_edit_text)
     public void onTypingMessage(CharSequence s, int start, int count, int after) {
         if (s.toString().isEmpty()) {
-            sendMessageButton.setBackground(getDrawable(R.drawable.dimmed_button_bg));
-            sendMessageButton.setEnabled(false);
-            sendMessageButton.setClickable(false);
+            disableSendMessageButton();
         } else {
-            sendMessageButton.setBackground(getDrawable(R.drawable.active_button_bg));
-            sendMessageButton.setEnabled(true);
-            sendMessageButton.setClickable(true);
+            enableSendMessageButton();
+            setSendMessageVisible();
         }
     }
 
@@ -206,7 +219,7 @@ public class UserProfileActivity extends AppCompatActivity implements OnGroupSel
 
     @Override
     public void onBackPressed() {
-        UserChatFragment chatFragment = (UserChatFragment)getSupportFragmentManager().findFragmentByTag("Chat Fragment");
+        UserChatFragment chatFragment = (UserChatFragment) getSupportFragmentManager().findFragmentByTag("Chat Fragment");
         if (chatFragment != null && chatFragment.isVisible()) {
             collapsedHeaderLayout.setBackgroundColor(ContextCompat.getColor(UserProfileActivity.this, R.color.White));
         }
@@ -216,4 +229,47 @@ public class UserProfileActivity extends AppCompatActivity implements OnGroupSel
             super.onBackPressed();
         }
     }
+
+    private void setSendMessageInvisible() {
+        sendMessageButton.setVisibility(View.GONE);
+        recordAudioButton.setVisibility(View.VISIBLE);
+        attachButton.setVisibility(View.VISIBLE);
+        addPhotoButton.setVisibility(View.VISIBLE);
+        appsButton.setVisibility(View.GONE);
+    }
+
+    private void setSendMessageVisible() {
+        sendMessageButton.setVisibility(View.VISIBLE);
+        recordAudioButton.setVisibility(View.GONE);
+        attachButton.setVisibility(View.GONE);
+        addPhotoButton.setVisibility(View.GONE);
+        appsButton.setVisibility(View.VISIBLE);
+    }
+
+    private void enableSendMessageButton() {
+        sendMessageButton.setBackground(getDrawable(R.drawable.active_button_bg));
+        sendMessageButton.setEnabled(true);
+        sendMessageButton.setClickable(true);
+    }
+
+    private void disableSendMessageButton() {
+        sendMessageButton.setBackground(getDrawable(R.drawable.dimmed_button_bg));
+        sendMessageButton.setEnabled(false);
+        sendMessageButton.setClickable(false);
+    }
+
+    private void hideKeypad() {
+        View view = this.getCurrentFocus();
+        if (view != null) {
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+    }
+
+    private void showKeypad() {
+        View view = this.getCurrentFocus();
+        if (view != null) {
+            imm.showSoftInput(view, 0);
+        }
+    }
+
 }

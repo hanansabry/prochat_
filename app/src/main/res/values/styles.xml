@@ -40,12 +40,21 @@
     <style name="AppBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
         <item name="bottomSheetStyle">@style/AppModalStyle</item>
         <item name="android:buttonStyle">@style/ButtonStyle</item>
+    </style>
 
+    <style name="SearchAppBottomSheetDialogTheme">
+        <item name="bottomSheetStyle">@style/AppModalStyleWithPeekHeight</item>
+        <item name="android:buttonStyle">@style/ButtonStyle</item>
     </style>
 
     <style name="AppModalStyle" parent="Widget.Design.BottomSheet.Modal">
         <item name="android:background">@drawable/white_cornered_bg_radious_50</item>
 <!--        <item name="behavior_peekHeight">680dp</item>-->
+    </style>
+
+    <style name="AppModalStyleWithPeekHeight" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/white_cornered_bg_radious_50</item>
+        <item name="behavior_peekHeight">680dp</item>
     </style>
 
     <style name="roundedImageViewRounded">
