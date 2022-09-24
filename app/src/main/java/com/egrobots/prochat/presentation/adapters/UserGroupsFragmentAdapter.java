@@ -14,9 +14,11 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 public class UserGroupsFragmentAdapter extends FragmentStateAdapter {
 
-    private List<Group> groupList = new ArrayList<>();
+    private List<Group> groupList;
 
-    public UserGroupsFragmentAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle, List<Group> groupList) {
+    public UserGroupsFragmentAdapter(@NonNull FragmentManager fragmentManager,
+                                     @NonNull Lifecycle lifecycle,
+                                     List<Group> groupList) {
         super(fragmentManager, lifecycle);
         this.groupList = groupList;
     }
@@ -24,7 +26,8 @@ public class UserGroupsFragmentAdapter extends FragmentStateAdapter {
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        return GroupFragment.newInstance();
+        Group group = groupList.get(position);
+        return GroupFragment.newInstance(group.getGroupId(), group.getGroupName());
     }
 
     @Override

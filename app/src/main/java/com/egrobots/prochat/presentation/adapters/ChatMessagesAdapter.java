@@ -8,10 +8,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.egrobots.prochat.R;
-import com.egrobots.prochat.model.ChatMessage;
+import com.egrobots.prochat.model.Message;
 import com.egrobots.prochat.presentation.dialogs.userprofile.ChatMessageActionsDialog;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,10 +21,11 @@ import butterknife.ButterKnife;
 
 public class ChatMessagesAdapter extends RecyclerView.Adapter<ChatMessagesAdapter.ChatMessageViewHolder> {
 
-    private List<ChatMessage> chatMessages;
+    private List<Message> messages;
+    private int lastItemPosition = -1;
 
-    public ChatMessagesAdapter(List<ChatMessage> chatMessages) {
-        this.chatMessages = chatMessages;
+    public ChatMessagesAdapter(List<Message> messages) {
+        this.messages = messages;
     }
 
     @NonNull
@@ -35,10 +37,10 @@ public class ChatMessagesAdapter extends RecyclerView.Adapter<ChatMessagesAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ChatMessageViewHolder holder, int position) {
-        ChatMessage chatMessage = chatMessages.get(position);
-        holder.chatMessage.setText(chatMessage.getText());
-        holder.chatMessageTime.setText(chatMessage.getTime());
-        if (chatMessage.isSent()) {
+        Message message = messages.get(position);
+        holder.chatMessage.setText(message.getText());
+        holder.chatMessageTime.setText(message.getFormattedTime());
+        if (message.isSent()) {
             holder.chatMessage.setBackground(holder.itemView.getContext().getDrawable(R.drawable.chat_message_sent_bg));
             holder.mainLayout.setGravity(Gravity.END);
         } else {
@@ -46,9 +48,21 @@ public class ChatMessagesAdapter extends RecyclerView.Adapter<ChatMessagesAdapte
             holder.mainLayout.setGravity(Gravity.START);
         }
 
+        if (position + 1 < messages.size()) {
+            boolean isSentBySameUser = (messages.get(position + 1).isSent() && messages.get(position).isSent()) ||
+                    (!messages.get(position + 1).isSent() && !messages.get(position).isSent());
+            long timeDiff = messages.get(position + 1).getTime() - messages.get(position).getTime();
+            long diffInSec = TimeUnit.MILLISECONDS.toSeconds(timeDiff);
+            boolean isDiffLessThanSec = diffInSec < 60;
+//            if (isDiffLessThanSec && isSentBySameUser) {
+            if (isSentBySameUser) {
+                holder.chatMessageTime.setVisibility(View.GONE);
+            }
+        }
+
         //add long click action to message
         holder.itemView.setOnLongClickListener(v -> {
-            if (chatMessage.isSent()) {
+            if (message.isSent()) {
                 holder.chatMessage.setBackground(holder.itemView.getContext().getDrawable(R.drawable.chat_message_sent_selected_bg));
             } else {
                 holder.chatMessage.setBackground(holder.itemView.getContext().getDrawable(R.drawable.chat_message_recieved_selected_bg));
@@ -57,7 +71,7 @@ public class ChatMessagesAdapter extends RecyclerView.Adapter<ChatMessagesAdapte
             ChatMessageActionsDialog chatMessageActionsDialog = new ChatMessageActionsDialog(holder.itemView.getContext());
             chatMessageActionsDialog.show();
             chatMessageActionsDialog.setOnDismissListener(dialog -> {
-                if (chatMessage.isSent()) {
+                if (message.isSent()) {
                     holder.chatMessage.setBackground(holder.itemView.getContext().getDrawable(R.drawable.chat_message_sent_bg));
                 } else {
                     holder.chatMessage.setBackground(holder.itemView.getContext().getDrawable(R.drawable.chat_message_recieved_bg));
@@ -70,7 +84,7 @@ public class ChatMessagesAdapter extends RecyclerView.Adapter<ChatMessagesAdapte
 
     @Override
     public int getItemCount() {
-        return chatMessages.size();
+        return messages.size();
     }
 
     static class ChatMessageViewHolder extends RecyclerView.ViewHolder {

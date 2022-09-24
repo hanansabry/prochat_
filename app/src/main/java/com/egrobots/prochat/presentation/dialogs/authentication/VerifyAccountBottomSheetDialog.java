@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.egrobots.prochat.R;
+import com.egrobots.prochat.callbacks.OnUserAuthenticateCallback;
 import com.egrobots.prochat.di.DaggerBottomSheetDialogFragment;
 import com.egrobots.prochat.di.ViewModelProviderFactory;
 import com.egrobots.prochat.presentation.authentication.MainActivity;
@@ -54,6 +55,7 @@ public class VerifyAccountBottomSheetDialog extends DaggerBottomSheetDialogFragm
     private String userName;
     private String password;
     private DialogVerificationAuthentication verificationAuthentication;
+    private OnUserAuthenticateCallback onUserAuthenticateCallback;
 
     public static VerifyAccountBottomSheetDialog newInstance(String phoneNumber, String userName, String password) {
         VerifyAccountBottomSheetDialog fragmentDialog = new VerifyAccountBottomSheetDialog();
@@ -133,6 +135,12 @@ public class VerifyAccountBottomSheetDialog extends DaggerBottomSheetDialogFragm
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        try {
+            onUserAuthenticateCallback = (OnUserAuthenticateCallback) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString()
+                    + " must implement FragmentToActivity");
+        }
     }
 
     @Override
@@ -146,6 +154,7 @@ public class VerifyAccountBottomSheetDialog extends DaggerBottomSheetDialogFragm
         protected void verificationSuccessAction() {
             Toast.makeText(getContext(), "Sign up successfully", Toast.LENGTH_LONG).show();
             dismiss();
+            onUserAuthenticateCallback.onUserLoginSuccessfully();
         }
 
         @Override

@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.egrobots.prochat.R;
 import com.egrobots.prochat.callbacks.OnGroupSelectedCallback;
+import com.egrobots.prochat.model.Chat;
 import com.egrobots.prochat.model.GroupChatOutline;
 
 import java.util.List;
@@ -21,10 +22,18 @@ import butterknife.ButterKnife;
 public class GroupMessagesOutlineAdapter extends RecyclerView.Adapter<GroupMessagesOutlineAdapter.GroupMessageOutlineViewHolder> {
 
     private List<GroupChatOutline> groupChatOutlineList;
+    private List<Chat> chatList;
+    private String groupName;
     private OnGroupSelectedCallback onGroupSelectedCallback;
 
-    public GroupMessagesOutlineAdapter(List<GroupChatOutline> groupChatOutlineList, OnGroupSelectedCallback onGroupSelectedCallback) {
-        this.groupChatOutlineList = groupChatOutlineList;
+//    public GroupMessagesOutlineAdapter(List<GroupChatOutline> groupChatOutlineList, OnGroupSelectedCallback onGroupSelectedCallback) {
+//        this.groupChatOutlineList = groupChatOutlineList;
+//        this.onGroupSelectedCallback = onGroupSelectedCallback;
+//    }
+
+    public GroupMessagesOutlineAdapter(String groupName, List<Chat> chatList, OnGroupSelectedCallback onGroupSelectedCallback) {
+        this.groupName = groupName;
+        this.chatList = chatList;
         this.onGroupSelectedCallback = onGroupSelectedCallback;
     }
 
@@ -37,21 +46,26 @@ public class GroupMessagesOutlineAdapter extends RecyclerView.Adapter<GroupMessa
 
     @Override
     public void onBindViewHolder(@NonNull GroupMessageOutlineViewHolder holder, int position) {
-        GroupChatOutline groupChatOutline = groupChatOutlineList.get(position);
-        holder.groupMessageTitle.setText(groupChatOutline.getGroupMessageTitle());
-        holder.groupMessageSubTitle.setText(groupChatOutline.getGroupMessageSubTitle());
-        holder.groupMessageDate.setText(groupChatOutline.getGroupMessageDate());
+        Chat groupChat = chatList.get(position);
+        int chatSize = groupChat.getMessages().size();
+        String outlineTitle = groupName;
+        String outlineSubTitle = groupChat.getMessages().get(chatSize - 1).getText();
+        String time = groupChat.getMessages().get(chatSize - 1).getFormattedTime();
+
+        holder.groupMessageTitle.setText(outlineTitle);
+        holder.groupMessageSubTitle.setText(outlineSubTitle);
+        holder.groupMessageDate.setText(time);
         if (position == 0 || position == 1) {
             holder.itemView.setBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.GreenyShadeTwo));
             holder.groupMessageTitle.setTypeface(Typeface.DEFAULT_BOLD);
         }
 
-        holder.itemView.setOnClickListener(v -> onGroupSelectedCallback.onGroupChatSelected(groupChatOutline));
+        holder.itemView.setOnClickListener(v -> onGroupSelectedCallback.onGroupChatSelected(groupChat));
     }
 
     @Override
     public int getItemCount() {
-        return groupChatOutlineList.size();
+        return chatList.size();
     }
 
     static class GroupMessageOutlineViewHolder extends RecyclerView.ViewHolder {

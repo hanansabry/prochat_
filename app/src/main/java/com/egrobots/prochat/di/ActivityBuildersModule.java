@@ -8,6 +8,7 @@ import com.egrobots.prochat.presentation.authentication.LoginActivity;
 import com.egrobots.prochat.presentation.authentication.SignUpActivity;
 import com.egrobots.prochat.presentation.authentication.VerifyAccount;
 import com.egrobots.prochat.presentation.user.UserProfileActivity;
+import com.egrobots.prochat.presentation.user.groups.GroupFragment;
 import com.egrobots.prochat.viewmodels.UserProfileViewModel;
 
 import dagger.Module;
@@ -30,4 +31,7 @@ public abstract class ActivityBuildersModule {
 
     @ContributesAndroidInjector(modules = UserProfileViewModelModule.class)
     abstract UserProfileActivity contributeUserProfileActivity();
+
+    @ContributesAndroidInjector(modules = UserProfileViewModelModule.class)
+    abstract GroupFragment contributeGroupFragment();
 }

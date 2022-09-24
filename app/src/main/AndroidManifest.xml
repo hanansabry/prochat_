@@ -34,7 +34,8 @@
         <activity
             android:name=".presentation.user.UserProfileActivity"
             android:noHistory="true"
-            android:theme="@style/DarkAppTheme">
+            android:theme="@style/DarkAppTheme"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

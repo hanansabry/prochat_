@@ -11,6 +11,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.egrobots.prochat.R;
+import com.egrobots.prochat.callbacks.OnGroupSelectedCallback;
+import com.egrobots.prochat.callbacks.OnUserAuthenticateCallback;
 import com.egrobots.prochat.di.DaggerBottomSheetDialogFragment;
 import com.egrobots.prochat.di.ViewModelProviderFactory;
 import com.egrobots.prochat.presentation.authentication.LoginActivity;
@@ -34,6 +36,7 @@ public class LoginBottomSheetDialog extends DaggerBottomSheetDialogFragment {
     public static final String TAG = "LoginBottomSheetDialog";
 
     private DialogLoginAuthentication loginAuthentication;
+    private OnUserAuthenticateCallback onUserAuthenticateCallback;
 
     @Inject
     ViewModelProviderFactory providerFactory;
@@ -99,12 +102,30 @@ public class LoginBottomSheetDialog extends DaggerBottomSheetDialogFragment {
         dismiss();
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try {
+            onUserAuthenticateCallback = (OnUserAuthenticateCallback) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString()
+                    + " must implement FragmentToActivity");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        onUserAuthenticateCallback = null;
+        super.onDetach();
+    }
+
     private class DialogLoginAuthentication extends LoginAuthentication {
 
         @Override
         protected void loginSuccessAction() {
             Toast.makeText(getContext(), "Login successfully", Toast.LENGTH_SHORT).show();
             dismiss();
+            onUserAuthenticateCallback.onUserLoginSuccessfully();
         }
 
         @Override

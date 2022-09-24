@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.egrobots.prochat.R;
+import com.egrobots.prochat.callbacks.OnUserAuthenticateCallback;
 import com.egrobots.prochat.di.DaggerBottomSheetDialogFragment;
 import com.egrobots.prochat.di.ViewModelProviderFactory;
 import com.egrobots.prochat.presentation.authentication.SignUpActivity;
@@ -60,6 +61,7 @@ public class SignUpBottomSheetDialog extends DaggerBottomSheetDialogFragment {
     @BindView(R.id.mobile_country_code_textview)
     TextView mobileCountryCodeTextView;
     private SignUpAuthentication signUpAuthentication;
+    private OnUserAuthenticateCallback onUserAuthenticateCallback;
 
     public static SignUpBottomSheetDialog newInstance() {
         return new SignUpBottomSheetDialog();
@@ -136,7 +138,7 @@ public class SignUpBottomSheetDialog extends DaggerBottomSheetDialogFragment {
     }
 
     @Override
-    public void onAttach(@NonNull Context context) {
+    public void onAttach(Context context) {
         super.onAttach(context);
     }
 

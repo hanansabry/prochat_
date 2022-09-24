@@ -10,22 +10,22 @@ import android.widget.ImageButton;
 
 import com.egrobots.prochat.R;
 import com.egrobots.prochat.callbacks.OnGroupSelectedCallback;
+import com.egrobots.prochat.callbacks.OnUserAuthenticateCallback;
 import com.egrobots.prochat.di.ViewModelProviderFactory;
-import com.egrobots.prochat.model.GroupChatOutline;
+import com.egrobots.prochat.model.Chat;
 import com.egrobots.prochat.presentation.adapters.UserGroupsAdapter;
 import com.egrobots.prochat.presentation.dialogs.authentication.LoginBottomSheetDialog;
 import com.egrobots.prochat.presentation.dialogs.userprofile.UserProfileActionsBottomSheetDialog;
 import com.egrobots.prochat.utils.AppBarStateChangeListener;
-import com.egrobots.prochat.viewmodels.AuthenticationViewModel;
 import com.egrobots.prochat.viewmodels.UserProfileViewModel;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Calendar;
 
 import javax.inject.Inject;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
@@ -37,7 +37,8 @@ import butterknife.OnClick;
 import butterknife.OnTextChanged;
 import dagger.android.support.DaggerAppCompatActivity;
 
-public class UserProfileActivity extends DaggerAppCompatActivity implements OnGroupSelectedCallback {
+public class UserProfileActivity extends DaggerAppCompatActivity
+        implements OnGroupSelectedCallback, OnUserAuthenticateCallback {
 
     @Inject
     ViewModelProviderFactory providerFactory;
@@ -198,26 +199,15 @@ public class UserProfileActivity extends DaggerAppCompatActivity implements OnGr
     @OnClick(R.id.send_message_button)
     public void onSendMessageClicked() {
         //if user is not logged, show login bottom sheet dialog
-        if (isLogged) {
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
             //send the message
-            UserChatFragment userChatFragment = (UserChatFragment) getSupportFragmentManager().findFragmentByTag("Chat Fragment");
+            UserChatFragment userChatFragment = (UserChatFragment) getSupportFragmentManager().findFragmentByTag(UserChatFragment.TAG);
             userChatFragment.addMessage(typeMessageEditText.getText().toString(), Calendar.getInstance().getTimeInMillis());
             typeMessageEditText.setText("");
         } else {
             LoginBottomSheetDialog loginDialog = LoginBottomSheetDialog.newInstance();
             loginDialog.show(getSupportFragmentManager(), LoginBottomSheetDialog.TAG);
         }
-    }
-
-    @Override
-    public void onGroupChatSelected(GroupChatOutline groupChatOutline) {
-        isChatFragmentCurrentlyOpened = true;
-        fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.add(R.id.content_fragment, UserChatFragment.newInstance(), "Chat Fragment");
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
-        appBarLayout.setExpanded(false);
-        collapsedHeaderLayout.setBackgroundColor(ContextCompat.getColor(UserProfileActivity.this, R.color.colorSecondary));
     }
 
     @OnClick(R.id.back_button)
@@ -233,9 +223,14 @@ public class UserProfileActivity extends DaggerAppCompatActivity implements OnGr
 
     @Override
     public void onBackPressed() {
-        UserChatFragment chatFragment = (UserChatFragment) getSupportFragmentManager().findFragmentByTag("Chat Fragment");
+        if (selectGroupLayout.getVisibility() == View.VISIBLE) {
+            onCollapseUserGroupsClicked();
+            return;
+        }
+        UserChatFragment chatFragment = (UserChatFragment) getSupportFragmentManager().findFragmentByTag(UserChatFragment.TAG);
         if (chatFragment != null && chatFragment.isVisible()) {
             collapsedHeaderLayout.setBackgroundColor(ContextCompat.getColor(UserProfileActivity.this, R.color.White));
+            isChatFragmentCurrentlyOpened = false;
         }
         if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
             getSupportFragmentManager().popBackStack();
@@ -286,4 +281,27 @@ public class UserProfileActivity extends DaggerAppCompatActivity implements OnGr
         }
     }
 
+    //callbacks
+    @Override
+    public void onGroupChatSelected(Chat chat) {
+        isChatFragmentCurrentlyOpened = true;
+        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.add(R.id.content_fragment, UserChatFragment.newInstance(chat), UserChatFragment.TAG);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+        appBarLayout.setExpanded(false);
+        collapsedHeaderLayout.setBackgroundColor(ContextCompat.getColor(UserProfileActivity.this, R.color.colorSecondary));
+    }
+
+    @Override
+    public void onUserLoginSuccessfully() {
+        //send the message
+        UserChatFragment userChatFragment = (UserChatFragment) getSupportFragmentManager().findFragmentByTag(UserChatFragment.TAG);
+        if (userChatFragment != null && userChatFragment.isVisible()) {
+            userChatFragment.addMessage(typeMessageEditText.getText().toString(), Calendar.getInstance().getTimeInMillis());
+            typeMessageEditText.setText("");
+        } else {
+            //open group chat fragment
+        }
+    }
 }

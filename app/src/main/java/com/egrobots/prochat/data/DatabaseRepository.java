@@ -1,6 +1,7 @@
 package com.egrobots.prochat.data;
 
 import com.egrobots.prochat.datasource.FirebaseDataSource;
+import com.egrobots.prochat.model.Chat;
 import com.egrobots.prochat.model.Group;
 import com.google.firebase.auth.PhoneAuthCredential;
 
@@ -46,5 +47,9 @@ public class DatabaseRepository {
 
     public Flowable<Group> getUserGroups(String userId) {
         return firebaseDataSource.getUserGroups(userId);
+    }
+
+    public Flowable<Chat> getGroupChats(String groupId) {
+        return firebaseDataSource.getGroupChats(groupId);
     }
 }

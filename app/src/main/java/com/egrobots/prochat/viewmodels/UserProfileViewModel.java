@@ -1,12 +1,14 @@
 package com.egrobots.prochat.viewmodels;
 
 import com.egrobots.prochat.data.DatabaseRepository;
+import com.egrobots.prochat.model.Chat;
 import com.egrobots.prochat.model.Group;
 
 import javax.inject.Inject;
 
 import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.ViewModel;
+import io.reactivex.Flowable;
 import io.reactivex.Observer;
 import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -21,6 +23,10 @@ public class UserProfileViewModel extends ViewModel {
     private MediatorLiveData<Boolean> hasGroups = new MediatorLiveData<>();
     private MediatorLiveData<Group> groupsLiveData = new MediatorLiveData<>();
     private MediatorLiveData<Boolean> finishRetrievingGroups = new MediatorLiveData<>();
+
+    private MediatorLiveData<Chat> groupChatsLiveData = new MediatorLiveData<>();
+    private MediatorLiveData<Boolean> finishRetrievingGroupChats = new MediatorLiveData<>();
+
     private MediatorLiveData<String> errorState = new MediatorLiveData<>();
 
     @Inject
@@ -78,6 +84,34 @@ public class UserProfileViewModel extends ViewModel {
                 });
     }
 
+    public void getGroupChats(String groupId) {
+        databaseRepository.getGroupChats(groupId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .toObservable()
+                .subscribe(new Observer<Chat>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        disposable.add(d);
+                    }
+
+                    @Override
+                    public void onNext(Chat chat) {
+                        groupChatsLiveData.setValue(chat);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        errorState.setValue(e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        finishRetrievingGroupChats.setValue(true);
+                    }
+                });
+    }
+
     public MediatorLiveData<Boolean> observeUserHasGroups() {
         return hasGroups;
     }
@@ -88,6 +122,14 @@ public class UserProfileViewModel extends ViewModel {
 
     public MediatorLiveData<Boolean> isGroupRetrievingFinished() {
         return finishRetrievingGroups;
+    }
+
+    public MediatorLiveData<Chat> observeGroupChats() {
+        return groupChatsLiveData;
+    }
+
+    public MediatorLiveData<Boolean> isGroupChatsRetrievingFinished() {
+        return finishRetrievingGroupChats;
     }
 
     public MediatorLiveData<String> observeError() {

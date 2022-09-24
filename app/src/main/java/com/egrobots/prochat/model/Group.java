@@ -7,7 +7,7 @@ public class Group {
     private String groupId;
     private String groupName;
     private String groupType;
-    private List<String> groupChats;
+    private List<Chat> groupChats;
 
     public String getGroupId() {
         return groupId;
@@ -33,11 +33,11 @@ public class Group {
         this.groupType = groupType;
     }
 
-    public List<String> getGroupChats() {
+    public List<Chat> getGroupChats() {
         return groupChats;
     }
 
-    public void setGroupChats(List<String> groupChats) {
+    public void setGroupChats(List<Chat> groupChats) {
         this.groupChats = groupChats;
     }
 }
