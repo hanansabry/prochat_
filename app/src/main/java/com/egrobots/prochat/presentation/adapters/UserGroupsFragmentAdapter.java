@@ -1,6 +1,10 @@
 package com.egrobots.prochat.presentation.adapters;
 
+import com.egrobots.prochat.model.Group;
 import com.egrobots.prochat.presentation.user.groups.GroupFragment;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -10,8 +14,11 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 public class UserGroupsFragmentAdapter extends FragmentStateAdapter {
 
-    public UserGroupsFragmentAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
+    private List<Group> groupList = new ArrayList<>();
+
+    public UserGroupsFragmentAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle, List<Group> groupList) {
         super(fragmentManager, lifecycle);
+        this.groupList = groupList;
     }
 
     @NonNull
@@ -22,6 +29,6 @@ public class UserGroupsFragmentAdapter extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
-        return 6;
+        return groupList.size();
     }
 }

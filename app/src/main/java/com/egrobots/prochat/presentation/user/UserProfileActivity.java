@@ -10,26 +10,37 @@ import android.widget.ImageButton;
 
 import com.egrobots.prochat.R;
 import com.egrobots.prochat.callbacks.OnGroupSelectedCallback;
+import com.egrobots.prochat.di.ViewModelProviderFactory;
 import com.egrobots.prochat.model.GroupChatOutline;
 import com.egrobots.prochat.presentation.adapters.UserGroupsAdapter;
 import com.egrobots.prochat.presentation.dialogs.authentication.LoginBottomSheetDialog;
 import com.egrobots.prochat.presentation.dialogs.userprofile.UserProfileActionsBottomSheetDialog;
 import com.egrobots.prochat.utils.AppBarStateChangeListener;
+import com.egrobots.prochat.viewmodels.AuthenticationViewModel;
+import com.egrobots.prochat.viewmodels.UserProfileViewModel;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+
+import java.util.Calendar;
+
+import javax.inject.Inject;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnTextChanged;
+import dagger.android.support.DaggerAppCompatActivity;
 
-public class UserProfileActivity extends AppCompatActivity implements OnGroupSelectedCallback {
+public class UserProfileActivity extends DaggerAppCompatActivity implements OnGroupSelectedCallback {
 
+    @Inject
+    ViewModelProviderFactory providerFactory;
     @BindView(R.id.appbar)
     AppBarLayout appBarLayout;
     @BindView(R.id.collapsing_toolbar)
@@ -65,7 +76,6 @@ public class UserProfileActivity extends AppCompatActivity implements OnGroupSel
     private FragmentTransaction fragmentTransaction;
     private boolean isLogged = false;
     private boolean isChatFragmentCurrentlyOpened;
-    private boolean data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,25 +84,29 @@ public class UserProfileActivity extends AppCompatActivity implements OnGroupSel
         ButterKnife.bind(this);
         imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 
+        UserProfileViewModel userProfileViewModel = new ViewModelProvider(getViewModelStore(), providerFactory).get(UserProfileViewModel.class);
+        //get user groups
+        userProfileViewModel.isUserHasGroups(null);
+        userProfileViewModel.observeUserHasGroups().observe(this, state -> {
+            //if there are group chats for the group, show the UserProfileContentFragment
+            if (state) {
+                fragmentTransaction
+                        = getSupportFragmentManager().beginTransaction()
+                        .add(R.id.content_fragment, UserProfileContentFragment.newInstance());
+                fragmentTransaction.commit();
+                noMessagesLayout.setVisibility(View.GONE);
+                contentFragment.setVisibility(View.VISIBLE);
+            } else {
+                noMessagesLayout.setVisibility(View.VISIBLE);
+                contentFragment.setVisibility(View.GONE);
+            }
+        });
         //set scrolling behavior
         setScrollingBehavior();
         //set send message button behavior
         sendMessageButton.setEnabled(false);
         sendMessageButton.setClickable(false);
         setTypeMessageEditTextTouchListener();
-
-        //if there are group chats for the group, show the UserProfileContentFragment
-        if (data) {
-            fragmentTransaction
-                    = getSupportFragmentManager().beginTransaction()
-                    .add(R.id.content_fragment, UserProfileContentFragment.newInstance());
-            fragmentTransaction.commit();
-            noMessagesLayout.setVisibility(View.GONE);
-            contentFragment.setVisibility(View.VISIBLE);
-        } else {
-            noMessagesLayout.setVisibility(View.VISIBLE);
-            contentFragment.setVisibility(View.GONE);
-        }
         //init user groups
         initUserGroups();
     }
@@ -187,7 +201,7 @@ public class UserProfileActivity extends AppCompatActivity implements OnGroupSel
         if (isLogged) {
             //send the message
             UserChatFragment userChatFragment = (UserChatFragment) getSupportFragmentManager().findFragmentByTag("Chat Fragment");
-            userChatFragment.addMessage(typeMessageEditText.getText().toString(), "11:20 am");
+            userChatFragment.addMessage(typeMessageEditText.getText().toString(), Calendar.getInstance().getTimeInMillis());
             typeMessageEditText.setText("");
         } else {
             LoginBottomSheetDialog loginDialog = LoginBottomSheetDialog.newInstance();

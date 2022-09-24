@@ -10,6 +10,7 @@ import com.egrobots.prochat.presentation.adapters.ChatMessagesAdapter;
 import com.egrobots.prochat.model.ChatMessage;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -50,15 +51,15 @@ public class UserChatFragment extends Fragment {
 
         chatMessages.add(new ChatMessage("Hi Ahmed, I texting you because we\n" +
                 "need some bla bla tomorrow. So what\n" +
-                "do you think ablout making bla bla?", "08:24 pm", true));
+                "do you think ablout making bla bla?", Calendar.getInstance().getTimeInMillis(), true));
         chatMessages.add(new ChatMessage("Hi Ahmed, I texting you because we\n" +
                 "need some bla bla tomorrow. So what\n" +
-                "do you think ablout making bla bla?", "08:24 pm", true));
-        chatMessages.add(new ChatMessage("Okay, Thanks a lot", "08:24 pm", false));
+                "do you think ablout making bla bla?", Calendar.getInstance().getTimeInMillis(), true));
+        chatMessages.add(new ChatMessage("Okay, Thanks a lot", Calendar.getInstance().getTimeInMillis(), false));
         chatMessages.add(new ChatMessage("Hi Ahmed, I texting you because we\n" +
                 "need some bla bla tomorrow. So what\n" +
-                "do you think ablout making bla bla?", "08:24 pm", false));
-        chatMessages.add(new ChatMessage("Okay, Thanks a lot", "08:24 pm", true));
+                "do you think ablout making bla bla?", Calendar.getInstance().getTimeInMillis(), false));
+        chatMessages.add(new ChatMessage("Okay, Thanks a lot", Calendar.getInstance().getTimeInMillis(), true));
 
         adapter = new ChatMessagesAdapter(chatMessages);
         chatMessagesRecyclerView.setAdapter(adapter);
@@ -67,7 +68,7 @@ public class UserChatFragment extends Fragment {
         return view;
     }
 
-    public void addMessage(String message, String date) {
+    public void addMessage(String message, long date) {
         chatMessages.add(new ChatMessage(message, date, true));
         adapter.notifyDataSetChanged();
         chatMessagesRecyclerView.smoothScrollToPosition(chatMessages.size() - 1);

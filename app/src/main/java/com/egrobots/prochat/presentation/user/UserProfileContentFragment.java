@@ -6,26 +6,42 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.egrobots.prochat.R;
+import com.egrobots.prochat.di.ViewModelProviderFactory;
+import com.egrobots.prochat.model.Group;
 import com.egrobots.prochat.presentation.adapters.UserGroupsFragmentAdapter;
+import com.egrobots.prochat.viewmodels.UserProfileViewModel;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.inject.Inject;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.widget.ViewPager2;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import dagger.android.support.DaggerFragment;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link UserProfileContentFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class UserProfileContentFragment extends Fragment {
+public class UserProfileContentFragment extends DaggerFragment {
 
     @BindView(R.id.group_tabs_viewpager)
     ViewPager2 groupTabsViewPager;
     @BindView(R.id.groups_tablayout)
     TabLayout groupTabsLayout;
+    @Inject
+    ViewModelProviderFactory providerFactory;
+    private List<Group> groupList = new ArrayList<>();
+
 
     public UserProfileContentFragment() {
         // Required empty public constructor
@@ -45,30 +61,31 @@ public class UserProfileContentFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_user_profile_content, container, false);
         ButterKnife.bind(this, view);
-        //setup groups tab
-        setupGroupTabs();
         return view;
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        UserProfileViewModel userProfileViewModel = new ViewModelProvider(getViewModelStore(), providerFactory).get(UserProfileViewModel.class);
+        userProfileViewModel.getUserGroups("");
+        userProfileViewModel.observeGroups().observe(getViewLifecycleOwner(), group -> {
+            groupList.add(group);
+        });
+        userProfileViewModel.isGroupRetrievingFinished().observe(getViewLifecycleOwner(), finished -> {
+            if (finished) {
+                //setup groups tab
+                setupGroupTabs();
+            }
+        });
+    }
+
     private void setupGroupTabs() {
-        UserGroupsFragmentAdapter groupsFragmentAdapter = new UserGroupsFragmentAdapter(getParentFragmentManager(), getLifecycle());
+        UserGroupsFragmentAdapter groupsFragmentAdapter
+                = new UserGroupsFragmentAdapter(getParentFragmentManager(), getLifecycle(), groupList);
         groupTabsViewPager.setAdapter(groupsFragmentAdapter);
         TabLayoutMediator tabLayoutMediator = new TabLayoutMediator(groupTabsLayout, groupTabsViewPager, (tab, position) -> {
-            if (position == 0) {
-                tab.setText("All");
-            } else if (position == 1) {
-                tab.setText("My Groups");
-            } else if (position == 2) {
-                tab.setText("Group 1");
-            } else if (position == 3) {
-                tab.setText("Group 2");
-            } else if (position == 4) {
-                tab.setText("Group 3");
-            } else if (position == 5) {
-                tab.setText("Group 4");
-            } else if (position == 6) {
-                tab.setText("Group 5");
-            }
+            tab.setText(groupList.get(position).getGroupName());
         });
         tabLayoutMediator.attach();
     }

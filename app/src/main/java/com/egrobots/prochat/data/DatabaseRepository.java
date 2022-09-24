@@ -1,10 +1,12 @@
 package com.egrobots.prochat.data;
 
 import com.egrobots.prochat.datasource.FirebaseDataSource;
+import com.egrobots.prochat.model.Group;
 import com.google.firebase.auth.PhoneAuthCredential;
 
 import javax.inject.Inject;
 
+import io.reactivex.Flowable;
 import io.reactivex.Single;
 
 public class DatabaseRepository {
@@ -34,5 +36,15 @@ public class DatabaseRepository {
 
     public Single<Boolean> sendPasswordResetEmail(String email) {
         return firebaseDataSource.sendPasswordResetEmail(email);
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    //user methods
+    public Single<Boolean> isUserHasGroups(String userId) {
+        return firebaseDataSource.isUserHasGroups(userId);
+    }
+
+    public Flowable<Group> getUserGroups(String userId) {
+        return firebaseDataSource.getUserGroups(userId);
     }
 }

@@ -1,5 +1,6 @@
 package com.egrobots.prochat.datasource;
 
+import com.egrobots.prochat.model.Group;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
@@ -9,13 +10,18 @@ import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.inject.Inject;
 
 import androidx.annotation.NonNull;
+import io.reactivex.BackpressureStrategy;
+import io.reactivex.Flowable;
 import io.reactivex.Single;
 import io.reactivex.SingleEmitter;
 
@@ -100,7 +106,6 @@ public class FirebaseDataSource {
         });
     }
 
-
     private void saveUserToDatabase(String email, String phone, String phoneVerificationId, String username, String password, SingleEmitter<Boolean> emitter) {
         HashMap<String, Object> userValues = new HashMap<>();
         userValues.put("email", email);
@@ -122,4 +127,45 @@ public class FirebaseDataSource {
                     }
                 });
     }
+
+
+    //user methods
+    public Single<Boolean> isUserHasGroups(String userId) {
+        return Single.create(emitter -> {
+            emitter.onSuccess(true);
+        });
+    }
+
+
+
+    public Flowable<Group> getUserGroups(String userId) {
+        return Flowable.create(emitter -> {
+            List<Group> groupList = new ArrayList<>();
+            Group g0 = new Group();
+            g0.setGroupName("All");
+            Group g1 = new Group();
+            g1.setGroupName("General Group");
+            Group g2 = new Group();
+            g2.setGroupName("Company Clients");
+            Group g3 = new Group();
+            g3.setGroupName("Group Name");
+            Group g4 = new Group();
+            g4.setGroupName("Need A Freelancing Project?");
+            Group g5 = new Group();
+            g5.setGroupName("Ask Me");
+            groupList.add(g0);
+            groupList.add(g1);
+            groupList.add(g2);
+            groupList.add(g3);
+            groupList.add(g4);
+            groupList.add(g5);
+
+            for (Group group : groupList) {
+                emitter.onNext(group);
+            }
+            emitter.onComplete();
+
+        }, BackpressureStrategy.BUFFER);
+    }
+
 }

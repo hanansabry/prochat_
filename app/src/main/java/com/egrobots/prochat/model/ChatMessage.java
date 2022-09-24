@@ -1,12 +1,19 @@
 package com.egrobots.prochat.model;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
+
 public class ChatMessage {
 
     private String text;
-    private String time;
+    private long time;
     private boolean sent;
 
-    public ChatMessage(String text, String time, boolean sent) {
+    public ChatMessage(String text, long time, boolean sent) {
         this.text = text;
         this.time = time;
         this.sent = sent;
@@ -21,10 +28,12 @@ public class ChatMessage {
     }
 
     public String getTime() {
-        return time;
+        DateFormat df = new SimpleDateFormat("HH:mm aa", Locale.getDefault());
+        String formatted = df.format(df);
+        return formatted;
     }
 
-    public void setTime(String time) {
+    public void setTime(long time) {
         this.time = time;
     }
 

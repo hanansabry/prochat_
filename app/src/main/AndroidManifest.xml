@@ -10,10 +10,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".presentation.user.UserProfileActivity"
-            android:theme="@style/LightAppTheme"
-            android:windowSoftInputMode="adjustPan" />
+<!--        <activity-->
+<!--            android:name=".presentation.user.UserProfileActivity"-->
+<!--            android:theme="@style/LightAppTheme"-->
+<!--            android:windowSoftInputMode="adjustPan" />-->
         <activity android:name=".presentation.authentication.MainActivity" />
         <activity
             android:name=".presentation.authentication.VerifyAccount"
@@ -32,7 +32,7 @@
             android:theme="@style/DarkAppTheme"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".presentation.SplashActivity"
+            android:name=".presentation.user.UserProfileActivity"
             android:noHistory="true"
             android:theme="@style/DarkAppTheme">
             <intent-filter>
