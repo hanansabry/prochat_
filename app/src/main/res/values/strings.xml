@@ -47,4 +47,8 @@
     <string name="delete_message">Delete Message?</string>
     <string name="cancel">Cancel</string>
     <string name="delete">Delete</string>
+    <string name="chats">Chats</string>
+    <string name="groups">Groups</string>
+    <string name="members">Members</string>
+    <string name="my_account">My Account</string>
 </resources>

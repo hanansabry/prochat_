@@ -1,7 +1,7 @@
 package com.egrobots.prochat.presentation.adapters;
 
 import com.egrobots.prochat.model.Group;
-import com.egrobots.prochat.presentation.screens.userprofile.groups.GroupFragment;
+import com.egrobots.prochat.presentation.screens.userprofile.groups.GroupChatsFragment;
 
 import java.util.List;
 
@@ -26,7 +26,7 @@ public class UserGroupsFragmentAdapter extends FragmentStateAdapter {
     @Override
     public Fragment createFragment(int position) {
         Group group = groupList.get(position);
-        return GroupFragment.newInstance(group.getGroupId(), group.getGroupName());
+        return GroupChatsFragment.newInstance(group.getGroupId(), group.getGroupName());
     }
 
     @Override

@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.egrobots.prochat.R;
 import com.egrobots.prochat.di.ViewModelProviderFactory;
 import com.egrobots.prochat.presentation.screens.authentication.authenticate_api.SignUpAuthentication;
+import com.egrobots.prochat.presentation.screens.home.HomeActivity;
 import com.egrobots.prochat.utils.Constants;
 import com.egrobots.prochat.presentation.viewmodels.AuthenticationViewModel;
 
@@ -133,7 +134,7 @@ public class SignUpActivity extends DaggerAppCompatActivity {
         protected void signUpWithEmailSuccessAction() {
             //show the user that email verification is sent
             Toast.makeText(SignUpActivity.this, "Email verification has been sent to your mail, Please check it.", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(SignUpActivity.this, MainActivity.class));
+            startActivity(new Intent(SignUpActivity.this, HomeActivity.class));
         }
 
         @Override

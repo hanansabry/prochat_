@@ -7,7 +7,7 @@ import com.egrobots.prochat.presentation.screens.authentication.dialogs.LoginBot
 import com.egrobots.prochat.presentation.screens.authentication.dialogs.SignUpBottomSheetDialog;
 import com.egrobots.prochat.presentation.screens.authentication.dialogs.VerifyAccountBottomSheetDialog;
 import com.egrobots.prochat.presentation.screens.userprofile.UserProfileContentFragment;
-import com.egrobots.prochat.presentation.screens.userprofile.groups.GroupFragment;
+import com.egrobots.prochat.presentation.screens.userprofile.groups.GroupChatsFragment;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -17,7 +17,7 @@ public abstract class FragmentBuildersModule {
 
     abstract UserProfileContentFragment contributeSurveyQuestion1Fragment();
 
-    abstract GroupFragment contributeGroupFragment();
+    abstract GroupChatsFragment contributeGroupFragment();
 
     @ContributesAndroidInjector(modules = AuthenticationViewModelModule.class)
     abstract SignUpBottomSheetDialog contributeSignUpBottomSheetDialogFragment();

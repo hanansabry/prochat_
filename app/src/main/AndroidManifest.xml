@@ -10,11 +10,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+<!--        <activity-->
+<!--            android:name=".presentation.screens.home.HomeActivity"-->
+<!--            android:theme="@style/LightAppTheme" />-->
         <activity
             android:name=".presentation.screens.userprofile.UserProfileActivity"
             android:theme="@style/LightAppTheme"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".presentation.screens.authentication.MainActivity" />
         <activity
             android:name=".presentation.screens.authentication.VerifyAccount"
             android:theme="@style/DarkAppTheme"
@@ -30,21 +32,18 @@
         <activity
             android:name=".presentation.screens.authentication.LoginActivity"
             android:theme="@style/DarkAppTheme"
-            android:windowSoftInputMode="adjustPan" />
-<!--        <activity-->
-<!--            android:name=".presentation.user.UserProfileActivity"-->
-<!--            android:noHistory="true"-->
-<!--            android:theme="@style/DarkAppTheme"-->
-<!--            android:windowSoftInputMode="adjustPan">-->
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-<!--        </activity>-->
-
+            android:windowSoftInputMode="adjustPan" /> <!-- <activity -->
+        <!-- android:name=".presentation.user.UserProfileActivity" -->
+        <!-- android:noHistory="true" -->
+        <!-- android:theme="@style/DarkAppTheme" -->
+        <!-- android:windowSoftInputMode="adjustPan"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.intent.action.MAIN" /> -->
+        <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+        <!-- </intent-filter> -->
+        <!-- </activity> -->
         <activity
-            android:name=".presentation.SplashActivity"
+            android:name=".presentation.screens.home.HomeActivity"
             android:noHistory="true"
             android:theme="@style/DarkAppTheme">
             <intent-filter>
@@ -54,14 +53,13 @@
             </intent-filter>
         </activity>
 
-
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
 
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

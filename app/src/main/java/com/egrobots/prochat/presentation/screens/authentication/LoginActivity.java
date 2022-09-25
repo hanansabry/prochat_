@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.egrobots.prochat.R;
 import com.egrobots.prochat.di.ViewModelProviderFactory;
 import com.egrobots.prochat.presentation.screens.authentication.authenticate_api.LoginAuthentication;
+import com.egrobots.prochat.presentation.screens.home.HomeActivity;
 import com.egrobots.prochat.presentation.viewmodels.AuthenticationViewModel;
 
 import javax.inject.Inject;
@@ -94,7 +95,7 @@ public class LoginActivity extends DaggerAppCompatActivity {
         @Override
         protected void loginSuccessAction() {
             Toast.makeText(LoginActivity.this, "Login successfully", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            startActivity(new Intent(LoginActivity.this, HomeActivity.class));
         }
 
         @Override

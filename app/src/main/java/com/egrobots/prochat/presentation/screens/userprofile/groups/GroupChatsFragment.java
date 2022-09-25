@@ -32,10 +32,10 @@ import javax.inject.Inject;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link GroupFragment#newInstance} factory method to
+ * Use the {@link GroupChatsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class GroupFragment extends DaggerFragment {
+public class GroupChatsFragment extends DaggerFragment {
 
     @BindView(R.id.group_messages_recycler_view)
     RecyclerView groupMessagesRecyclerView;
@@ -47,16 +47,16 @@ public class GroupFragment extends DaggerFragment {
     private String groupId;
     private String groupName;
 
-    public GroupFragment() {
+    public GroupChatsFragment() {
         // Required empty public constructor
     }
-    public static GroupFragment newInstance(String groupId, String groupName) {
-        GroupFragment groupFragment = new GroupFragment();
+    public static GroupChatsFragment newInstance(String groupId, String groupName) {
+        GroupChatsFragment groupChatsFragment = new GroupChatsFragment();
         Bundle args = new Bundle();
         args.putString(Constants.GROUP_ID, groupId);
         args.putString(Constants.GROUP_NAME, groupName);
-        groupFragment.setArguments(args);
-        return groupFragment;
+        groupChatsFragment.setArguments(args);
+        return groupChatsFragment;
     }
 
     @Override

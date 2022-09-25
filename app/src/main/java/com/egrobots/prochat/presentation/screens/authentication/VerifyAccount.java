@@ -9,6 +9,7 @@ import android.widget.Toast;
 import com.egrobots.prochat.R;
 import com.egrobots.prochat.di.ViewModelProviderFactory;
 import com.egrobots.prochat.presentation.screens.authentication.authenticate_api.VerificationAuthentication;
+import com.egrobots.prochat.presentation.screens.home.HomeActivity;
 import com.egrobots.prochat.utils.Constants;
 import com.egrobots.prochat.presentation.viewmodels.AuthenticationViewModel;
 
@@ -110,7 +111,7 @@ public class VerifyAccount extends DaggerAppCompatActivity {
         @Override
         protected void verificationSuccessAction() {
             Toast.makeText(VerifyAccount.this, "Sign up successfully", Toast.LENGTH_LONG).show();
-            startActivity(new Intent(VerifyAccount.this, MainActivity.class));
+            startActivity(new Intent(VerifyAccount.this, HomeActivity.class));
         }
 
         @Override
