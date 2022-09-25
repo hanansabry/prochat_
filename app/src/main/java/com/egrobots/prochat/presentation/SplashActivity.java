@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.egrobots.prochat.R;
-import com.egrobots.prochat.presentation.authentication.LoginActivity;
+import com.egrobots.prochat.presentation.screens.authentication.LoginActivity;
 
 public class SplashActivity extends AppCompatActivity {
 

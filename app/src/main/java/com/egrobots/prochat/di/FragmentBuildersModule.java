@@ -2,13 +2,12 @@ package com.egrobots.prochat.di;
 
 import com.egrobots.prochat.di.modules.AuthenticationViewModelModule;
 import com.egrobots.prochat.di.modules.UserProfileViewModelModule;
-import com.egrobots.prochat.presentation.dialogs.authentication.ForgotPasswordBottomSheetDialog;
-import com.egrobots.prochat.presentation.dialogs.authentication.LoginBottomSheetDialog;
-import com.egrobots.prochat.presentation.dialogs.authentication.SignUpBottomSheetDialog;
-import com.egrobots.prochat.presentation.dialogs.authentication.VerifyAccountBottomSheetDialog;
-import com.egrobots.prochat.presentation.user.UserProfileContentFragment;
-import com.egrobots.prochat.presentation.user.groups.GroupFragment;
-import com.egrobots.prochat.viewmodels.UserProfileViewModel;
+import com.egrobots.prochat.presentation.screens.authentication.dialogs.ForgotPasswordBottomSheetDialog;
+import com.egrobots.prochat.presentation.screens.authentication.dialogs.LoginBottomSheetDialog;
+import com.egrobots.prochat.presentation.screens.authentication.dialogs.SignUpBottomSheetDialog;
+import com.egrobots.prochat.presentation.screens.authentication.dialogs.VerifyAccountBottomSheetDialog;
+import com.egrobots.prochat.presentation.screens.userprofile.UserProfileContentFragment;
+import com.egrobots.prochat.presentation.screens.userprofile.groups.GroupFragment;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;

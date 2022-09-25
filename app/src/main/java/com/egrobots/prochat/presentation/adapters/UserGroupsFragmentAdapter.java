@@ -1,9 +1,8 @@
 package com.egrobots.prochat.presentation.adapters;
 
 import com.egrobots.prochat.model.Group;
-import com.egrobots.prochat.presentation.user.groups.GroupFragment;
+import com.egrobots.prochat.presentation.screens.userprofile.groups.GroupFragment;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;

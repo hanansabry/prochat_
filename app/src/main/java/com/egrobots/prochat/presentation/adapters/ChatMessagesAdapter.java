@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.egrobots.prochat.R;
 import com.egrobots.prochat.model.Message;
-import com.egrobots.prochat.presentation.dialogs.userprofile.ChatMessageActionsDialog;
+import com.egrobots.prochat.presentation.screens.userprofile.chat.dialogs.ChatMessageActionsDialog;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;

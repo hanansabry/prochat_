@@ -1,7 +1,7 @@
 package com.egrobots.prochat.di.modules;
 
 import com.egrobots.prochat.di.ViewModelKey;
-import com.egrobots.prochat.viewmodels.AuthenticationViewModel;
+import com.egrobots.prochat.presentation.viewmodels.AuthenticationViewModel;
 
 import androidx.lifecycle.ViewModel;
 import dagger.Binds;
