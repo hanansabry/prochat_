@@ -6,6 +6,7 @@ import com.egrobots.prochat.presentation.screens.authentication.dialogs.ForgotPa
 import com.egrobots.prochat.presentation.screens.authentication.dialogs.LoginBottomSheetDialog;
 import com.egrobots.prochat.presentation.screens.authentication.dialogs.SignUpBottomSheetDialog;
 import com.egrobots.prochat.presentation.screens.authentication.dialogs.VerifyAccountBottomSheetDialog;
+import com.egrobots.prochat.presentation.screens.home.tabs.ChatsFragment;
 import com.egrobots.prochat.presentation.screens.userprofile.UserProfileContentFragment;
 import com.egrobots.prochat.presentation.screens.userprofile.groups.GroupChatsFragment;
 
@@ -33,5 +34,8 @@ public abstract class FragmentBuildersModule {
 
     @ContributesAndroidInjector(modules = UserProfileViewModelModule.class)
     abstract UserProfileContentFragment contributeUserProfileContentFragment();
+
+    @ContributesAndroidInjector(modules = UserProfileViewModelModule.class)
+    abstract ChatsFragment contributeChatsFragment();
 
 }

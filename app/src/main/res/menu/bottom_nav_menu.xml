@@ -2,12 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/chats_tab"
+        android:id="@+id/chatsFragment"
         android:icon="@drawable/chat_bubble_outline_black_24dp_1"
         android:title="@string/chats" />
 
     <item
-        android:id="@+id/groups_tab"
+        android:id="@+id/groupsFragment"
         android:icon="@drawable/dashboard_customize_black_24dp_1"
         android:title="@string/groups" />
 
@@ -16,12 +16,12 @@
         android:title="" />
 
     <item
-        android:id="@+id/members_tab"
+        android:id="@+id/membersFragment"
         android:icon="@drawable/groups_black_24dp_1"
         android:title="@string/members" />
 
     <item
-        android:id="@+id/account_tab"
+        android:id="@+id/myAccountFragment"
         android:icon="@drawable/person_pin_black_24dp_1"
         android:title="@string/my_account" />
 

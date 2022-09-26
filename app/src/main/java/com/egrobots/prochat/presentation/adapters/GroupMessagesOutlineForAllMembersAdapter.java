@@ -19,19 +19,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class GroupMessagesOutlineAdapter extends RecyclerView.Adapter<GroupMessagesOutlineAdapter.GroupMessageOutlineViewHolder> {
+public class GroupMessagesOutlineForAllMembersAdapter extends RecyclerView.Adapter<GroupMessagesOutlineForAllMembersAdapter.GroupMessageOutlineViewHolder> {
 
     private List<GroupChatOutline> groupChatOutlineList;
     private List<Chat> chatList;
     private String groupName;
     private OnGroupSelectedCallback onGroupSelectedCallback;
 
-//    public GroupMessagesOutlineAdapter(List<GroupChatOutline> groupChatOutlineList, OnGroupSelectedCallback onGroupSelectedCallback) {
+//    public GroupMessagesOutlineForOneMemberAdapter(List<GroupChatOutline> groupChatOutlineList, OnGroupSelectedCallback onGroupSelectedCallback) {
 //        this.groupChatOutlineList = groupChatOutlineList;
 //        this.onGroupSelectedCallback = onGroupSelectedCallback;
 //    }
 
-    public GroupMessagesOutlineAdapter(String groupName, List<Chat> chatList, OnGroupSelectedCallback onGroupSelectedCallback) {
+    public GroupMessagesOutlineForAllMembersAdapter(String groupName, List<Chat> chatList, OnGroupSelectedCallback onGroupSelectedCallback) {
         this.groupName = groupName;
         this.chatList = chatList;
         this.onGroupSelectedCallback = onGroupSelectedCallback;
@@ -40,7 +40,7 @@ public class GroupMessagesOutlineAdapter extends RecyclerView.Adapter<GroupMessa
     @NonNull
     @Override
     public GroupMessageOutlineViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.group_message_outline_item_layout, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.group_message_outline_with_member_name_item_layout, parent, false);
         return new GroupMessageOutlineViewHolder(view);
     }
 

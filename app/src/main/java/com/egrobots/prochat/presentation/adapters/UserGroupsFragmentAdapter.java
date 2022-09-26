@@ -14,19 +14,22 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 public class UserGroupsFragmentAdapter extends FragmentStateAdapter {
 
     private List<Group> groupList;
+    private boolean isHomeScreen;
 
     public UserGroupsFragmentAdapter(@NonNull FragmentManager fragmentManager,
                                      @NonNull Lifecycle lifecycle,
-                                     List<Group> groupList) {
+                                     List<Group> groupList,
+                                     boolean isHomeScreen) {
         super(fragmentManager, lifecycle);
         this.groupList = groupList;
+        this.isHomeScreen = isHomeScreen;
     }
 
     @NonNull
     @Override
     public Fragment createFragment(int position) {
         Group group = groupList.get(position);
-        return GroupChatsFragment.newInstance(group.getGroupId(), group.getGroupName());
+        return GroupChatsFragment.newInstance(group.getGroupId(), group.getGroupName(), isHomeScreen);
     }
 
     @Override

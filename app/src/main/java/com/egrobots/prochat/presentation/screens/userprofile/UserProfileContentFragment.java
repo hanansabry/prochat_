@@ -82,7 +82,7 @@ public class UserProfileContentFragment extends DaggerFragment {
 
     private void setupGroupTabs() {
         UserGroupsFragmentAdapter groupsFragmentAdapter
-                = new UserGroupsFragmentAdapter(getParentFragmentManager(), getLifecycle(), groupList);
+                = new UserGroupsFragmentAdapter(getParentFragmentManager(), getLifecycle(), groupList, false);
         groupTabsViewPager.setAdapter(groupsFragmentAdapter);
         TabLayoutMediator tabLayoutMediator = new TabLayoutMediator(groupTabsLayout, groupTabsViewPager, (tab, position) -> {
             tab.setText(groupList.get(position).getGroupName());

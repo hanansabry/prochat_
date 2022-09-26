@@ -2,65 +2,111 @@ package com.egrobots.prochat.presentation.screens.home.tabs;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import dagger.android.support.DaggerFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.egrobots.prochat.R;
+import com.egrobots.prochat.di.ViewModelProviderFactory;
+import com.egrobots.prochat.model.Group;
+import com.egrobots.prochat.model.Member;
+import com.egrobots.prochat.presentation.adapters.RecentMembersAdapter;
+import com.egrobots.prochat.presentation.adapters.UserGroupsFragmentAdapter;
+import com.egrobots.prochat.presentation.viewmodels.UserProfileViewModel;
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ChatsFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class ChatsFragment extends Fragment {
+import java.util.ArrayList;
+import java.util.List;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+import javax.inject.Inject;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+public class ChatsFragment extends DaggerFragment {
+
+    @BindView(R.id.group_tabs_viewpager)
+    ViewPager2 groupTabsViewPager;
+    @BindView(R.id.groups_tablayout)
+    TabLayout groupTabsLayout;
+    @BindView(R.id.recent_members_recycler_view)
+    RecyclerView recentMemberRecyclerView;
+    @Inject
+    ViewModelProviderFactory providerFactory;
+    private List<Group> groupList = new ArrayList<>();
 
     public ChatsFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ChatsFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ChatsFragment newInstance(String param1, String param2) {
+    public static ChatsFragment newInstance() {
         ChatsFragment fragment = new ChatsFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_chats, container, false);
+        View view = inflater.inflate(R.layout.fragment_chats, container, false);
+        ButterKnife.bind(this, view);
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        UserProfileViewModel userProfileViewModel = new ViewModelProvider(getViewModelStore(), providerFactory).get(UserProfileViewModel.class);
+        userProfileViewModel.getUserGroups("");
+        userProfileViewModel.observeGroups().observe(getViewLifecycleOwner(), group -> {
+            groupList.add(group);
+        });
+        userProfileViewModel.isGroupRetrievingFinished().observe(getViewLifecycleOwner(), finished -> {
+            if (finished) {
+                //setup groups tab
+                setupGroupTabs();
+            }
+        });
+        setupRecentMembersRecyclerView();
+    }
+
+    private void setupRecentMembersRecyclerView() {
+        List<Member> memberList = new ArrayList<>();
+        memberList.add(new Member("Hanan Sabry"));
+        memberList.add(new Member("Ahmed Morsi"));
+        memberList.add(new Member("Ahmed Morsi"));
+        memberList.add(new Member("Ahmed Morsi"));
+        memberList.add(new Member("Ahmed Morsi"));
+        memberList.add(new Member("Ahmed Morsi"));
+        memberList.add(new Member("Ahmed Morsi"));
+        memberList.add(new Member("Ahmed Morsi"));
+        memberList.add(new Member("Ahmed Morsi"));
+        RecentMembersAdapter adapter = new RecentMembersAdapter(memberList);
+        recentMemberRecyclerView.setAdapter(adapter);
+        recentMemberRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
+    }
+
+    private void setupGroupTabs() {
+        UserGroupsFragmentAdapter groupsFragmentAdapter
+                = new UserGroupsFragmentAdapter(getParentFragmentManager(), getLifecycle(), groupList, true);
+        groupTabsViewPager.setAdapter(groupsFragmentAdapter);
+        TabLayoutMediator tabLayoutMediator = new TabLayoutMediator(groupTabsLayout, groupTabsViewPager, (tab, position) -> {
+            tab.setText(groupList.get(position).getGroupName());
+        });
+        tabLayoutMediator.attach();
     }
 }

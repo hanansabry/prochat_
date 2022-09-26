@@ -20,7 +20,8 @@ import android.view.ViewGroup;
 import com.egrobots.prochat.R;
 import com.egrobots.prochat.di.ViewModelProviderFactory;
 import com.egrobots.prochat.model.Chat;
-import com.egrobots.prochat.presentation.adapters.GroupMessagesOutlineAdapter;
+import com.egrobots.prochat.presentation.adapters.GroupMessagesOutlineForAllMembersAdapter;
+import com.egrobots.prochat.presentation.adapters.GroupMessagesOutlineForOneMemberAdapter;
 import com.egrobots.prochat.callbacks.OnGroupSelectedCallback;
 import com.egrobots.prochat.utils.Constants;
 import com.egrobots.prochat.presentation.viewmodels.UserProfileViewModel;
@@ -46,15 +47,17 @@ public class GroupChatsFragment extends DaggerFragment {
     private List<Chat> groupChats = new ArrayList<>();
     private String groupId;
     private String groupName;
+    private boolean isHomeScreen;
 
     public GroupChatsFragment() {
         // Required empty public constructor
     }
-    public static GroupChatsFragment newInstance(String groupId, String groupName) {
+    public static GroupChatsFragment newInstance(String groupId, String groupName, boolean isHomeScreen) {
         GroupChatsFragment groupChatsFragment = new GroupChatsFragment();
         Bundle args = new Bundle();
         args.putString(Constants.GROUP_ID, groupId);
         args.putString(Constants.GROUP_NAME, groupName);
+        args.putBoolean(Constants.IS_HOME_SCREEN, isHomeScreen);
         groupChatsFragment.setArguments(args);
         return groupChatsFragment;
     }
@@ -76,6 +79,7 @@ public class GroupChatsFragment extends DaggerFragment {
         if (getArguments() != null) {
             groupId = getArguments().getString(Constants.GROUP_ID);
             groupName = getArguments().getString(Constants.GROUP_NAME);
+            isHomeScreen = getArguments().getBoolean(Constants.IS_HOME_SCREEN);
         }
     }
 
@@ -98,9 +102,15 @@ public class GroupChatsFragment extends DaggerFragment {
         });
         userProfileViewModel.isGroupChatsRetrievingFinished().observe(getViewLifecycleOwner(), isFinished -> {
             if (isFinished) {
-                GroupMessagesOutlineAdapter adapter2 = new GroupMessagesOutlineAdapter(groupName, groupChats, onGroupSelectedCallback);
-                groupMessagesRecyclerView.setAdapter(adapter2);
-                groupMessagesRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+                if (isHomeScreen) {
+                    GroupMessagesOutlineForAllMembersAdapter adapter2 = new GroupMessagesOutlineForAllMembersAdapter(groupName, groupChats, onGroupSelectedCallback);
+                    groupMessagesRecyclerView.setAdapter(adapter2);
+                    groupMessagesRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+                } else {
+                    GroupMessagesOutlineForOneMemberAdapter adapter2 = new GroupMessagesOutlineForOneMemberAdapter(groupName, groupChats, onGroupSelectedCallback);
+                    groupMessagesRecyclerView.setAdapter(adapter2);
+                    groupMessagesRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+                }
             }
         });
     }

@@ -190,9 +190,9 @@ public class FirebaseDataSource {
             chatMessages.add(m1);
             chatMessages.add(m2);
             chatMessages.add(m3);
-            chatMessages.add(m4);
             chatMessages.add(m5);
             chatMessages.add(m6);
+            chatMessages.add(m4);
             c1.setMessages(chatMessages);
 
             if (groupId.equals("0")) {
