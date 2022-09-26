@@ -18,11 +18,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.egrobots.prochat.R;
+import com.egrobots.prochat.callbacks.OnGroupChatSelectedCallback;
 import com.egrobots.prochat.di.ViewModelProviderFactory;
 import com.egrobots.prochat.model.Chat;
 import com.egrobots.prochat.presentation.adapters.GroupMessagesOutlineForAllMembersAdapter;
 import com.egrobots.prochat.presentation.adapters.GroupMessagesOutlineForOneMemberAdapter;
-import com.egrobots.prochat.callbacks.OnGroupSelectedCallback;
 import com.egrobots.prochat.utils.Constants;
 import com.egrobots.prochat.presentation.viewmodels.UserProfileViewModel;
 
@@ -43,7 +43,7 @@ public class GroupChatsFragment extends DaggerFragment {
     @Inject
     ViewModelProviderFactory providerFactory;
 
-    private OnGroupSelectedCallback onGroupSelectedCallback;
+    private OnGroupChatSelectedCallback onGroupChatSelectedCallback;
     private List<Chat> groupChats = new ArrayList<>();
     private String groupId;
     private String groupName;
@@ -66,7 +66,7 @@ public class GroupChatsFragment extends DaggerFragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         try {
-            onGroupSelectedCallback = (OnGroupSelectedCallback) context;
+            onGroupChatSelectedCallback = (OnGroupChatSelectedCallback) context;
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString()
                     + " must implement FragmentToActivity");
@@ -103,11 +103,11 @@ public class GroupChatsFragment extends DaggerFragment {
         userProfileViewModel.isGroupChatsRetrievingFinished().observe(getViewLifecycleOwner(), isFinished -> {
             if (isFinished) {
                 if (isHomeScreen) {
-                    GroupMessagesOutlineForAllMembersAdapter adapter2 = new GroupMessagesOutlineForAllMembersAdapter(groupName, groupChats, onGroupSelectedCallback);
+                    GroupMessagesOutlineForAllMembersAdapter adapter2 = new GroupMessagesOutlineForAllMembersAdapter(groupName, groupChats, onGroupChatSelectedCallback);
                     groupMessagesRecyclerView.setAdapter(adapter2);
                     groupMessagesRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
                 } else {
-                    GroupMessagesOutlineForOneMemberAdapter adapter2 = new GroupMessagesOutlineForOneMemberAdapter(groupName, groupChats, onGroupSelectedCallback);
+                    GroupMessagesOutlineForOneMemberAdapter adapter2 = new GroupMessagesOutlineForOneMemberAdapter(groupName, groupChats, onGroupChatSelectedCallback);
                     groupMessagesRecyclerView.setAdapter(adapter2);
                     groupMessagesRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
                 }
@@ -117,7 +117,7 @@ public class GroupChatsFragment extends DaggerFragment {
 
     @Override
     public void onDetach() {
-        onGroupSelectedCallback = null;
+        onGroupChatSelectedCallback = null;
         super.onDetach();
     }
 }

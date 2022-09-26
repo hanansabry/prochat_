@@ -31,7 +31,7 @@ public class UserGroupsAdapter extends RecyclerView.Adapter<UserGroupsAdapter.Us
     @NonNull
     @Override
     public UserGroupViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.group_item_layout, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.choosing_group_item_layout, parent, false);
         return new UserGroupViewHolder(view);
     }
 

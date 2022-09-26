@@ -6,29 +6,28 @@ import androidx.fragment.app.FragmentTransaction;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.OnItemSelected;
 
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.egrobots.prochat.R;
-import com.egrobots.prochat.callbacks.OnGroupSelectedCallback;
+import com.egrobots.prochat.callbacks.OnGroupChatSelectedCallback;
 import com.egrobots.prochat.model.Chat;
 import com.egrobots.prochat.presentation.screens.home.tabs.ChatsFragment;
 import com.egrobots.prochat.presentation.screens.home.tabs.GroupsFragment;
 import com.egrobots.prochat.presentation.screens.home.tabs.MembersFragment;
 import com.egrobots.prochat.presentation.screens.home.tabs.MyAccountFragment;
 import com.egrobots.prochat.presentation.screens.search.SearchForFriendsBottomSheetDialog;
-import com.egrobots.prochat.presentation.screens.userprofile.UserProfileContentFragment;
 import com.egrobots.prochat.utils.AppBarStateChangeListener;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
-public class HomeActivity extends AppCompatActivity implements OnGroupSelectedCallback {
+public class HomeActivity extends AppCompatActivity implements OnGroupChatSelectedCallback {
 
     private FragmentTransaction fragmentTransaction;
 
@@ -42,8 +41,10 @@ public class HomeActivity extends AppCompatActivity implements OnGroupSelectedCa
     View collapsedHeaderLayout;
     @BindView(R.id.no_messages_layout)
     View noMessagesLayout;
-
-
+    @BindView(R.id.home_tab_title_text_view)
+    TextView tabTitle;
+    @BindView(R.id.home_tab_title_collapsed_text_view)
+    TextView tabCollapsedTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +68,8 @@ public class HomeActivity extends AppCompatActivity implements OnGroupSelectedCa
                                 = getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.content_fragment, ChatsFragment.newInstance());
                         fragmentTransaction.commit();
+                        tabTitle.setText(getString(R.string.chats));
+                        tabCollapsedTitle.setText(getString(R.string.chats));
                         Toast.makeText(HomeActivity.this, "Chats", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.groupsFragment:
@@ -74,6 +77,8 @@ public class HomeActivity extends AppCompatActivity implements OnGroupSelectedCa
                                 = getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.content_fragment, GroupsFragment.newInstance());
                         fragmentTransaction.commit();
+                        tabTitle.setText(getString(R.string.groups));
+                        tabCollapsedTitle.setText(getString(R.string.groups));
                         Toast.makeText(HomeActivity.this, "Groups", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.membersFragment:
@@ -81,6 +86,8 @@ public class HomeActivity extends AppCompatActivity implements OnGroupSelectedCa
                                 = getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.content_fragment, MembersFragment.newInstance());
                         fragmentTransaction.commit();
+                        tabTitle.setText(getString(R.string.members));
+                        tabCollapsedTitle.setText(getString(R.string.members));
                         Toast.makeText(HomeActivity.this, "Members", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.myAccountFragment:
@@ -88,6 +95,8 @@ public class HomeActivity extends AppCompatActivity implements OnGroupSelectedCa
                                 = getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.content_fragment, MyAccountFragment.newInstance());
                         fragmentTransaction.commit();
+                        tabTitle.setText(getString(R.string.my_account));
+                        tabCollapsedTitle.setText(getString(R.string.my_account));
                         Toast.makeText(HomeActivity.this, "My Account", Toast.LENGTH_SHORT).show();
                         break;
 

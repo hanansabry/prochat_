@@ -7,7 +7,17 @@ public class Group {
     private String groupId;
     private String groupName;
     private String groupType;
+    private boolean isPrivate;
     private List<Chat> groupChats;
+
+    public Group() {
+    }
+
+    public Group(String groupName, String groupType, boolean isPrivate) {
+        this.groupName = groupName;
+        this.groupType = groupType;
+        this.isPrivate = isPrivate;
+    }
 
     public String getGroupId() {
         return groupId;
@@ -31,6 +41,14 @@ public class Group {
 
     public void setGroupType(String groupType) {
         this.groupType = groupType;
+    }
+
+    public boolean isPrivate() {
+        return isPrivate;
+    }
+
+    public void setPrivate(boolean aPrivate) {
+        isPrivate = aPrivate;
     }
 
     public List<Chat> getGroupChats() {

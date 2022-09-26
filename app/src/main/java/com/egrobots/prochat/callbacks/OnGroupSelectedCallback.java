@@ -1,8 +1,8 @@
 package com.egrobots.prochat.callbacks;
 
 import com.egrobots.prochat.model.Chat;
-import com.egrobots.prochat.model.GroupChatOutline;
+import com.egrobots.prochat.model.Group;
 
 public interface OnGroupSelectedCallback {
-    void onGroupChatSelected(Chat chat);
+    void onGroupSelected(Group group);
 }

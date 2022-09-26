@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.egrobots.prochat.R;
-import com.egrobots.prochat.callbacks.OnGroupSelectedCallback;
+import com.egrobots.prochat.callbacks.OnGroupChatSelectedCallback;
 import com.egrobots.prochat.model.Chat;
 import com.egrobots.prochat.model.GroupChatOutline;
 
@@ -24,17 +24,17 @@ public class GroupMessagesOutlineForAllMembersAdapter extends RecyclerView.Adapt
     private List<GroupChatOutline> groupChatOutlineList;
     private List<Chat> chatList;
     private String groupName;
-    private OnGroupSelectedCallback onGroupSelectedCallback;
+    private OnGroupChatSelectedCallback onGroupChatSelectedCallback;
 
-//    public GroupMessagesOutlineForOneMemberAdapter(List<GroupChatOutline> groupChatOutlineList, OnGroupSelectedCallback onGroupSelectedCallback) {
+//    public GroupMessagesOutlineForOneMemberAdapter(List<GroupChatOutline> groupChatOutlineList, OnGroupChatSelectedCallback onGroupChatSelectedCallback) {
 //        this.groupChatOutlineList = groupChatOutlineList;
-//        this.onGroupSelectedCallback = onGroupSelectedCallback;
+//        this.onGroupChatSelectedCallback = onGroupChatSelectedCallback;
 //    }
 
-    public GroupMessagesOutlineForAllMembersAdapter(String groupName, List<Chat> chatList, OnGroupSelectedCallback onGroupSelectedCallback) {
+    public GroupMessagesOutlineForAllMembersAdapter(String groupName, List<Chat> chatList, OnGroupChatSelectedCallback onGroupChatSelectedCallback) {
         this.groupName = groupName;
         this.chatList = chatList;
-        this.onGroupSelectedCallback = onGroupSelectedCallback;
+        this.onGroupChatSelectedCallback = onGroupChatSelectedCallback;
     }
 
     @NonNull
@@ -60,7 +60,7 @@ public class GroupMessagesOutlineForAllMembersAdapter extends RecyclerView.Adapt
             holder.groupMessageTitle.setTypeface(Typeface.DEFAULT_BOLD);
         }
 
-        holder.itemView.setOnClickListener(v -> onGroupSelectedCallback.onGroupChatSelected(groupChat));
+        holder.itemView.setOnClickListener(v -> onGroupChatSelectedCallback.onGroupChatSelected(groupChat));
     }
 
     @Override

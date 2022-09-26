@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.egrobots.prochat.R;
-import com.egrobots.prochat.callbacks.OnGroupSelectedCallback;
+import com.egrobots.prochat.callbacks.OnGroupChatSelectedCallback;
 import com.egrobots.prochat.callbacks.OnUserAuthenticateCallback;
 import com.egrobots.prochat.di.ViewModelProviderFactory;
 import com.egrobots.prochat.model.Chat;
@@ -39,7 +39,7 @@ import butterknife.OnTextChanged;
 import dagger.android.support.DaggerAppCompatActivity;
 
 public class UserProfileActivity extends DaggerAppCompatActivity
-        implements OnGroupSelectedCallback, OnUserAuthenticateCallback {
+        implements OnGroupChatSelectedCallback, OnUserAuthenticateCallback {
 
     @Inject
     ViewModelProviderFactory providerFactory;

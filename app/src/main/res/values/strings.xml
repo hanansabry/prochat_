@@ -51,4 +51,5 @@
     <string name="groups">Groups</string>
     <string name="members">Members</string>
     <string name="my_account">My Account</string>
+    <string name="user_groups_number">You have 5/5 groups</string>
 </resources>
