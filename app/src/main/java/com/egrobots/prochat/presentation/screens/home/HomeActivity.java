@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.OnItemSelected;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -18,6 +20,7 @@ import com.egrobots.prochat.presentation.screens.home.tabs.ChatsFragment;
 import com.egrobots.prochat.presentation.screens.home.tabs.GroupsFragment;
 import com.egrobots.prochat.presentation.screens.home.tabs.MembersFragment;
 import com.egrobots.prochat.presentation.screens.home.tabs.MyAccountFragment;
+import com.egrobots.prochat.presentation.screens.search.SearchForFriendsBottomSheetDialog;
 import com.egrobots.prochat.presentation.screens.userprofile.UserProfileContentFragment;
 import com.egrobots.prochat.utils.AppBarStateChangeListener;
 import com.google.android.material.appbar.AppBarLayout;
@@ -50,6 +53,10 @@ public class HomeActivity extends AppCompatActivity implements OnGroupSelectedCa
 
         //set scrolling behavior
         setScrollingBehavior();
+        fragmentTransaction
+                = getSupportFragmentManager().beginTransaction()
+                .replace(R.id.content_fragment, ChatsFragment.newInstance());
+        fragmentTransaction.commit();
         bottomNavigationView.setSelectedItemId(R.id.chatsFragment);
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
@@ -101,6 +108,12 @@ public class HomeActivity extends AppCompatActivity implements OnGroupSelectedCa
                 }
             }
         });
+    }
+
+    @OnClick(R.id.search_fab)
+    public void onSearchFabClicked() {
+        SearchForFriendsBottomSheetDialog dialog = new SearchForFriendsBottomSheetDialog(this);
+        dialog.show();
     }
 
     @Override
