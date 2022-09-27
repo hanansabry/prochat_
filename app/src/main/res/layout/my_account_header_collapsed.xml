@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/collapsed_header_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.screens.userprofile.UserProfileActivity">
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            android:tint="@color/colorSecondary"
+            android:src="@drawable/collapsed_header_bg" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/overlay_collapsed_account_bg"
+            android:scaleType="fitXY"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="128dp"
+            android:src="@drawable/patter_account_bg"
+            android:scaleType="centerCrop"/>
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/user_name_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/top_dim_margin"
+        android:layout_marginStart="66dp"
+        android:text="Hisham Khaled"
+        android:textColor="@color/White"
+        android:textFontWeight="700"
+        android:textSize="24sp"
+        app:fontFamily="@font/ubuntu_mono"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

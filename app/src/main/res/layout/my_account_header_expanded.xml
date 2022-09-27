@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <FrameLayout
+        android:id="@+id/cover_photo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/secondary_account_bg"
+            android:scaleType="fitXY"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/main_account_bg"
+            android:scaleType="fitXY"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/overlay_account_bg"
+            android:scaleType="fitXY"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/patter_account_bg"
+            android:scaleType="fitXY"/>
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/account_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="88dp"
+        android:layout_gravity="center_horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="129dp"
+            android:layout_height="129dp"
+            android:src="@drawable/user_icon"
+            android:layout_gravity="center"/>
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="78dp"
+            android:layout_height="78dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="-5dp"
+            app:strokeColor="@color/White"
+            android:src="@drawable/user_image_temp"/>
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/user_name_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hisham Khaled"
+        android:textColor="@color/White"
+        android:textFontWeight="700"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/account_image" />
+
+    <TextView
+        android:id="@+id/user_job_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Designer"
+        android:textColor="@color/White"
+        android:textFontWeight="700"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/user_name_text_view" />
+
+    <TextView
+        android:id="@+id/user_code_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="#hk1234"
+        android:textColor="@color/White"
+        android:textFontWeight="400"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/user_job_text_view" />
+</androidx.constraintlayout.widget.ConstraintLayout>

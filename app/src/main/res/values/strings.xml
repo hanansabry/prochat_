@@ -53,4 +53,13 @@
     <string name="my_account">My Account</string>
     <string name="user_groups_number">You have 5/5 groups</string>
     <string name="search_members">Search Members</string>
+    <string name="language">Language</string>
+    <string name="change_password">Change Password</string>
+    <string name="change_language">Change Language</string>
+    <string name="arabic">Arabic</string>
+    <string name="english">English</string>
+    <string name="share_account">Share Account</string>
+    <string name="copy_link">Copy Link</string>
+    <string name="facebook">Facebook</string>
+    <string name="whats_app">What’s App</string>
 </resources>

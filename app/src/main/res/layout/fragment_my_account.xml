@@ -1,14 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.screens.home.tabs.MyAccountFragment">
+    android:fitsSystemWindows="false"
+    tools:ignore="MissingPrefix">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:background="@color/White"
+        app:elevation="0dp">
 
-</FrameLayout>
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <include layout="@layout/my_account_header_expanded"/>
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        <include
+            layout="@layout/my_account_header_collapsed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ImageButton
+        android:id="@+id/more_actions_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="@dimen/top_dim_margin"
+        android:background="@null"
+        android:src="@drawable/more_horiz_black_24dp_1"
+        android:tint="@color/White"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <include layout="@layout/my_account_content_layout"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

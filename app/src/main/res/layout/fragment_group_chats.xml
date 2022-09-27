@@ -9,6 +9,6 @@
         android:id="@+id/group_messages_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/group_message_outline_item_layout"/>
+        tools:listitem="@layout/group_message_outline_with_member_name_item_layout"/>
 
 </FrameLayout>

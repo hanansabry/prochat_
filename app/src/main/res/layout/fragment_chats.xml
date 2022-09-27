@@ -1,103 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="false"
-    tools:ignore="MissingPrefix">
-
-    <com.google.android.material.appbar.AppBarLayout
+<!--<androidx.core.widget.NestedScrollView-->
+<!--    xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:fillViewport="true"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent">-->
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/White"
-        app:elevation="0dp"
-        app:toolbarId="@+id/toolbar">
+        android:fitsSystemWindows="false"
+        tools:ignore="MissingPrefix">
 
-        <com.google.android.material.appbar.CollapsingToolbarLayout
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fitsSystemWindows="true"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            android:background="@color/White"
+            app:elevation="0dp">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recent_members_recycler_view"
+            <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fitsSystemWindows="true"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recent_members_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/groups_tablayout"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
                 android:layout_marginStart="16dp"
-                android:orientation="horizontal"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_marginTop="40dp"
+                android:background="@color/White"
+                android:elevation="0dp"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/recent_members_recycler_view"
+                app:tabBackground="@drawable/group_tabs_bg_selector"
+                app:tabIndicatorColor="@android:color/transparent"
+                app:tabIndicatorFullWidth="true"
+                app:tabIndicatorHeight="0dp"
+                app:tabMode="scrollable"
+                app:tabSelectedTextColor="@color/White"
+                app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
+                app:tabTextColor="@color/SecondaryGray" />
 
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
 
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/groups_tablayout"
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/group_tabs_viewpager"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="40dp"
-            android:background="@color/White"
-            android:elevation="0dp"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/recent_members_recycler_view"
-            app:tabBackground="@drawable/group_tabs_bg_selector"
-            app:tabIndicatorColor="@android:color/transparent"
-            app:tabIndicatorFullWidth="true"
-            app:tabIndicatorHeight="0dp"
-            app:tabMode="scrollable"
-            app:tabSelectedTextColor="@color/White"
-            app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
-            app:tabTextColor="@color/SecondaryGray" />
+            android:layout_height="match_parent"
+            android:layout_marginTop="16dp"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/group_tabs_viewpager"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
-
-    <LinearLayout
-        android:id="@+id/no_messages_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:visibility="gone">
-
-        <ImageView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/no_messages_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/no_messages_icon" />
-        <TextView
-            android:id="@+id/no_results_found_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
-            android:layout_marginEnd="24dp"
             android:gravity="center"
-            android:text="@string/no_messages"
-            android:textColor="@color/colorPrimary"
-            android:textFontWeight="700"
-            android:textSize="24sp"
-            app:fontFamily="@font/ubuntu_mono" />
+            android:orientation="vertical"
+            android:visibility="gone">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/no_messages_desc"
-            android:layout_marginStart="58dp"
-            android:layout_marginEnd="58dp"
-            android:layout_marginTop="8dp"
-            android:textSize="14sp"
-            android:gravity="center"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/no_messages_icon" />
+            <TextView
+                android:id="@+id/no_results_found_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:gravity="center"
+                android:text="@string/no_messages"
+                android:textColor="@color/colorPrimary"
+                android:textFontWeight="700"
+                android:textSize="24sp"
+                app:fontFamily="@font/ubuntu_mono" />
 
-    </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/no_messages_desc"
+                android:layout_marginStart="58dp"
+                android:layout_marginEnd="58dp"
+                android:layout_marginTop="8dp"
+                android:textSize="14sp"
+                android:gravity="center"/>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+        </LinearLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+<!--</androidx.core.widget.NestedScrollView>-->

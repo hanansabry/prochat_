@@ -20,6 +20,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/White"
+            android:visibility="visible"
+
             app:elevation="0dp">
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -108,23 +110,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
-<!--    <FrameLayout-->
-<!--        android:id="@+id/bottom_navigation"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="88dp"-->
-<!--        android:background="@color/SecondaryGray"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent" />-->
-
-<!--    <androidx.coordinatorlayout.widget.CoordinatorLayout-->
-<!--        android:id="@+id/bottom_navigation"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent">-->
-
-<!--        -->
-<!--    </androidx.coordinatorlayout.widget.CoordinatorLayout>-->
-
     <LinearLayout
         android:id="@+id/no_messages_layout"
         android:layout_width="match_parent"
@@ -135,7 +120,6 @@
         android:gravity="center"
         android:orientation="vertical"
         android:visibility="gone"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
