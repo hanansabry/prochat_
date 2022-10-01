@@ -3,6 +3,7 @@ package com.egrobots.prochat.presentation.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -40,6 +41,7 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.GroupViewH
         holder.groupName.setText(group.getGroupName());
         holder.groupType.setText(group.getGroupType());
         holder.itemView.setOnClickListener(v -> onGroupSelectedCallback.onGroupSelected(group));
+        holder.groupActions.setOnClickListener(v -> onGroupSelectedCallback.onGroupActionsClicked(group));
         if (group.isPrivate()) {
             holder.membersLayout.setVisibility(View.VISIBLE);
         } else {
@@ -71,6 +73,8 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.GroupViewH
         TextView groupName;
         @BindView(R.id.group_type)
         TextView groupType;
+        @BindView(R.id.group_actions_button)
+        ImageButton groupActions;
         @BindView(R.id.private_group_members_count_layout)
         View membersLayout;
 

@@ -5,4 +5,5 @@ import com.egrobots.prochat.model.Group;
 
 public interface OnGroupSelectedCallback {
     void onGroupSelected(Group group);
+    void onGroupActionsClicked(Group group);
 }

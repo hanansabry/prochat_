@@ -21,7 +21,7 @@ import com.egrobots.prochat.R;
 import com.egrobots.prochat.callbacks.OnGroupChatSelectedCallback;
 import com.egrobots.prochat.model.Chat;
 import com.egrobots.prochat.presentation.screens.home.tabs.ChatsFragment;
-import com.egrobots.prochat.presentation.screens.home.tabs.GroupsFragment;
+import com.egrobots.prochat.presentation.screens.home.tabs.groups.GroupsFragment;
 import com.egrobots.prochat.presentation.screens.home.tabs.MembersFragment;
 import com.egrobots.prochat.presentation.screens.home.tabs.account.MyAccountFragment;
 import com.egrobots.prochat.presentation.screens.search.SearchForFriendsBottomSheetDialog;

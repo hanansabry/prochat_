@@ -51,7 +51,6 @@
     <string name="groups">Groups</string>
     <string name="members">Members</string>
     <string name="my_account">My Account</string>
-    <string name="user_groups_number">You have 5/5 groups</string>
     <string name="search_members">Search Members</string>
     <string name="language">Language</string>
     <string name="change_password">Change Password</string>
@@ -62,4 +61,11 @@
     <string name="copy_link">Copy Link</string>
     <string name="facebook">Facebook</string>
     <string name="whats_app">What’s App</string>
+    <string name="create_new_group">Create New Group</string>
+    <string name="group_number_srting">You have %d/5 groups</string>
+    <string name="group_actions">Group Actions</string>
+    <string name="edit_group">Edit Group</string>
+    <string name="add_members_to_group">Add Members to Group</string>
+    <string name="delete_group">Delete Group?</string>
+    <string name="delete_group_msg_question">You will delete <b>“Hospital Team”</b> group, are you sure?</string>
 </resources>
