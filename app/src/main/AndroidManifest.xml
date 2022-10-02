@@ -10,9 +10,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-<!--        <activity-->
-<!--            android:name=".presentation.screens.home.HomeActivity"-->
-<!--            android:theme="@style/LightAppTheme" />-->
+        <activity
+            android:name=".presentation.screens.home.HomeActivity"
+            android:theme="@style/LightAppTheme" />
         <activity
             android:name=".presentation.screens.userprofile.UserProfileActivity"
             android:theme="@style/LightAppTheme"
@@ -32,26 +32,27 @@
         <activity
             android:name=".presentation.screens.authentication.LoginActivity"
             android:theme="@style/DarkAppTheme"
-            android:windowSoftInputMode="adjustPan" /> <!-- <activity -->
-        <!-- android:name=".presentation.user.UserProfileActivity" -->
-        <!-- android:noHistory="true" -->
-        <!-- android:theme="@style/DarkAppTheme" -->
-        <!-- android:windowSoftInputMode="adjustPan"> -->
-        <!-- <intent-filter> -->
-        <!-- <action android:name="android.intent.action.MAIN" /> -->
-        <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-        <!-- </intent-filter> -->
-        <!-- </activity> -->
+            android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".presentation.screens.home.HomeActivity"
+            android:name=".presentation.SplashActivity"
             android:noHistory="true"
-            android:theme="@style/DarkAppTheme">
+            android:theme="@style/DarkAppTheme"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!--        <activity-->
+        <!--            android:name=".presentation.screens.home.HomeActivity"-->
+        <!--            android:noHistory="true"-->
+        <!--            android:theme="@style/DarkAppTheme">-->
+        <!--            <intent-filter>-->
+        <!--                <action android:name="android.intent.action.MAIN" />-->
+
+        <!--                <category android:name="android.intent.category.LAUNCHER" />-->
+        <!--            </intent-filter>-->
+        <!--        </activity>-->
 
         <meta-data
             android:name="preloaded_fonts"

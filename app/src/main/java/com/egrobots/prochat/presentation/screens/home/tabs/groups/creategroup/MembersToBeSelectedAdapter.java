@@ -5,12 +5,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import com.egrobots.prochat.R;
 import com.egrobots.prochat.callbacks.OnSelectMemberToAddToGroupCallback;
 import com.egrobots.prochat.model.Member;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -18,14 +21,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MembersToBeSelectedAdapter extends RecyclerView.Adapter<MembersToBeSelectedAdapter.MemberToBeSelectedViewHolder> {
+public class MembersToBeSelectedAdapter extends RecyclerView.Adapter<MembersToBeSelectedAdapter.MemberToBeSelectedViewHolder>
+implements Filterable {
 
     private List<Member> memberList;
+    private List<Member> memberListFull;
     private OnSelectMemberToAddToGroupCallback onSelectMemberToAddToGroupCallback;
 
     public MembersToBeSelectedAdapter(List<Member> memberList, OnSelectMemberToAddToGroupCallback onSelectMemberToAddToGroupCallback) {
         this.memberList = memberList;
         this.onSelectMemberToAddToGroupCallback = onSelectMemberToAddToGroupCallback;
+        memberListFull = new ArrayList<>(memberList);
     }
 
     @NonNull
@@ -56,6 +62,44 @@ public class MembersToBeSelectedAdapter extends RecyclerView.Adapter<MembersToBe
     public int getItemCount() {
         return memberList.size();
     }
+
+    @Override
+    public Filter getFilter() {
+        return membersFilter;
+    }
+
+    private Filter membersFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<Member> filteredList = new ArrayList<>();
+            if (constraint == null || constraint.length() == 0) {
+                filteredList.addAll(memberListFull);
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+                for (Member member : memberListFull) {
+                    if (member.getName().toLowerCase().contains(filterPattern)
+                            || member.getCode().toLowerCase().contains(filterPattern)) {
+                        filteredList.add(member);
+                    }
+                }
+                //search for member not found in the list by the code
+            }
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+            return results;
+        }
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            if (((List)results.values).isEmpty()) {
+                onSelectMemberToAddToGroupCallback.onNotFoundMember();
+            } else {
+                memberList.clear();
+                memberList.addAll((List) results.values);
+                onSelectMemberToAddToGroupCallback.onFoundMembers();
+                notifyDataSetChanged();
+            }
+        }
+    };
 
     class MemberToBeSelectedViewHolder extends RecyclerView.ViewHolder {
 
