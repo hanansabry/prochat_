@@ -31,7 +31,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/patter_account_bg"
+            android:src="@drawable/pattern_white_bg"
             android:scaleType="fitXY"/>
 
     </FrameLayout>

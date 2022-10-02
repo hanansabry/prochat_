@@ -61,11 +61,18 @@
     <string name="copy_link">Copy Link</string>
     <string name="facebook">Facebook</string>
     <string name="whats_app">What’s App</string>
-    <string name="create_new_group">Create New Group</string>
     <string name="group_number_srting">You have %d/5 groups</string>
     <string name="group_actions">Group Actions</string>
     <string name="edit_group">Edit Group</string>
     <string name="add_members_to_group">Add Members to Group</string>
     <string name="delete_group">Delete Group?</string>
     <string name="delete_group_msg_question">You will delete <b>“Hospital Team”</b> group, are you sure?</string>
+    <string name="create_new_group">Create New Group</string>
+    <string name="add_main_info">Add Main Info</string>
+    <string name="upload_group_cover_image">Upload Group Cover Image</string>
+    <string name="group_name">Group Name</string>
+    <string name="public_">Public</string>
+    <string name="or">Or</string>
+    <string name="private_">Private</string>
+    <string name="next">Next</string>
 </resources>

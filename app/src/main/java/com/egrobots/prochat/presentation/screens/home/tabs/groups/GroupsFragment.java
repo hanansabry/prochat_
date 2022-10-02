@@ -20,6 +20,7 @@ import com.egrobots.prochat.R;
 import com.egrobots.prochat.callbacks.OnGroupSelectedCallback;
 import com.egrobots.prochat.model.Group;
 import com.egrobots.prochat.presentation.adapters.GroupsAdapter;
+import com.egrobots.prochat.presentation.screens.home.tabs.groups.creategroup.CreateNewGroupMainDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,7 +67,7 @@ public class GroupsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         List<Group> groupList = new ArrayList<>();
         groupList.add(new Group("General Group", "General", false));
-        groupList.add(new Group("Patients Questions", "General", false));
+//        groupList.add(new Group("Patients Questions", "General", false));
         groupList.add(new Group("Hospital Team", "Private", true));
 //        groupList.add(new Group("Friends", "Private", true));
 //        groupList.add(new Group("Book", "General", false));
@@ -91,6 +92,8 @@ public class GroupsFragment extends Fragment {
         } else {
             createGroupView.setVisibility(View.VISIBLE);
             createGroupView.setOnClickListener(v -> {
+                CreateNewGroupMainDialog dialog = CreateNewGroupMainDialog.newInstance();
+                dialog.show(getParentFragmentManager(), CreateNewGroupMainDialog.TAG);
             });
         }
     }
