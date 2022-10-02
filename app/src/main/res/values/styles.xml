@@ -58,6 +58,7 @@
         <item name="android:textSize">18sp</item>
         <item name="fontFamily">@font/ubuntu_mono</item>
         <item name="fontWeight">700</item>
+        <item name="android:textColor">@color/White</item>
     </style>
 
     <style name="ActiveButtonStyle" parent="Widget.MaterialComponents.Button">

@@ -6,12 +6,18 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.egrobots.prochat.R;
+import com.egrobots.prochat.callbacks.AddingGroupListener;
 import com.egrobots.prochat.presentation.screens.home.tabs.ChatsFragment;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -22,9 +28,16 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
  * Use the {@link CreateNewGroupMainDialog#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CreateNewGroupMainDialog extends BottomSheetDialogFragment {
+public class CreateNewGroupMainDialog extends BottomSheetDialogFragment implements AddingGroupListener {
 
     public static final String TAG = "CreateNewGroupMainDialog";
+
+    private boolean isFirstStepCompleted;
+    private boolean isSecondStepCompleted;
+    private boolean isThirdStepCompleted;
+
+    @BindView(R.id.action_button)
+    Button actionsButton;
 
     public CreateNewGroupMainDialog() {
         // Required empty public constructor
@@ -44,10 +57,8 @@ public class CreateNewGroupMainDialog extends BottomSheetDialogFragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.create_new_group_main_layout, container, false);
-        BottomSheetBehavior behavior = ((BottomSheetDialog)getDialog()).getBehavior();
-        behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-        behavior.setDraggable(false);
-        behavior.setPeekHeight(800);
+        ButterKnife.bind(this, view);
+        setBottomSheetBehavior();
 
         FragmentTransaction fragmentTransaction
                 = getChildFragmentManager().beginTransaction()
@@ -56,8 +67,35 @@ public class CreateNewGroupMainDialog extends BottomSheetDialogFragment {
         return view;
     }
 
+    private void setBottomSheetBehavior() {
+        BottomSheetBehavior behavior = ((BottomSheetDialog)getDialog()).getBehavior();
+        behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+        behavior.setDraggable(false);
+        behavior.setPeekHeight(800);
+    }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+    }
+
+    @Override
+    public void isFirstStepCompleted(boolean isCompleted) {
+        if (isCompleted) {
+            actionsButton.setEnabled(true);
+            actionsButton.setBackground(getContext().getDrawable(R.drawable.active_button_bg));
+            isFirstStepCompleted = true;
+        } else {
+            actionsButton.setEnabled(false);
+            actionsButton.setBackground(getContext().getDrawable(R.drawable.dimmed_button_bg));
+            isFirstStepCompleted = false;
+        }
+    }
+
+    @OnClick(R.id.action_button)
+    public void onActionButtonClicked() {
+        if (isFirstStepCompleted) {
+            Toast.makeText(getContext(), "Next is clicked", Toast.LENGTH_SHORT).show();
+        }
     }
 }

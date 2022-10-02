@@ -176,6 +176,7 @@
         android:layout_marginBottom="32dp"
         android:textFontWeight="700"
         android:text="@string/next"
+        android:enabled="false"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
