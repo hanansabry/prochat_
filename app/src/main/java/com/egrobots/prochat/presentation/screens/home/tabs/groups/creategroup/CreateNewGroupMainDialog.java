@@ -83,11 +83,11 @@ public class CreateNewGroupMainDialog extends BottomSheetDialogFragment implemen
     public void isFirstStepCompleted(boolean isCompleted) {
         if (isCompleted) {
             actionsButton.setEnabled(true);
-            actionsButton.setBackground(getContext().getDrawable(R.drawable.active_button_bg));
+            actionsButton.setBackgroundResource(R.drawable.active_button_bg);
             isFirstStepCompleted = true;
         } else {
             actionsButton.setEnabled(false);
-            actionsButton.setBackground(getContext().getDrawable(R.drawable.dimmed_button_bg));
+            actionsButton.setBackgroundResource(R.drawable.dimmed_button_bg);
             isFirstStepCompleted = false;
         }
     }

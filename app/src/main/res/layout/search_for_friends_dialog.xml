@@ -72,17 +72,16 @@
                     android:background="@color/LighterGray" />
 
                 <Button
+                    style="@style/ActiveButtonStyle"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/field_height_size"
                     android:layout_weight="1"
                     android:background="@drawable/active_button_bg"
-                    android:drawableStart="@drawable/qr_code_scanner_black_24dp_1"
-                    android:drawablePadding="12dp"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp"
                     android:drawableTint="@color/LighterGray"
                     android:text="@string/scan"
-                    android:textColor="@color/White" />
+                    android:textColor="@color/White"
+                    app:icon="@drawable/qr_code_scanner_black_24dp_1"
+                    app:iconGravity="textStart" />
             </LinearLayout>
 
         </LinearLayout>

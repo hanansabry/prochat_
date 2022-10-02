@@ -1,9 +1,7 @@
 package com.egrobots.prochat.presentation.screens.home.tabs.groups.creategroup;
 
-import android.content.Context;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -107,6 +105,12 @@ public class CreateGroupStepOneFragment extends Fragment {
         } else {
             setFirstStepCompleted(false);
         }
+    }
+
+    @OnClick(R.id.add_members_button)
+    public void onAddMembersClicked() {
+        AddMembersToGroupFragmentDialog dialog = AddMembersToGroupFragmentDialog.newInstance();
+        dialog.show(getChildFragmentManager(), AddMembersToGroupFragmentDialog.TAG);
     }
 
     private void setFirstStepCompleted(boolean isCompleted) {

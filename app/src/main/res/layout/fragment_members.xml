@@ -37,6 +37,6 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="40dp"
-        tools:listitem="@layout/member_item_layout"/>
+        tools:listitem="@layout/showen_member_item_layout"/>
 
 </LinearLayout>

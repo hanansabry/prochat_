@@ -52,7 +52,7 @@
 
     <style name="DimmedButtonStyle" parent="Widget.MaterialComponents.Button">
         <item name="android:background">@drawable/dimmed_button_bg</item>
-        <item name="materialThemeOverlay">@style/GrayButtonThemeOverlay</item>
+        <item name="backgroundTint">@null</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:gravity">center</item>
         <item name="android:textSize">18sp</item>

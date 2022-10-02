@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageButton
+        android:id="@+id/close_dialog_button"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+        android:layout_marginEnd="34dp"
+        android:background="@null"
+        android:src="@drawable/close_black_24dp_1"
+        android:tint="@color/colorSecondary"
+        app:layout_constraintBottom_toBottomOf="@id/title_textview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/title_textview" />
+
+    <TextView
+        android:id="@+id/title_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/add_members_to_group"
+        android:textColor="@color/colorPrimary"
+        android:textSize="24sp"
+        android:textFontWeight="700"
+        app:fontFamily="@font/ubuntu_mono"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/group_name_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Hospital Team"
+        android:textColor="@color/LighterGray"
+        android:textSize="12sp"
+        android:textFontWeight="400"
+        app:fontFamily="@font/ubuntu_mono"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title_textview" />
+
+    <View
+        android:id="@+id/separator_view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/linear_gradient_primary_accent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/group_name_textview" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/selected_members_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="24dp"
+        android:paddingBottom="24dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:background="@color/GreenyShadeTwo"
+        app:layout_constraintTop_toBottomOf="@id/separator_view">
+
+        <TextView
+            android:id="@+id/members_selected_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0 Members selected"
+            android:textColor="@color/SecondaryGray"
+            android:textFontWeight="400"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/remove_all_selected_members_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Remove All"
+            android:textColor="@color/colorSecondary"
+            android:textFontWeight="700"
+            android:textSize="14sp"
+            android:visibility="gone"
+            app:fontFamily="@font/ubuntu_mono"
+            app:layout_constraintBottom_toBottomOf="@id/members_selected_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/members_selected_text" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/selected_members_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/members_selected_text" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/separator_view2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/linear_gradient_primary_accent"
+        android:visibility="visible"
+        app:layout_constraintTop_toBottomOf="@id/selected_members_layout" />
+
+    <LinearLayout
+        android:id="@+id/actions_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="16dp"
+        android:weightSum="2"
+        app:layout_constraintTop_toBottomOf="@id/selected_members_layout">
+
+        <EditText
+            android:id="@+id/deactivated_search_edit_text"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/field_height_size"
+            android:layout_weight="1"
+            android:background="@drawable/textfield_default_placeholder_bg"
+            android:drawableStart="@drawable/search_black_24dp_1"
+            android:drawablePadding="12dp"
+            android:drawableTint="@color/LighterGray"
+            android:hint="@string/search"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:textSize="16sp" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@color/LighterGray" />
+
+        <Button
+            style="@style/ActiveButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/field_height_size"
+            android:layout_weight="1"
+            android:background="@drawable/active_button_bg"
+            android:drawableTint="@color/LighterGray"
+            android:text="@string/scan"
+            android:textColor="@color/White"
+            app:icon="@drawable/qr_code_scanner_black_24dp_1"
+            app:iconGravity="textStart" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/search_layout_activated"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="24dp"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/selected_members_layout">
+
+
+        <LinearLayout
+            android:id="@+id/search_user_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/search_back_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/back_arrorw" />
+
+            <EditText
+                android:id="@+id/activated_search_edit_text"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/field_height_size"
+                android:layout_weight="1"
+                android:background="@drawable/textfield_default_placeholder_bg"
+                android:drawableStart="@drawable/search_black_24dp_1"
+                android:drawablePadding="12dp"
+                android:drawableTint="@color/LighterGray"
+                android:hint="@string/search"
+                android:singleLine="true"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHeight_default="wrap"
+        app:layout_constraintTop_toBottomOf="@id/actions_layout">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="16dp"
+                android:text="My Members List"
+                android:textColor="@color/SecondaryGray"
+                android:textFontWeight="400"
+                android:textSize="14sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/members_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <Button
+        android:id="@+id/confirm_button"
+        style="@style/DimmedButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/field_height_size"
+        android:text="@string/confirm"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,6 +4,6 @@
     <solid android:color="@color/white_opacity_low"/>
     <stroke android:width="2dp" android:color="@color/White" />
     <size
-        android:width="30dp"
-        android:height="30dp" />
+        android:width="20dp"
+        android:height="20dp" />
 </shape>
