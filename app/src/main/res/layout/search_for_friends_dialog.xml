@@ -179,50 +179,14 @@
 
         </RelativeLayout>
 
-        <RelativeLayout
-            android:id="@+id/not_found_user_search_layout"
+        <include
+            layout="@layout/not_found_user_search_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="gone"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/search_layout_activated"
             android:paddingBottom="64dp"
-            android:layout_below="@id/search_layout_activated">
+            android:visibility="gone" />
 
-            <ImageView
-                android:id="@+id/not_found_user_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/not_found_user"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"/>
-
-            <TextView
-                android:id="@+id/no_results_found_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/not_found_user_icon"
-                android:layout_centerHorizontal="true"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="24dp"
-                android:gravity="center"
-                android:text="@string/no_results_found"
-                android:textColor="@color/colorPrimary"
-                android:textFontWeight="700"
-                android:textSize="24sp"
-                app:fontFamily="@font/ubuntu_mono" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/not_found_user_text"
-                android:layout_below="@id/no_results_found_text_view"
-                android:layout_marginStart="24dp"
-                android:layout_marginEnd="24dp"
-                android:layout_marginTop="8dp"
-                android:textSize="14sp"
-                android:gravity="center"/>
-
-        </RelativeLayout>
 
         <include
             android:id="@+id/user_found_layout"

@@ -1,9 +1,14 @@
 package com.egrobots.prochat.presentation.screens.home.tabs.groups.creategroup;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.egrobots.prochat.R;
@@ -23,6 +28,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.OnTextChanged;
 
 public class AddMembersToGroupFragmentDialog extends BottomSheetDialogFragment {
 
@@ -38,6 +44,24 @@ public class AddMembersToGroupFragmentDialog extends BottomSheetDialogFragment {
     TextView membersSelectedCountText;
     @BindView(R.id.remove_all_selected_members_button)
     TextView removeAllSelectedMembers;
+    @BindView(R.id.deactivated_search_edit_text)
+    EditText deactivatedSearchEditText;
+    @BindView(R.id.search_layout_deactivated)
+    View deactivatedSearchLayout;
+    @BindView(R.id.search_layout_activated)
+    View activatedSearchLayout;
+    @BindView(R.id.activated_search_edit_text)
+    EditText activatedSearchEditText;
+    @BindView(R.id.have_no_members_layout)
+    View haveNoMembersView;
+    @BindView(R.id.not_found_user_search_layout)
+    View notFoundUserSearchView;
+    @BindView(R.id.found_user_layout_add_and_select)
+    View foundUserAddAndSelectView;
+    @BindView(R.id.members_list_view)
+    View membersListView;
+    @BindView(R.id.confirm_button)
+    Button confirmButton;
 
     private SelectedMembersAdapter selectedMembersAdapter = new SelectedMembersAdapter();
     private MembersToBeSelectedAdapter membersToBeSelectedAdapter;
@@ -62,7 +86,31 @@ public class AddMembersToGroupFragmentDialog extends BottomSheetDialogFragment {
         View view = inflater.inflate(R.layout.fragment_add_members_to_group, container, false);
         ButterKnife.bind(this, view);
         setBottomSheetBehavior();
+        setSearchBehavior();
         return view;
+    }
+
+    private void setSearchBehavior() {
+        deactivatedSearchEditText.setOnTouchListener((v, event) -> {
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                deactivatedSearchLayout.setVisibility(View.INVISIBLE);
+                activatedSearchLayout.setVisibility(View.VISIBLE);
+                activatedSearchEditText.requestFocus();
+                //show keypad
+                InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+            }
+            return false;
+        });
+    }
+
+    @OnClick(R.id.search_back_button)
+    public void onSearchBackButtonClicked() {
+        deactivatedSearchLayout.setVisibility(View.VISIBLE);
+        activatedSearchLayout.setVisibility(View.INVISIBLE);
+//        userFoundLayout.setVisibility(View.GONE);
+//        notFoundUserSearchLayout.setVisibility(View.GONE);
+//        notSearchYetLayout.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -109,10 +157,34 @@ public class AddMembersToGroupFragmentDialog extends BottomSheetDialogFragment {
         membersToBeSelectedAdapter.notifyDataSetChanged();
     }
 
+    @OnTextChanged(R.id.activated_search_edit_text)
+    public void onSearchTextChanged(CharSequence s, int start, int count, int after) {
+        if (s.toString().equals("")) {
+//            haveNoMembersView.setVisibility(View.VISIBLE);
+            membersListView.setVisibility(View.VISIBLE);
+            notFoundUserSearchView.setVisibility(View.GONE);
+            foundUserAddAndSelectView.setVisibility(View.GONE);
+            confirmButton.setVisibility(View.GONE);
+        } else if (s.toString().equals("am1234")) {
+            //show the user
+            haveNoMembersView.setVisibility(View.GONE);
+            membersListView.setVisibility(View.GONE);
+            notFoundUserSearchView.setVisibility(View.GONE);
+            foundUserAddAndSelectView.setVisibility(View.VISIBLE);
+            confirmButton.setVisibility(View.GONE);
+        } else {
+            //show no results found
+            //filter list adapter
+            haveNoMembersView.setVisibility(View.GONE);
+            membersListView.setVisibility(View.GONE);
+            notFoundUserSearchView.setVisibility(View.VISIBLE);
+            foundUserAddAndSelectView.setVisibility(View.GONE);
+        }
+    }
+
     private void setBottomSheetBehavior() {
         BottomSheetBehavior behavior = ((BottomSheetDialog) getDialog()).getBehavior();
         behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
         behavior.setDraggable(false);
-        behavior.setPeekHeight(800);
     }
 }

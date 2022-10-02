@@ -17,5 +17,6 @@
     <color name="ShinyOrange">#FFAB37</color>
     <color name="White">#FFFFFF</color>
     <color name="white_opacity_low">#64FFFFFF</color>
+    <color name="white_opacity_low88">#88FFFFFF</color>
     <color name="DarkRed">#D03838</color>
 </resources>

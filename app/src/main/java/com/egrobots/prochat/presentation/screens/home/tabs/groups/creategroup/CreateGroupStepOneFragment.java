@@ -107,7 +107,7 @@ public class CreateGroupStepOneFragment extends Fragment {
         }
     }
 
-    @OnClick(R.id.add_members_button)
+    @OnClick(R.id.add_members_layout)
     public void onAddMembersClicked() {
         AddMembersToGroupFragmentDialog dialog = AddMembersToGroupFragmentDialog.newInstance();
         dialog.show(getChildFragmentManager(), AddMembersToGroupFragmentDialog.TAG);

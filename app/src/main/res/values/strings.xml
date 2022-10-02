@@ -76,4 +76,7 @@
     <string name="private_">Private</string>
     <string name="next">Next</string>
     <string name="confirm">Confirm</string>
+    <string name="add_group_members">Add Group Members</string>
+    <string name="you_have_no_members">You Have No Members</string>
+    <string name="add_select"><![CDATA[Add & Select]]></string>
 </resources>
