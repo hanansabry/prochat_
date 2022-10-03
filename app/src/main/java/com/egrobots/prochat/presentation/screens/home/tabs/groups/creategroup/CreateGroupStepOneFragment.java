@@ -24,6 +24,7 @@ import com.egrobots.prochat.callbacks.AddingGroupListener;
  */
 public class CreateGroupStepOneFragment extends Fragment {
 
+    public static final String TAG = "CreateGroupStepOneFragment";
     @BindView(R.id.add_members_layout)
     View addMembersLayout;
     @BindView(R.id.public_group_icon)

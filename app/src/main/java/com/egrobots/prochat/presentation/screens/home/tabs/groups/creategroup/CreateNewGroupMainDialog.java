@@ -1,9 +1,11 @@
 package com.egrobots.prochat.presentation.screens.home.tabs.groups.creategroup;
 
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import butterknife.BindView;
@@ -14,11 +16,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.egrobots.prochat.R;
 import com.egrobots.prochat.callbacks.AddingGroupListener;
-import com.egrobots.prochat.presentation.screens.home.tabs.ChatsFragment;
+import com.egrobots.prochat.presentation.screens.userprofile.chat.UserChatFragment;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
@@ -36,8 +40,18 @@ public class CreateNewGroupMainDialog extends BottomSheetDialogFragment implemen
     private boolean isSecondStepCompleted;
     private boolean isThirdStepCompleted;
 
-    @BindView(R.id.action_button)
-    Button actionsButton;
+    @BindView(R.id.next_button)
+    Button nextButton;
+    @BindView(R.id.first_step_icon)
+    ImageView firstStepIcon;
+    @BindView(R.id.first_step_bg)
+    View firstStepBg;
+    @BindView(R.id.second_step_icon)
+    ImageView secondStepIcon;
+    @BindView(R.id.second_step_bg)
+    View secondStepBg;
+    @BindView(R.id.back_button)
+    ImageButton backButton;
 
     public CreateNewGroupMainDialog() {
         // Required empty public constructor
@@ -62,7 +76,8 @@ public class CreateNewGroupMainDialog extends BottomSheetDialogFragment implemen
 
         FragmentTransaction fragmentTransaction
                 = getChildFragmentManager().beginTransaction()
-                .replace(R.id.step_fragment, CreateGroupStepOneFragment.newInstance());
+                .add(R.id.step_fragment, CreateGroupStepOneFragment.newInstance());
+        fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
         return view;
     }
@@ -82,20 +97,55 @@ public class CreateNewGroupMainDialog extends BottomSheetDialogFragment implemen
     @Override
     public void isFirstStepCompleted(boolean isCompleted) {
         if (isCompleted) {
-            actionsButton.setEnabled(true);
-            actionsButton.setBackgroundResource(R.drawable.active_button_bg);
+            nextButton.setEnabled(true);
+            nextButton.setBackgroundResource(R.drawable.active_button_bg);
             isFirstStepCompleted = true;
         } else {
-            actionsButton.setEnabled(false);
-            actionsButton.setBackgroundResource(R.drawable.dimmed_button_bg);
+            nextButton.setEnabled(false);
+            nextButton.setBackgroundResource(R.drawable.dimmed_button_bg);
             isFirstStepCompleted = false;
         }
     }
 
-    @OnClick(R.id.action_button)
+    @OnClick(R.id.next_button)
     public void onActionButtonClicked() {
         if (isFirstStepCompleted) {
-            Toast.makeText(getContext(), "Next is clicked", Toast.LENGTH_SHORT).show();
+            goToStepTwo();
         }
+    }
+
+    @OnClick(R.id.back_button)
+    public void onBackButtonClicked() {
+//        CreateGroupStepTwoFragment stepTwo
+//                = (CreateGroupStepTwoFragment) getChildFragmentManager().findFragmentByTag(CreateGroupStepTwoFragment.TAG);
+//        if (stepTwo != null && stepTwo.isVisible()) {
+//            backToStepOne();
+//        }
+        getChildFragmentManager().popBackStack();
+        backToStepOne();
+    }
+
+    private void goToStepTwo() {
+        firstStepIcon.setImageDrawable(getContext().getDrawable(R.drawable.check_icon));
+        firstStepBg.setBackgroundTintList(ColorStateList.valueOf(getContext().getColor(R.color.colorSecondary)));
+        secondStepBg.setBackgroundTintList(ColorStateList.valueOf(getContext().getColor(R.color.colorPrimary)));
+
+        FragmentTransaction fragmentTransaction
+                = getChildFragmentManager().beginTransaction()
+                .add(R.id.step_fragment, CreateGroupStepTwoFragment.newInstance());
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+        nextButton.setEnabled(false);
+        nextButton.setBackgroundResource(R.drawable.dimmed_button_bg);
+        backButton.setVisibility(View.VISIBLE);
+    }
+
+    private void backToStepOne() {
+        firstStepIcon.setImageDrawable(getContext().getDrawable(R.drawable.info_icon_white));
+        firstStepBg.setBackgroundTintList(ColorStateList.valueOf(getContext().getColor(R.color.colorPrimary)));
+        secondStepBg.setBackgroundTintList(ColorStateList.valueOf(getContext().getColor(R.color.LightBlue)));
+        nextButton.setEnabled(true);
+        nextButton.setBackgroundResource(R.drawable.active_button_bg);
+        backButton.setVisibility(View.GONE);
     }
 }

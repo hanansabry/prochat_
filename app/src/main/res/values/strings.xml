@@ -79,4 +79,5 @@
     <string name="you_have_no_members">You Have No Members</string>
     <string name="add_select"><![CDATA[Add & Select]]></string>
     <string name="mobile">Mobile</string>
+    <string name="close_receiving_messages">Close receiving messages</string>
 </resources>

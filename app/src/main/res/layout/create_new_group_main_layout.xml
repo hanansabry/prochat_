@@ -6,8 +6,8 @@
     android:layout_height="wrap_content">
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
-    android:layout_height="780dp"
-    app:behavior_peekHeight="780dp"
+    android:layout_height="725dp"
+    app:behavior_peekHeight="725dp"
     app:behavior_hideable="true">
 
     <ImageButton
@@ -169,20 +169,40 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/progress_view"
-        app:layout_constraintBottom_toTopOf="@id/action_button"/>
+        app:layout_constraintBottom_toTopOf="@id/next_layout"/>
 
-    <Button
-        android:id="@+id/action_button"
-        style="@style/DimmedButtonStyle"
+
+    <LinearLayout
+        android:id="@+id/next_layout"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/field_height_size"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="32dp"
-        android:textFontWeight="700"
-        android:text="@string/next"
-        android:enabled="false"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageButton
+            android:id="@+id/back_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/white_cornered_all"
+            android:elevation="2dp"
+            android:src="@drawable/left_arrow"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/next_button"
+            style="@style/DimmedButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/field_height_size"
+            android:enabled="false"
+            android:text="@string/next"
+            android:textFontWeight="700" />
+
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
