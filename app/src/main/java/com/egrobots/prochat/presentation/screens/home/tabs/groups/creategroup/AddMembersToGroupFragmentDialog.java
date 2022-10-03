@@ -95,7 +95,8 @@ public class AddMembersToGroupFragmentDialog extends BottomSheetDialogFragment {
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
                 deactivatedSearchLayout.setVisibility(View.INVISIBLE);
                 activatedSearchLayout.setVisibility(View.VISIBLE);
-//                activatedSearchEditText.requestFocus();
+                deactivatedSearchEditText.clearFocus();
+                activatedSearchEditText.requestFocus();
 //                //show keypad
 //                InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
 //                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
@@ -108,9 +109,11 @@ public class AddMembersToGroupFragmentDialog extends BottomSheetDialogFragment {
     public void onSearchBackButtonClicked() {
         deactivatedSearchLayout.setVisibility(View.VISIBLE);
         activatedSearchLayout.setVisibility(View.INVISIBLE);
-//        userFoundLayout.setVisibility(View.GONE);
-//        notFoundUserSearchLayout.setVisibility(View.GONE);
-//        notSearchYetLayout.setVisibility(View.VISIBLE);
+        membersToBeSelectedAdapter.getFilter().filter("");
+        activatedSearchEditText.setText("");
+        foundUserAddAndSelectView.setVisibility(View.GONE);
+        notFoundUserSearchView.setVisibility(View.GONE);
+        membersListView.setVisibility(View.VISIBLE);
     }
 
     @Override
