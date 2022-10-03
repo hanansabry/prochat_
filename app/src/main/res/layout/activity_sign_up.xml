@@ -58,34 +58,37 @@
             android:orientation="horizontal"
             android:weightSum="2">
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/signup_mobile_button"
+                style="@style/DimmedButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/field_height_size"
                 android:layout_weight="1"
                 android:background="@drawable/button_tab_selected"
-                android:drawableStart="@drawable/mobile_icon"
-                android:drawableTint="@color/White"
-                android:paddingStart="42dp"
-                android:paddingEnd="42dp"
-                android:text="Mobile"
-                android:textColor="@color/White"
+                android:text="@string/mobile"
+                android:textFontWeight="700"
                 android:textSize="16sp"
-                app:fontFamily="@font/roboto" />
+                app:fontFamily="@font/roboto"
+                app:icon="@drawable/mobile_icon"
+                app:iconGravity="textStart"
+                app:iconSize="20dp"
+                app:iconTint="@color/White" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/signup_email_button"
+                style="@style/TabButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/field_height_size"
                 android:layout_weight="1"
-                android:drawableStart="@drawable/email"
-                android:drawableTint="@color/DarkGray"
-                android:paddingStart="42dp"
-                android:paddingEnd="42dp"
-                android:text="Email"
-                android:textColor="@color/DarkGray"
+                android:gravity="center"
+                android:text="@string/email"
+                android:textFontWeight="700"
                 android:textSize="16sp"
-                app:fontFamily="@font/roboto" />
+                app:fontFamily="@font/roboto"
+                app:icon="@drawable/email"
+                app:iconGravity="textStart"
+                app:iconSize="20dp"
+                app:iconTint="@color/SecondaryGray" />
         </LinearLayout>
 
         <LinearLayout
@@ -158,6 +161,7 @@
 
         <Button
             android:id="@+id/signup_button"
+            style="@style/DimmedButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="@dimen/field_height_size"
             android:layout_marginStart="@dimen/margin_borders_fields"

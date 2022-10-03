@@ -172,8 +172,8 @@ public class HomeActivity extends AppCompatActivity implements OnGroupChatSelect
 
     @OnClick(R.id.search_fab)
     public void onSearchFabClicked() {
-        SearchForFriendsBottomSheetDialog dialog = new SearchForFriendsBottomSheetDialog(this);
-        dialog.show();
+        SearchForFriendsBottomSheetDialog dialog = SearchForFriendsBottomSheetDialog.newInstance();
+        dialog.show(getSupportFragmentManager(), SearchForFriendsBottomSheetDialog.TAG);
     }
 
     @Override

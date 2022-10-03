@@ -2,21 +2,29 @@ package com.egrobots.prochat.presentation.screens.search;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 import com.egrobots.prochat.R;
 import com.egrobots.prochat.presentation.screens.userprofile.UserProfileActivity;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnTextChanged;
 
-public class SearchForFriendsBottomSheetDialog extends BottomSheetDialog {
+public class SearchForFriendsBottomSheetDialog extends BottomSheetDialogFragment {
+
+    public static final String TAG = "SearchForFriendsBottomSheetDialog";
 
     @BindView(R.id.deactivated_search_edit_text)
     EditText deactivatedSearchEditText;
@@ -34,10 +42,24 @@ public class SearchForFriendsBottomSheetDialog extends BottomSheetDialog {
     @BindView(R.id.user_found_layout)
     View userFoundLayout;
 
-    public SearchForFriendsBottomSheetDialog(@NonNull Context context) {
-        super(context);
-        setContentView(R.layout.search_for_friends_dialog);
-        ButterKnife.bind(this);
+    public SearchForFriendsBottomSheetDialog() {
+    }
+
+    public static SearchForFriendsBottomSheetDialog newInstance() {
+        return new SearchForFriendsBottomSheetDialog();
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.search_for_friends_dialog, container, false);
+        ButterKnife.bind(this, view);
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         deactivatedSearchEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -51,6 +73,13 @@ public class SearchForFriendsBottomSheetDialog extends BottomSheetDialog {
                 }
             }
         });
+        setBottomSheetBehavior();
+    }
+
+    private void setBottomSheetBehavior() {
+        BottomSheetBehavior behavior = ((BottomSheetDialog) getDialog()).getBehavior();
+        behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+        behavior.setDraggable(false);
     }
 
     @OnClick(R.id.search_back_button)

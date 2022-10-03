@@ -1,7 +1,7 @@
 package com.egrobots.prochat.presentation.screens.authentication.authenticate_api;
 
 import android.content.Context;
-import android.view.View;
+import android.view.MotionEvent;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -10,6 +10,7 @@ import com.egrobots.prochat.presentation.screens.search.SearchForFriendsBottomSh
 import com.egrobots.prochat.utils.Utils;
 import com.egrobots.prochat.presentation.viewmodels.AuthenticationViewModel;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LifecycleOwner;
 import butterknife.OnTextChanged;
 
@@ -17,17 +18,17 @@ public abstract class LoginAuthentication {
 
     private static final int PASSWORD_MIN_LENGTH = 6;
     private AuthenticationViewModel authenticationViewModel;
-    private Context activity;
+    private Context context;
     private EditText mobileEmailEditText;
     private EditText passwordEditText;
     private Button loginButton;
 
     public void initializeViews(Context activity,
-                               AuthenticationViewModel authenticationViewModel,
-                               EditText mobileEmailEditText,
-                               EditText passwordEditText,
-                               Button loginButton) {
-        this.activity = activity;
+                                AuthenticationViewModel authenticationViewModel,
+                                EditText mobileEmailEditText,
+                                EditText passwordEditText,
+                                Button loginButton) {
+        this.context = activity;
         this.authenticationViewModel = authenticationViewModel;
         this.mobileEmailEditText = mobileEmailEditText;
         this.passwordEditText = passwordEditText;
@@ -58,12 +59,10 @@ public abstract class LoginAuthentication {
         authenticationViewModel.observeErrorState().observe(lifecycleOwner, this::loginErrorAction);
     }
 
-    public void onSearchEditTextFocusChange(View v, boolean hasFocus) {
-        SearchForFriendsBottomSheetDialog searchDialog = new SearchForFriendsBottomSheetDialog(activity);
-        if (hasFocus) {
-            searchDialog.show();
-        } else {
-            searchDialog.dismiss();
+    public void onTouchSearchEdit(MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            SearchForFriendsBottomSheetDialog searchDialog = SearchForFriendsBottomSheetDialog.newInstance();
+            searchDialog.show(((AppCompatActivity) context).getSupportFragmentManager(), SearchForFriendsBottomSheetDialog.TAG);
         }
     }
 
@@ -101,16 +100,16 @@ public abstract class LoginAuthentication {
         //validate email
         if (!Utils.isEmailValid(s.toString()) && !Utils.isPhoneValid(s.toString())) {
             mobileEmailEditText.setError("Not valid email or phone");
-            loginButton.setBackground(activity.getDrawable(R.drawable.dimmed_button_bg));
+            loginButton.setBackground(context.getDrawable(R.drawable.dimmed_button_bg));
             return;
         }
         String password = passwordEditText.getText().toString();
         if (password.length() >= PASSWORD_MIN_LENGTH) {
             loginButton.setEnabled(true);
-            loginButton.setBackground(activity.getDrawable(R.drawable.active_button_bg));
+            loginButton.setBackground(context.getDrawable(R.drawable.active_button_bg));
         } else {
             loginButton.setEnabled(false);
-            loginButton.setBackground(activity.getDrawable(R.drawable.dimmed_button_bg));
+            loginButton.setBackground(context.getDrawable(R.drawable.dimmed_button_bg));
         }
     }
 
@@ -119,10 +118,10 @@ public abstract class LoginAuthentication {
         String emailPhone = mobileEmailEditText.getText().toString();
         if ((Utils.isEmailValid(emailPhone) || Utils.isPhoneValid(emailPhone)) && s.length() >= PASSWORD_MIN_LENGTH) {
             loginButton.setEnabled(true);
-            loginButton.setBackground(activity.getDrawable(R.drawable.active_button_bg));
+            loginButton.setBackground(context.getDrawable(R.drawable.active_button_bg));
         } else {
             loginButton.setEnabled(false);
-            loginButton.setBackground(activity.getDrawable(R.drawable.dimmed_button_bg));
+            loginButton.setBackground(context.getDrawable(R.drawable.dimmed_button_bg));
         }
     }
 }

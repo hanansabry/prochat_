@@ -17,7 +17,6 @@
     <string name="verify_account_desc">Please add the 4 digits code we sent to you on the number +20 10 27 18 11111 to verify your account.</string>
     <string name="verify">Verify</string>
     <string name="verification_code_message">You should receive the verification code message within <font color='#99DFC3'>60</font> seconds</string>
-    <string name="mobile">Mobile</string>
     <string name="check_your_email">Check Your Email</string>
     <string name="check_your_email_msg">A message has been sent to your email, check the message so you can to change your password.</string>
     <string name="search_for_friends_quickly">Search For Friends Quickly</string>
@@ -79,4 +78,5 @@
     <string name="add_group_members">Add Group Members</string>
     <string name="you_have_no_members">You Have No Members</string>
     <string name="add_select"><![CDATA[Add & Select]]></string>
+    <string name="mobile">Mobile</string>
 </resources>

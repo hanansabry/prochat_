@@ -133,6 +133,7 @@
 
         <Button
             android:id="@+id/login_button"
+            style="@style/DimmedButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="@dimen/field_height_size"
             android:layout_marginStart="@dimen/margin_borders_fields"

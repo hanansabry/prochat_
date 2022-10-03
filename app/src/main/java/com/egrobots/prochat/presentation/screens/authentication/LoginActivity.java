@@ -2,7 +2,7 @@ package com.egrobots.prochat.presentation.screens.authentication;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+import android.view.MotionEvent;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -20,8 +20,8 @@ import androidx.lifecycle.ViewModelProvider;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.OnFocusChange;
 import butterknife.OnTextChanged;
+import butterknife.OnTouch;
 import dagger.android.support.DaggerAppCompatActivity;
 
 public class LoginActivity extends DaggerAppCompatActivity {
@@ -60,9 +60,9 @@ public class LoginActivity extends DaggerAppCompatActivity {
         loginAuthentication.initializeObservers(this);
     }
 
-    @OnFocusChange(R.id.search_user_edit_text)
-    public void onSearchEditTextFocusChange(View v, boolean hasFocus) {
-        loginAuthentication.onSearchEditTextFocusChange(v, hasFocus);
+    @OnTouch(R.id.search_user_edit_text)
+    public void onTouchSearchEditText(MotionEvent event) {
+        loginAuthentication.onTouchSearchEdit(event);
     }
 
     @OnClick(R.id.login_button)
