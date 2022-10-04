@@ -1,12 +1,10 @@
 package com.egrobots.prochat.presentation.screens.home.tabs.groups.creategroup;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -14,9 +12,8 @@ import android.widget.TextView;
 import com.egrobots.prochat.R;
 import com.egrobots.prochat.callbacks.OnSelectMemberToAddToGroupCallback;
 import com.egrobots.prochat.model.Member;
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.egrobots.prochat.utils.Constants;
+import com.egrobots.prochat.utils.CustomBottomSheetFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,13 +21,14 @@ import java.util.Locale;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnTextChanged;
 
-public class AddMembersToGroupFragmentDialog extends BottomSheetDialogFragment {
+public class AddMembersToGroupFragmentDialog extends CustomBottomSheetFragment {
 
     public static final String TAG = "AddMembersToGroupFragmentDialog";
 
@@ -62,6 +60,8 @@ public class AddMembersToGroupFragmentDialog extends BottomSheetDialogFragment {
     View membersListView;
     @BindView(R.id.confirm_button)
     Button confirmButton;
+    @BindView(R.id.main_layout)
+    ConstraintLayout mainLayout;
 
     private SelectedMembersAdapter selectedMembersAdapter = new SelectedMembersAdapter();
     private MembersToBeSelectedAdapter membersToBeSelectedAdapter;
@@ -85,7 +85,7 @@ public class AddMembersToGroupFragmentDialog extends BottomSheetDialogFragment {
         // Inflate the layout for this fragment]
         View view = inflater.inflate(R.layout.fragment_add_members_to_group, container, false);
         ButterKnife.bind(this, view);
-        setBottomSheetBehavior();
+        setMainLayout(mainLayout, Constants.DIALOG_HEIGHT_PERCENT);
         setSearchBehavior();
         return view;
     }
@@ -210,9 +210,4 @@ public class AddMembersToGroupFragmentDialog extends BottomSheetDialogFragment {
 //        }
     }
 
-    private void setBottomSheetBehavior() {
-        BottomSheetBehavior behavior = ((BottomSheetDialog) getDialog()).getBehavior();
-        behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-        behavior.setDraggable(false);
-    }
 }

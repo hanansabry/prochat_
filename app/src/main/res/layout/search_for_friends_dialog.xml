@@ -11,9 +11,9 @@
 <!--    app:behavior_peekHeight="680dp"-->
 <!--    app:behavior_hideable="true">-->
     <RelativeLayout
+        android:id="@+id/main_layout"
         android:layout_width="match_parent"
-        android:layout_height="680dp"
-        app:behavior_peekHeight="680dp"
+        android:layout_height="match_parent"
         app:behavior_hideable="true">
 
         <ImageButton

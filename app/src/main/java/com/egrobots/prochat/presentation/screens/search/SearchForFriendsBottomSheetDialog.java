@@ -11,9 +11,8 @@ import android.widget.EditText;
 
 import com.egrobots.prochat.R;
 import com.egrobots.prochat.presentation.screens.userprofile.UserProfileActivity;
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.egrobots.prochat.utils.Constants;
+import com.egrobots.prochat.utils.CustomBottomSheetFragment;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,7 +21,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnTextChanged;
 
-public class SearchForFriendsBottomSheetDialog extends BottomSheetDialogFragment {
+public class SearchForFriendsBottomSheetDialog extends CustomBottomSheetFragment {
 
     public static final String TAG = "SearchForFriendsBottomSheetDialog";
 
@@ -41,6 +40,8 @@ public class SearchForFriendsBottomSheetDialog extends BottomSheetDialogFragment
     View notFoundUserSearchLayout;
     @BindView(R.id.user_found_layout)
     View userFoundLayout;
+    @BindView(R.id.main_layout)
+    View mainLayout;
 
     public SearchForFriendsBottomSheetDialog() {
     }
@@ -54,6 +55,7 @@ public class SearchForFriendsBottomSheetDialog extends BottomSheetDialogFragment
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.search_for_friends_dialog, container, false);
         ButterKnife.bind(this, view);
+        setMainLayout(mainLayout, Constants.DIALOG_HEIGHT_PERCENT);
         return view;
     }
 
@@ -73,13 +75,6 @@ public class SearchForFriendsBottomSheetDialog extends BottomSheetDialogFragment
                 }
             }
         });
-        setBottomSheetBehavior();
-    }
-
-    private void setBottomSheetBehavior() {
-        BottomSheetBehavior behavior = ((BottomSheetDialog) getDialog()).getBehavior();
-        behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-        behavior.setDraggable(false);
     }
 
     @OnClick(R.id.search_back_button)

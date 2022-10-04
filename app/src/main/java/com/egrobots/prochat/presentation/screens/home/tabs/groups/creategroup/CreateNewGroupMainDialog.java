@@ -3,9 +3,7 @@ package com.egrobots.prochat.presentation.screens.home.tabs.groups.creategroup;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import butterknife.BindView;
@@ -18,21 +16,18 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.egrobots.prochat.R;
 import com.egrobots.prochat.callbacks.AddingGroupListener;
-import com.egrobots.prochat.presentation.screens.userprofile.chat.UserChatFragment;
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.egrobots.prochat.utils.Constants;
+import com.egrobots.prochat.utils.CustomBottomSheetFragment;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link CreateNewGroupMainDialog#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CreateNewGroupMainDialog extends BottomSheetDialogFragment implements AddingGroupListener {
+public class CreateNewGroupMainDialog extends CustomBottomSheetFragment implements AddingGroupListener {
 
     public static final String TAG = "CreateNewGroupMainDialog";
 
@@ -57,6 +52,8 @@ public class CreateNewGroupMainDialog extends BottomSheetDialogFragment implemen
     View thirdStepBg;
     @BindView(R.id.back_button)
     ImageButton backButton;
+    @BindView(R.id.main_layout)
+    ConstraintLayout mainLayout;
 
     public CreateNewGroupMainDialog() {
         // Required empty public constructor
@@ -77,26 +74,13 @@ public class CreateNewGroupMainDialog extends BottomSheetDialogFragment implemen
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.create_new_group_main_layout, container, false);
         ButterKnife.bind(this, view);
-        setBottomSheetBehavior();
-
+        setMainLayout(mainLayout, Constants.DIALOG_HEIGHT_PERCENT);
         FragmentTransaction fragmentTransaction
                 = getChildFragmentManager().beginTransaction()
                 .add(R.id.step_fragment, CreateGroupStepOneFragment.newInstance());
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
         return view;
-    }
-
-    private void setBottomSheetBehavior() {
-        BottomSheetBehavior behavior = ((BottomSheetDialog)getDialog()).getBehavior();
-        behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-        behavior.setDraggable(false);
-        behavior.setPeekHeight(800);
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
     }
 
     @Override

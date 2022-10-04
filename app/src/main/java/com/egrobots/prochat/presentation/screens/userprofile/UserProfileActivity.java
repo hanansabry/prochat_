@@ -200,7 +200,7 @@ public class UserProfileActivity extends DaggerAppCompatActivity
     @OnClick(R.id.send_message_button)
     public void onSendMessageClicked() {
         //if user is not logged, show login bottom sheet dialog
-        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+        if (isLogged) {
             //send the message
             UserChatFragment userChatFragment = (UserChatFragment) getSupportFragmentManager().findFragmentByTag(UserChatFragment.TAG);
             userChatFragment.addMessage(typeMessageEditText.getText().toString(), Calendar.getInstance().getTimeInMillis());

@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 <androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/main_layout"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/bottom_dialog_height_full"
-    app:behavior_peekHeight="725dp"
+    android:layout_height="match_parent"
     app:behavior_hideable="true">
 
     <ImageButton
