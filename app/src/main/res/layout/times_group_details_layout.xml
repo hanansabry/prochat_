@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/receiving_messages_on_off_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/receiving_messages_on_off"
+        android:textColor="@color/SecondaryGray"
+        android:textFontWeight="400"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/group_members_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:text="@string/receiving_messages_days_num"
+        android:textColor="@color/LighterGray"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@id/receiving_messages_on_off_text"
+        app:layout_constraintStart_toEndOf="@id/receiving_messages_on_off_text"
+        app:layout_constraintTop_toTopOf="@id/receiving_messages_on_off_text" />
+
+    <TextView
+        android:id="@+id/edit_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/edit"
+        android:textColor="@color/colorSecondary"
+        android:textFontWeight="700"
+        android:textSize="14sp"
+        app:fontFamily="@font/ubuntu_mono"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <include
+        android:id="@+id/daily_times_layout"
+        layout="@layout/daily_times_layout"
+        android:layout_width="match_parent"
+        android:layout_height="320dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/more_times_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/White"
+        android:gravity="center"
+        android:paddingTop="18dp"
+        android:paddingBottom="18dp"
+        android:text="More"
+        android:textAllCaps="false"
+        android:textColor="@color/SecondaryGray"
+        android:textSize="14sp"
+        app:backgroundTint="@null"
+        app:icon="@drawable/expand_more_black_24dp_1"
+        app:iconGravity="textEnd"
+        app:iconTint="@color/SecondaryGray"
+        app:layout_constraintTop_toBottomOf="@id/daily_times_layout" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/LighterGray"
+        app:layout_constraintTop_toBottomOf="@id/more_times_layout" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

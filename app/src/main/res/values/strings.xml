@@ -97,4 +97,10 @@
     <string name="times_desc">The added time will be applied on the all selected days.</string>
     <string name="from">From</string>
     <string name="to">To</string>
+    <string name="group_members">Group Members</string>
+    <string name="view_all">View All</string>
+    <string name="edit">Edit</string>
+    <string name="receiving_messages_on_off">Receiving Messages On</string>
+    <string name="receiving_messages_days_num">(5 Days)</string>
+    <string name="messages">Messages</string>
 </resources>

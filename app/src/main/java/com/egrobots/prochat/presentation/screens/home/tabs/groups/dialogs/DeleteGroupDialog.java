@@ -1,4 +1,4 @@
-package com.egrobots.prochat.presentation.screens.home.tabs.groups;
+package com.egrobots.prochat.presentation.screens.home.tabs.groups.dialogs;
 
 import android.content.Context;
 

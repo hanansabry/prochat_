@@ -137,4 +137,10 @@
         <item name="cornerSize">30%</item>
     </style>
 
+    <style name="ShapeAppearanceOverlay.App.BottomLeftRightCorneredShape" parent="">
+        <item name="cornerFamilyBottomLeft">rounded</item>
+        <item name="cornerSizeBottomLeft">50%</item>
+        <item name="cornerSizeBottomRight">50%</item>
+    </style>
+
 </resources>

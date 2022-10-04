@@ -21,6 +21,7 @@ import com.egrobots.prochat.callbacks.OnGroupSelectedCallback;
 import com.egrobots.prochat.model.Group;
 import com.egrobots.prochat.presentation.adapters.GroupsAdapter;
 import com.egrobots.prochat.presentation.screens.home.tabs.groups.creategroup.CreateNewGroupMainDialog;
+import com.egrobots.prochat.presentation.screens.home.tabs.groups.dialogs.GroupActionsDialog;
 
 import java.util.ArrayList;
 import java.util.List;

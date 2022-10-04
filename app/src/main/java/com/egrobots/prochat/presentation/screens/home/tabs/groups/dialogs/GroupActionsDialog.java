@@ -1,4 +1,4 @@
-package com.egrobots.prochat.presentation.screens.home.tabs.groups;
+package com.egrobots.prochat.presentation.screens.home.tabs.groups.dialogs;
 
 import android.content.Context;
 
@@ -8,7 +8,6 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentActivity;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 

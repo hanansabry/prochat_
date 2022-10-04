@@ -11,127 +11,129 @@
         android:layout_height="wrap_content"
         tools:context=".presentation.screens.home.tabs.groups.creategroup.CreateGroupStepTwoFragment">
 
-    <TextView
-        android:id="@+id/step_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/manage_recieving_messages_times"
-        android:textColor="@color/DarkGray"
-        android:textFontWeight="700"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-    <TextView
-        android:id="@+id/step_details"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginTop="8dp"
-        android:gravity="center"
-        android:textSize="14sp"
-        android:textFontWeight="400"
-        android:text="@string/manage_recieving_messages_times_desc"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/step_title" />
-
-    <LinearLayout
-        android:id="@+id/days_options_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
-        android:orientation="horizontal"
-        android:weightSum="2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/step_details">
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/all_days_button"
-            style="@style/TabButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/days_option1_bg"
-            android:backgroundTint="@color/GreenyShadeOne"
-            android:gravity="center"
-            android:text="@string/all_days"
-            android:textColor="@color/DarkGray"
-            android:textFontWeight="400"
-            android:textSize="16sp"
-            app:fontFamily="@font/roboto"
-            app:icon="@drawable/radio_button_checked_green"
-            app:iconTint="@null"
-            app:iconGravity="textStart" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/daily_button"
-            style="@style/TabButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/days_option2_bg"
-            android:backgroundTint="@color/SoftGray"
-            android:gravity="center"
-            android:text="@string/daily"
-            android:textColor="@color/DarkGray"
-            android:textFontWeight="400"
-            android:textSize="16sp"
-            app:fontFamily="@font/roboto"
-            app:icon="@drawable/radio_button_unchecked_black_24dp_1"
-            app:iconTint="@null"
-            app:iconGravity="textStart" />
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:id="@+id/all_days_times_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="16dp"
-        android:visibility="visible"
-        android:orientation="vertical"
-        android:gravity="center"
-        app:layout_constraintTop_toBottomOf="@id/days_options_layout">
-
         <TextView
-            android:id="@+id/times_desc"
+            android:id="@+id/step_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/times_desc"
-            android:textColor="@color/LighterGray"
-            android:textSize="12sp" />
+            android:text="@string/manage_recieving_messages_times"
+            android:textColor="@color/DarkGray"
+            android:textFontWeight="700"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
-        <include
-            android:id="@+id/all_days_select_times_view"
-            layout="@layout/from_to_select_times_layout"
+        <TextView
+            android:id="@+id/step_details"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp" />
-    </LinearLayout>
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:textFontWeight="400"
+            android:text="@string/manage_recieving_messages_times_desc"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/step_title" />
 
-    <LinearLayout
-        android:id="@+id/daily_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/days_options_layout">
-
-        <include
-            layout="@layout/daily_times_layout"
+        <LinearLayout
+            android:id="@+id/days_options_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/step_details">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/all_days_button"
+                style="@style/TabButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/days_option1_bg"
+                android:backgroundTint="@color/GreenyShadeOne"
+                android:gravity="center"
+                android:text="@string/all_days"
+                android:textColor="@color/DarkGray"
+                android:textFontWeight="400"
+                android:textSize="16sp"
+                app:fontFamily="@font/roboto"
+                app:icon="@drawable/radio_button_checked_green"
+                app:iconTint="@null"
+                app:iconGravity="textStart" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/daily_button"
+                style="@style/TabButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/days_option2_bg"
+                android:backgroundTint="@color/SoftGray"
+                android:gravity="center"
+                android:text="@string/daily"
+                android:textColor="@color/DarkGray"
+                android:textFontWeight="400"
+                android:textSize="16sp"
+                app:fontFamily="@font/roboto"
+                app:icon="@drawable/radio_button_unchecked_black_24dp_1"
+                app:iconTint="@null"
+                app:iconGravity="textStart" />
+
+        </LinearLayout>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:id="@+id/all_days_times_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="16dp"
+            android:visibility="visible"
+            android:orientation="vertical"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/days_options_layout">
+
+            <TextView
+                android:id="@+id/times_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/times_desc"
+                android:textColor="@color/LighterGray"
+                android:textSize="12sp" />
+
+            <include
+                android:id="@+id/all_days_select_times_view"
+                layout="@layout/from_to_select_times_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/daily_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/days_options_layout">
+
+            <include
+                layout="@layout/daily_times_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
