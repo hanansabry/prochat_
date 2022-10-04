@@ -8,5 +8,6 @@
     <dimen name="design_fab_image_size" tools:override="true">56dp</dimen>
     <dimen name="group_item_height">116dp</dimen>
     <dimen name="member_item_height">104dp</dimen>
+    <dimen name="bottom_dialog_height_full">725dp</dimen>
 
 </resources>

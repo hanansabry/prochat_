@@ -7,8 +7,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="780dp"
-        app:behavior_peekHeight="780dp"
+        android:layout_height="@dimen/bottom_dialog_height_full"
+        app:behavior_peekHeight="@dimen/bottom_dialog_height_full"
         app:behavior_hideable="true">
 
         <ImageButton

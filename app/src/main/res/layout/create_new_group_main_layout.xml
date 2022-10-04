@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
-    android:layout_height="725dp"
+    android:layout_height="@dimen/bottom_dialog_height_full"
     app:behavior_peekHeight="725dp"
     app:behavior_hideable="true">
 
@@ -124,8 +124,7 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_gravity="center"
-                android:src="@drawable/calendar_icon"
-                android:tint="@color/White" />
+                android:src="@drawable/calendar_icon"/>
         </FrameLayout>
 
         <View

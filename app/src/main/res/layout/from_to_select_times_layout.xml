@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:weightSum="2">
+
+    <LinearLayout
+        android:id="@+id/from_layout"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/from"
+            android:textColor="@color/SecondaryGray"
+            android:textSize="14sp" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/from_time_layout"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/time_selector_bg">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:src="@drawable/morning"
+                android:layout_margin="4dp"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerRadius24Shape"
+                android:scaleType="fitXY"/>
+
+            <TextView
+                android:id="@+id/from_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="08:00"
+                android:textColor="@color/DarkGray"
+                android:textFontWeight="700"
+                android:textSize="32sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="AM"
+                android:textColor="@color/DarkGray"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@id/from_time"
+                app:layout_constraintStart_toEndOf="@id/from_time" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/to_layout"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="16dp"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/to"
+            android:textColor="@color/SecondaryGray"
+            android:textSize="14sp" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/to_time_layout"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/time_selector_bg">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:src="@drawable/night"
+                android:layout_margin="4dp"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerRadius24Shape"
+                android:scaleType="fitXY"/>
+
+            <TextView
+                android:id="@+id/to_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="07:00"
+                android:textColor="@color/White"
+                android:textFontWeight="700"
+                android:textSize="32sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="PM"
+                android:textColor="@color/White"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@id/to_time"
+                app:layout_constraintStart_toEndOf="@id/to_time" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -37,8 +37,9 @@ public class CreateNewGroupMainDialog extends BottomSheetDialogFragment implemen
     public static final String TAG = "CreateNewGroupMainDialog";
 
     private boolean isFirstStepCompleted;
-    private boolean isSecondStepCompleted;
-    private boolean isThirdStepCompleted;
+    private boolean isSecondStepCompleted = true;
+    private boolean isThirdStepCompleted = true;
+    private int currentStep = 1;
 
     @BindView(R.id.next_button)
     Button nextButton;
@@ -50,6 +51,10 @@ public class CreateNewGroupMainDialog extends BottomSheetDialogFragment implemen
     ImageView secondStepIcon;
     @BindView(R.id.second_step_bg)
     View secondStepBg;
+    @BindView(R.id.third_step_icon)
+    ImageView thirdStepIcon;
+    @BindView(R.id.third_step_bg)
+    View thirdStepBg;
     @BindView(R.id.back_button)
     ImageButton backButton;
 
@@ -107,22 +112,54 @@ public class CreateNewGroupMainDialog extends BottomSheetDialogFragment implemen
         }
     }
 
+    @Override
+    public void isSecondStepCompleted(boolean isCompleted) {
+        if (isCompleted) {
+            nextButton.setEnabled(true);
+            nextButton.setBackgroundResource(R.drawable.active_button_bg);
+            isSecondStepCompleted = true;
+        } else {
+            nextButton.setEnabled(false);
+            nextButton.setBackgroundResource(R.drawable.dimmed_button_bg);
+            isSecondStepCompleted = false;
+        }
+    }
+
+    @Override
+    public void isThirdStepCompleted(boolean isCompleted) {
+        if (isCompleted) {
+            nextButton.setEnabled(true);
+            nextButton.setBackgroundResource(R.drawable.active_button_bg);
+            isThirdStepCompleted = true;
+        } else {
+            nextButton.setEnabled(false);
+            nextButton.setBackgroundResource(R.drawable.dimmed_button_bg);
+            isThirdStepCompleted = false;
+        }
+    }
+
     @OnClick(R.id.next_button)
     public void onActionButtonClicked() {
-        if (isFirstStepCompleted) {
+        if (isFirstStepCompleted && currentStep == 1) {
             goToStepTwo();
+            currentStep++;
+        } else if (isSecondStepCompleted && currentStep == 2) {
+            goToStepThree();
+            currentStep++;
+        } else if (isThirdStepCompleted && currentStep == 3) {
+            currentStep = -1;
+        } else if (currentStep == -1) {
+            //finish
         }
     }
 
     @OnClick(R.id.back_button)
     public void onBackButtonClicked() {
-//        CreateGroupStepTwoFragment stepTwo
-//                = (CreateGroupStepTwoFragment) getChildFragmentManager().findFragmentByTag(CreateGroupStepTwoFragment.TAG);
-//        if (stepTwo != null && stepTwo.isVisible()) {
-//            backToStepOne();
-//        }
-        getChildFragmentManager().popBackStack();
-        backToStepOne();
+        if (currentStep == 2) {
+            backToStepOne();
+        } else if (currentStep == 3) {
+            backToStepTwo();
+        }
     }
 
     private void goToStepTwo() {
@@ -135,17 +172,47 @@ public class CreateNewGroupMainDialog extends BottomSheetDialogFragment implemen
                 .add(R.id.step_fragment, CreateGroupStepTwoFragment.newInstance());
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
-        nextButton.setEnabled(false);
-        nextButton.setBackgroundResource(R.drawable.dimmed_button_bg);
+//        nextButton.setEnabled(false);
+//        nextButton.setBackgroundResource(R.drawable.dimmed_button_bg);
+        backButton.setVisibility(View.VISIBLE);
+    }
+
+    private void goToStepThree() {
+        secondStepIcon.setImageDrawable(getContext().getDrawable(R.drawable.check_icon));
+        secondStepBg.setBackgroundTintList(ColorStateList.valueOf(getContext().getColor(R.color.colorSecondary)));
+        thirdStepBg.setBackgroundTintList(ColorStateList.valueOf(getContext().getColor(R.color.colorPrimary)));
+
+        FragmentTransaction fragmentTransaction
+                = getChildFragmentManager().beginTransaction()
+                .add(R.id.step_fragment, CreateGroupStepThreeFragment.newInstance());
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+//        nextButton.setEnabled(false);
+//        nextButton.setBackgroundResource(R.drawable.dimmed_button_bg);
+        nextButton.setText("Create");
         backButton.setVisibility(View.VISIBLE);
     }
 
     private void backToStepOne() {
+        currentStep--;
+        getChildFragmentManager().popBackStack();
         firstStepIcon.setImageDrawable(getContext().getDrawable(R.drawable.info_icon_white));
         firstStepBg.setBackgroundTintList(ColorStateList.valueOf(getContext().getColor(R.color.colorPrimary)));
         secondStepBg.setBackgroundTintList(ColorStateList.valueOf(getContext().getColor(R.color.LightBlue)));
         nextButton.setEnabled(true);
         nextButton.setBackgroundResource(R.drawable.active_button_bg);
+        nextButton.setText("Next");
         backButton.setVisibility(View.GONE);
+    }
+
+    private void backToStepTwo() {
+        currentStep--;
+        getChildFragmentManager().popBackStack();
+        secondStepIcon.setImageDrawable(getContext().getDrawable(R.drawable.calendar_icon));
+        secondStepBg.setBackgroundTintList(ColorStateList.valueOf(getContext().getColor(R.color.colorPrimary)));
+        thirdStepBg.setBackgroundTintList(ColorStateList.valueOf(getContext().getColor(R.color.LightBlue)));
+        nextButton.setEnabled(true);
+        nextButton.setText("Next");
+        nextButton.setBackgroundResource(R.drawable.active_button_bg);
     }
 }
