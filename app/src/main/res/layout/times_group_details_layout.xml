@@ -39,11 +39,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <include
-        android:id="@+id/daily_times_layout"
-        layout="@layout/daily_times_layout"
-        android:layout_width="match_parent"
-        android:layout_height="320dp" />
+<!--    <ScrollView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
+
+        <include
+            android:id="@+id/daily_times_layout"
+            layout="@layout/daily_times_layout"
+            android:layout_width="match_parent"
+            android:layout_height="320dp" />
+
+<!--    </ScrollView>-->
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/more_times_layout"
@@ -51,9 +57,7 @@
         android:layout_height="wrap_content"
         android:background="@color/White"
         android:gravity="center"
-        android:paddingTop="18dp"
-        android:paddingBottom="18dp"
-        android:text="More"
+        android:text="@string/more"
         android:textAllCaps="false"
         android:textColor="@color/SecondaryGray"
         android:textSize="14sp"

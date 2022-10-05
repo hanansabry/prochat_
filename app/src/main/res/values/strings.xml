@@ -103,4 +103,5 @@
     <string name="receiving_messages_on_off">Receiving Messages On</string>
     <string name="receiving_messages_days_num">(5 Days)</string>
     <string name="messages">Messages</string>
+    <string name="more">More</string>
 </resources>
