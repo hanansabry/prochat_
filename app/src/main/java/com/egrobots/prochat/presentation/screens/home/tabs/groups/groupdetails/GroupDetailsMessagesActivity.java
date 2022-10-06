@@ -1,4 +1,4 @@
-package com.egrobots.prochat.presentation.screens.group;
+package com.egrobots.prochat.presentation.screens.home.tabs.groups.groupdetails;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,7 +14,7 @@ import com.egrobots.prochat.callbacks.OnGroupChatSelectedCallback;
 import com.egrobots.prochat.model.Chat;
 import com.egrobots.prochat.model.Message;
 import com.egrobots.prochat.presentation.adapters.GroupDetailsMessagesAdapter;
-import com.egrobots.prochat.presentation.screens.group.dialogs.MessageSelectedActionsDialog;
+import com.egrobots.prochat.presentation.screens.home.tabs.groups.groupdetails.dialogs.MessageSelectedActionsDialog;
 
 import java.util.ArrayList;
 import java.util.Calendar;

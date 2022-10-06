@@ -1,4 +1,4 @@
-package com.egrobots.prochat.presentation.screens.group;
+package com.egrobots.prochat.presentation.screens.home.tabs.groups.groupdetails;
 
 import android.os.Bundle;
 import android.widget.TextView;
@@ -7,7 +7,7 @@ import com.egrobots.prochat.R;
 import com.egrobots.prochat.callbacks.GroupMembersCallback;
 import com.egrobots.prochat.model.Member;
 import com.egrobots.prochat.presentation.adapters.MembersAdapter;
-import com.egrobots.prochat.presentation.screens.group.dialogs.MemberSelectedActionsDialog;
+import com.egrobots.prochat.presentation.screens.home.tabs.groups.groupdetails.dialogs.MemberSelectedActionsDialog;
 import com.egrobots.prochat.presentation.screens.home.tabs.groups.creategroup.AddMembersToGroupFragmentDialog;
 
 import java.util.ArrayList;

@@ -11,10 +11,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".presentation.screens.group.GroupDetailsMessagesActivity"
+            android:name=".presentation.screens.home.tabs.groups.groupdetails.GroupDetailsMessagesActivity"
             android:theme="@style/LightAppTheme" />
         <activity
-            android:name=".presentation.screens.group.GroupDetailsMembersActivity"
+            android:name=".presentation.screens.home.tabs.groups.groupdetails.GroupDetailsMembersActivity"
             android:theme="@style/LightAppTheme" /> <!-- <activity -->
         <!-- android:name=".presentation.screens.group.GroupDetailsActivity" -->
         <!-- android:theme="@style/DarkAppTheme" /> -->
@@ -51,7 +51,7 @@
         <!-- </intent-filter> -->
         <!-- </activity> -->
         <activity
-            android:name=".presentation.screens.group.GroupDetailsActivity"
+            android:name=".presentation.screens.home.tabs.groups.groupdetails.GroupDetailsActivity"
             android:noHistory="true"
             android:theme="@style/LightAppTheme">
             <intent-filter>

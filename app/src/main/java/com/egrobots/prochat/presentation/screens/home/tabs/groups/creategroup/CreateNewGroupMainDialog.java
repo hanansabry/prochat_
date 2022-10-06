@@ -20,7 +20,7 @@ import android.widget.ImageView;
 
 import com.egrobots.prochat.R;
 import com.egrobots.prochat.callbacks.AddingGroupListener;
-import com.egrobots.prochat.presentation.screens.group.GroupDetailsActivity;
+import com.egrobots.prochat.presentation.screens.home.tabs.groups.groupdetails.GroupDetailsActivity;
 import com.egrobots.prochat.utils.Constants;
 import com.egrobots.prochat.utils.CustomBottomSheetFragment;
 

@@ -1,4 +1,4 @@
-package com.egrobots.prochat.presentation.screens.group;
+package com.egrobots.prochat.presentation.screens.home.tabs.groups.groupdetails;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -10,8 +10,6 @@ import butterknife.OnClick;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.egrobots.prochat.R;

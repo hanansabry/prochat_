@@ -56,7 +56,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:context=".presentation.screens.group.GroupDetailsActivity">
+                tools:context=".presentation.screens.home.tabs.groups.groupdetails.GroupDetailsActivity">
 
                 <include
                     android:id="@+id/members_group_details_layout"
