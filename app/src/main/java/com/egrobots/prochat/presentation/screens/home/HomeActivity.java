@@ -180,4 +180,9 @@ public class HomeActivity extends AppCompatActivity implements OnGroupChatSelect
     public void onGroupChatSelected(Chat chat) {
 
     }
+
+    @Override
+    public void onChatSelectedLongClicked(Chat chat) {
+
+    }
 }

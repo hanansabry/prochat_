@@ -3,10 +3,12 @@ package com.egrobots.prochat.presentation.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.egrobots.prochat.R;
+import com.egrobots.prochat.callbacks.GroupMembersCallback;
 import com.egrobots.prochat.model.Member;
 
 import java.util.List;
@@ -19,9 +21,11 @@ import butterknife.ButterKnife;
 public class MembersAdapter extends RecyclerView.Adapter<MembersAdapter.MemberViewHolder> {
 
     private List<Member> memberList;
+    private GroupMembersCallback groupMembersCallback;
 
-    public MembersAdapter(List<Member> memberList) {
+    public MembersAdapter(List<Member> memberList, GroupMembersCallback groupMembersCallback) {
         this.memberList = memberList;
+        this.groupMembersCallback = groupMembersCallback;
     }
 
     @NonNull
@@ -36,6 +40,19 @@ public class MembersAdapter extends RecyclerView.Adapter<MembersAdapter.MemberVi
         Member member = memberList.get(position);
         holder.memberName.setText(member.getName());
         holder.memberCode.setText(member.getCode());
+        if (groupMembersCallback != null) {
+            holder.itemView.setOnLongClickListener(v -> {
+                holder.selectedCheckbox.setVisibility(View.VISIBLE);
+                holder.itemView.setBackgroundColor(holder.itemView.getContext().getColor(R.color.GreenyShadeTwo));
+                groupMembersCallback.onMemberLongClicked(member);
+                return true;
+            });
+            holder.itemView.setOnClickListener(v -> {
+                holder.selectedCheckbox.setVisibility(View.GONE);
+                holder.itemView.setBackgroundColor(holder.itemView.getContext().getColor(R.color.White));
+                groupMembersCallback.onMemberClicked(member);
+            });
+        }
     }
 
     @Override
@@ -51,6 +68,8 @@ public class MembersAdapter extends RecyclerView.Adapter<MembersAdapter.MemberVi
         TextView memberCode;
         @BindView(R.id.member_image)
         ImageView memberImage;
+        @BindView(R.id.selected_checkbox_button)
+        ImageButton selectedCheckbox;
 
         public MemberViewHolder(@NonNull View itemView) {
             super(itemView);

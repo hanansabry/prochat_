@@ -3,13 +3,16 @@ package com.egrobots.prochat.presentation.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.egrobots.prochat.R;
 import com.egrobots.prochat.callbacks.OnGroupChatSelectedCallback;
+import com.egrobots.prochat.model.Chat;
 import com.egrobots.prochat.model.GroupChatOutline;
 import com.egrobots.prochat.model.Message;
 
+import java.util.Arrays;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -47,7 +50,21 @@ public class GroupDetailsMessagesAdapter extends RecyclerView.Adapter<GroupDetai
         Message groupChat = chatList.get(position);
         holder.message.setText(groupChat.getText());
         holder.memberName.setText(memberName);
-//        holder.itemView.setOnClickListener(v -> onGroupChatSelectedCallback.onGroupChatSelected(groupChat));
+        Chat chat = new Chat();
+        chat.setMessages(Arrays.asList(groupChat));
+        if (onGroupChatSelectedCallback != null) {
+            holder.itemView.setOnLongClickListener(v -> {
+                holder.selectedCheckbox.setVisibility(View.VISIBLE);
+                holder.itemView.setBackgroundColor(holder.itemView.getContext().getColor(R.color.GreenyShadeTwo));
+                onGroupChatSelectedCallback.onGroupChatSelected(chat);
+                return true;
+            });
+            holder.itemView.setOnClickListener(v -> {
+                holder.selectedCheckbox.setVisibility(View.GONE);
+                holder.itemView.setBackgroundColor(holder.itemView.getContext().getColor(R.color.White));
+                onGroupChatSelectedCallback.onGroupChatSelected(chat);
+            });
+        }
     }
 
     @Override
@@ -61,6 +78,8 @@ public class GroupDetailsMessagesAdapter extends RecyclerView.Adapter<GroupDetai
         TextView message;
         @BindView(R.id.member_name)
         TextView memberName;
+        @BindView(R.id.selected_checkbox_button)
+        ImageButton selectedCheckbox;
 
         public GroupMessageOutlineViewHolder(@NonNull View itemView) {
             super(itemView);

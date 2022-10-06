@@ -5,4 +5,6 @@ import com.egrobots.prochat.model.GroupChatOutline;
 
 public interface OnGroupChatSelectedCallback {
     void onGroupChatSelected(Chat chat);
+    void onChatSelectedLongClicked(Chat chat);
+
 }

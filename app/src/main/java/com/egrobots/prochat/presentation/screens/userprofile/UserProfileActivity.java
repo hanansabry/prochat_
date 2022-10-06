@@ -295,6 +295,11 @@ public class UserProfileActivity extends DaggerAppCompatActivity
     }
 
     @Override
+    public void onChatSelectedLongClicked(Chat chat) {
+
+    }
+
+    @Override
     public void onUserLoginSuccessfully() {
         //send the message
         UserChatFragment userChatFragment = (UserChatFragment) getSupportFragmentManager().findFragmentByTag(UserChatFragment.TAG);

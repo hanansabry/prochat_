@@ -13,6 +13,7 @@
         android:textColor="@color/SecondaryGray"
         android:textFontWeight="400"
         android:textSize="14sp"
+        android:layout_marginStart="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -29,13 +30,14 @@
         app:layout_constraintTop_toTopOf="@id/messages_text" />
 
     <TextView
-        android:id="@+id/view_all_button"
+        android:id="@+id/view_all_messages_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/view_all"
         android:textColor="@color/colorSecondary"
         android:textFontWeight="700"
         android:textSize="14sp"
+        android:layout_marginEnd="16dp"
         app:fontFamily="@font/ubuntu_mono"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

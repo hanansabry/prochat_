@@ -67,7 +67,7 @@ public class MembersFragment extends Fragment {
         memberList.add(new Member("Ahmed Morsi", "#at9802"));
         memberList.add(new Member("Ahmed Morsi", "#at9802"));
         memberList.add(new Member("Ahmed Morsi", "#at9802"));
-        MembersAdapter adapter = new MembersAdapter(memberList);
+        MembersAdapter adapter = new MembersAdapter(memberList, null);
         membersRecyclerView.setAdapter(adapter);
         membersRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     }

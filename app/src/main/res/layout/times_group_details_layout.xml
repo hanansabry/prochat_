@@ -52,7 +52,7 @@
 <!--    </ScrollView>-->
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/more_times_layout"
+        android:id="@+id/more_times_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/White"
@@ -71,6 +71,6 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/LighterGray"
-        app:layout_constraintTop_toBottomOf="@id/more_times_layout" />
+        app:layout_constraintTop_toBottomOf="@id/more_times_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -104,4 +104,12 @@
     <string name="receiving_messages_days_num">(5 Days)</string>
     <string name="messages">Messages</string>
     <string name="more">More</string>
+    <string name="remove_members">Remove Members</string>
+    <string name="remove_members_msg">You will remove <b>“Akram Tawfik, Shadwa Ghali”</b> from your members list, are you sure?</string>
+    <string name="remove">Remove</string>
+    <string name="block_members">Block Members</string>
+    <string name="block_members_msg">You will block <b>“Akram Tawfik, Shadwa Ghali”</b> , are you sure?</string>
+    <string name="search_messages">Search Messages</string>
+    <string name="remove_messages">Remove Messages</string>
+    <string name="remove_messages_msg">You will delete the message, Are you sure?</string>
 </resources>

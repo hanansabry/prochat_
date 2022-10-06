@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".presentation.screens.group.GroupDetailsMembersActivity">
+
+    <include
+        android:id="@+id/header"
+        layout="@layout/group_details_collapsed_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="@dimen/top_dim_margin"
+        android:background="@null"
+        android:src="@drawable/back_arrorw"
+        android:tint="@color/colorSecondary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/messages_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="13 Messages"
+        android:textColor="@color/LighterGray"
+        android:textFontWeight="400"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header" />
+
+    <EditText
+        android:id="@+id/search_messages_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/field_height_size"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/textfield_default_placeholder_bg"
+        android:drawableStart="@drawable/search_black_24dp_1"
+        android:drawablePadding="10dp"
+        android:drawableTint="@color/LighterGray"
+        android:hint="@string/search_messages"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:textColorHint="@color/LighterGray"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@id/messages_count" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/group_messages_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/search_messages_edit_text"
+        tools:listitem="@layout/chat_message_outline_with_member_name_item_layout" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

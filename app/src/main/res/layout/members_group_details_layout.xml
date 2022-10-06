@@ -28,7 +28,7 @@
         app:layout_constraintTop_toTopOf="@id/group_members_text" />
 
     <TextView
-        android:id="@+id/view_all_button"
+        android:id="@+id/view_all_members_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/view_all"
@@ -57,6 +57,7 @@
             android:orientation="horizontal" />
 
         <ImageButton
+            android:id="@+id/add_members_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

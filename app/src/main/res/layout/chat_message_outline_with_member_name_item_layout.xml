@@ -38,11 +38,12 @@
         android:textFontWeight="400"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/selected_checkbox_button"
         app:layout_constraintTop_toTopOf="@id/member_name" />
 
     <TextView
         android:id="@+id/group_message_sub_title"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
         android:text="Hi Ahmed, I am texting you because we need to do somd lk"
@@ -52,7 +53,19 @@
         android:ellipsize="end"
         android:singleLine="true"
         app:layout_constraintStart_toStartOf="@id/member_name"
-        app:layout_constraintTop_toBottomOf="@id/member_name" />
+        app:layout_constraintTop_toBottomOf="@id/member_name"
+        app:layout_constraintEnd_toStartOf="@id/selected_checkbox_button"/>
+
+    <ImageButton
+        android:id="@+id/selected_checkbox_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:src="@drawable/radio_button_checked_green"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/group_message_sub_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/member_name" />
 
     <View
         android:layout_width="0dp"

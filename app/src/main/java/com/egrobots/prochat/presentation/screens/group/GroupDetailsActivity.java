@@ -5,15 +5,21 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.egrobots.prochat.R;
 import com.egrobots.prochat.model.Member;
 import com.egrobots.prochat.model.Message;
 import com.egrobots.prochat.presentation.adapters.GroupDetailsMessagesAdapter;
 import com.egrobots.prochat.presentation.adapters.RecentMembersAdapter;
+import com.egrobots.prochat.presentation.screens.home.tabs.groups.creategroup.AddMembersToGroupFragmentDialog;
 import com.egrobots.prochat.utils.AppBarStateChangeListener;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
@@ -34,6 +40,8 @@ public class GroupDetailsActivity extends AppCompatActivity {
     RecyclerView membersRecyclerView;
     @BindView(R.id.messages_recycler_view)
     RecyclerView messagesRecyclerView;
+    @BindView(R.id.times_group_details_layout)
+    View groupTimesLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +52,27 @@ public class GroupDetailsActivity extends AppCompatActivity {
         setScrollingBehavior();
         setupMembersRecyclerView();
         setupMessagesRecyclerView();
+    }
+
+    @OnClick(R.id.add_members_button)
+    public void onAddMembersClicked() {
+        AddMembersToGroupFragmentDialog dialog = AddMembersToGroupFragmentDialog.newInstance();
+        dialog.show(getSupportFragmentManager(), AddMembersToGroupFragmentDialog.TAG);
+    }
+
+    @OnClick(R.id.more_times_button)
+    public void onMoreTimesClicked() {
+        Toast.makeText(this, "More is clicked", Toast.LENGTH_SHORT).show();
+    }
+
+    @OnClick(R.id.view_all_members_button)
+    public void onViewAllMembersClicked() {
+        startActivity(new Intent(this, GroupDetailsMembersActivity.class));
+    }
+
+    @OnClick(R.id.view_all_messages_button)
+    public void onViewAllMessagesClicked() {
+        startActivity(new Intent(this, GroupDetailsMessagesActivity.class));
     }
 
     private void setScrollingBehavior() {

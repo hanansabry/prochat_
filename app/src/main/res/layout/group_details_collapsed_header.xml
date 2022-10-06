@@ -27,7 +27,7 @@
     </FrameLayout>
 
     <TextView
-        android:id="@+id/group_name"
+        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/top_dim_margin"
@@ -41,15 +41,15 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
-        android:id="@+id/group_type"
+        android:id="@+id/subtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Private"
         android:textColor="@color/White"
         android:textFontWeight="400"
         android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="@id/group_name"
-        app:layout_constraintTop_toBottomOf="@id/group_name" />
+        app:layout_constraintStart_toStartOf="@id/title"
+        app:layout_constraintTop_toBottomOf="@id/title" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
