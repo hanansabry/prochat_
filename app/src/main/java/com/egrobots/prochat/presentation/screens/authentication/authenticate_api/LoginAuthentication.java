@@ -6,7 +6,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.egrobots.prochat.R;
-import com.egrobots.prochat.presentation.screens.search.SearchForFriendsBottomSheetDialog;
+import com.egrobots.prochat.presentation.screens.search.QuicklySearchForFriendsBottomSheetDialog;
 import com.egrobots.prochat.utils.Utils;
 import com.egrobots.prochat.presentation.viewmodels.AuthenticationViewModel;
 
@@ -61,8 +61,8 @@ public abstract class LoginAuthentication {
 
     public void onTouchSearchEdit(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
-            SearchForFriendsBottomSheetDialog searchDialog = SearchForFriendsBottomSheetDialog.newInstance();
-            searchDialog.show(((AppCompatActivity) context).getSupportFragmentManager(), SearchForFriendsBottomSheetDialog.TAG);
+            QuicklySearchForFriendsBottomSheetDialog searchDialog = QuicklySearchForFriendsBottomSheetDialog.newInstance();
+            searchDialog.show(((AppCompatActivity) context).getSupportFragmentManager(), QuicklySearchForFriendsBottomSheetDialog.TAG);
         }
     }
 

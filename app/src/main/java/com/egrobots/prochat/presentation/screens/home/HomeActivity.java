@@ -24,7 +24,8 @@ import com.egrobots.prochat.presentation.screens.home.tabs.ChatsFragment;
 import com.egrobots.prochat.presentation.screens.home.tabs.groups.GroupsFragment;
 import com.egrobots.prochat.presentation.screens.home.tabs.MembersFragment;
 import com.egrobots.prochat.presentation.screens.home.tabs.account.MyAccountFragment;
-import com.egrobots.prochat.presentation.screens.search.SearchForFriendsBottomSheetDialog;
+import com.egrobots.prochat.presentation.screens.home.tabs.groups.groupdetails.SearchFriendsBottomSheetDialog;
+import com.egrobots.prochat.presentation.screens.search.QuicklySearchForFriendsBottomSheetDialog;
 import com.egrobots.prochat.utils.AppBarStateChangeListener;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
@@ -172,8 +173,8 @@ public class HomeActivity extends AppCompatActivity implements OnGroupChatSelect
 
     @OnClick(R.id.search_fab)
     public void onSearchFabClicked() {
-        SearchForFriendsBottomSheetDialog dialog = SearchForFriendsBottomSheetDialog.newInstance();
-        dialog.show(getSupportFragmentManager(), SearchForFriendsBottomSheetDialog.TAG);
+        SearchFriendsBottomSheetDialog dialog = SearchFriendsBottomSheetDialog.newInstance();
+        dialog.show(getSupportFragmentManager(), QuicklySearchForFriendsBottomSheetDialog.TAG);
     }
 
     @Override

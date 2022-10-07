@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:behavior_hideable="true">
+
+        <ImageButton
+            android:id="@+id/close_dialog_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="28dp"
+            android:background="@null"
+            android:src="@drawable/close_black_24dp_1"
+            android:tint="@color/colorSecondary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/search_lbl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="24dp"
+            android:gravity="center"
+            android:lineSpacingExtra="10sp"
+            android:text="@string/search_friends"
+            android:textColor="@color/colorPrimary"
+            android:textFontWeight="700"
+            android:textSize="32sp"
+            app:fontFamily="@font/ubuntu_mono"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/close_dialog_button" />
+
+        <LinearLayout
+            android:id="@+id/actions_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="42dp"
+            android:layout_marginEnd="16dp"
+            android:weightSum="2"
+            app:layout_constraintTop_toBottomOf="@id/search_lbl">
+
+            <EditText
+                android:id="@+id/deactivated_search_edit_text"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/field_height_size"
+                android:layout_weight="1"
+                android:background="@drawable/textfield_default_placeholder_bg"
+                android:drawableStart="@drawable/search_black_24dp_1"
+                android:drawablePadding="12dp"
+                android:drawableTint="@color/LighterGray"
+                android:hint="@string/search"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@color/LighterGray" />
+
+            <Button
+                style="@style/ActiveButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/field_height_size"
+                android:layout_weight="1"
+                android:background="@drawable/active_button_bg"
+                android:drawableTint="@color/LighterGray"
+                android:text="@string/scan"
+                android:textColor="@color/White"
+                app:icon="@drawable/qr_code_scanner_black_24dp_1"
+                app:iconGravity="textStart" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/activated_search_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/field_height_size"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="42dp"
+            android:layout_marginEnd="16dp"
+            android:layout_weight="1"
+            android:background="@drawable/textfield_default_placeholder_bg"
+            android:drawableStart="@drawable/search_black_24dp_1"
+            android:drawablePadding="12dp"
+            android:drawableTint="@color/LighterGray"
+            android:hint="@string/search"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:singleLine="true"
+            android:textColorHint="@color/LighterGray"
+            android:textSize="16sp"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/search_lbl" />
+
+        <TextView
+            android:id="@+id/members_lbl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="40dp"
+            android:text="My Members List"
+            android:textColor="@color/SecondaryGray"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/actions_layout" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/members_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/members_lbl"
+            tools:listitem="@layout/showen_member_item_layout" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

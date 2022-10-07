@@ -21,9 +21,9 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnTextChanged;
 
-public class SearchForFriendsBottomSheetDialog extends CustomBottomSheetFragment {
+public class QuicklySearchForFriendsBottomSheetDialog extends CustomBottomSheetFragment {
 
-    public static final String TAG = "SearchForFriendsBottomSheetDialog";
+    public static final String TAG = "QuicklySearchForFriendsBottomSheetDialog";
 
     @BindView(R.id.deactivated_search_edit_text)
     EditText deactivatedSearchEditText;
@@ -43,17 +43,17 @@ public class SearchForFriendsBottomSheetDialog extends CustomBottomSheetFragment
     @BindView(R.id.main_layout)
     View mainLayout;
 
-    public SearchForFriendsBottomSheetDialog() {
+    public QuicklySearchForFriendsBottomSheetDialog() {
     }
 
-    public static SearchForFriendsBottomSheetDialog newInstance() {
-        return new SearchForFriendsBottomSheetDialog();
+    public static QuicklySearchForFriendsBottomSheetDialog newInstance() {
+        return new QuicklySearchForFriendsBottomSheetDialog();
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.search_for_friends_dialog, container, false);
+        View view = inflater.inflate(R.layout.quickly_search_for_friends_dialog, container, false);
         ButterKnife.bind(this, view);
         setMainLayout(mainLayout, Constants.DIALOG_HEIGHT_PERCENT);
         return view;
