@@ -10,6 +10,7 @@ import butterknife.OnClick;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.egrobots.prochat.R;
@@ -18,6 +19,7 @@ import com.egrobots.prochat.model.Message;
 import com.egrobots.prochat.presentation.adapters.GroupDetailsMessagesAdapter;
 import com.egrobots.prochat.presentation.adapters.RecentMembersAdapter;
 import com.egrobots.prochat.presentation.screens.home.tabs.groups.creategroup.AddMembersToGroupFragmentDialog;
+import com.egrobots.prochat.presentation.screens.home.tabs.groups.groupdetails.editgroup.EditGroupMainDialog;
 import com.egrobots.prochat.utils.AppBarStateChangeListener;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
@@ -50,6 +52,11 @@ public class GroupDetailsActivity extends AppCompatActivity {
         setScrollingBehavior();
         setupMembersRecyclerView();
         setupMessagesRecyclerView();
+//        TextView editGroupTimes = groupTimesLayout.findViewById(R.id.edit_times_button);
+//        editGroupTimes.setOnClickListener(v -> {
+//            EditGroupMainDialog editGroupMainDialog = EditGroupMainDialog.newInstance();
+//            editGroupMainDialog.show(getSupportFragmentManager(), EditGroupMainDialog.TAG);
+//        });
     }
 
     @OnClick(R.id.add_members_button)
@@ -71,6 +78,12 @@ public class GroupDetailsActivity extends AppCompatActivity {
     @OnClick(R.id.view_all_messages_button)
     public void onViewAllMessagesClicked() {
         startActivity(new Intent(this, GroupDetailsMessagesActivity.class));
+    }
+
+    @OnClick(R.id.edit_times_button)
+    public void onEditTimesClicked() {
+        EditGroupMainDialog editGroupMainDialog = EditGroupMainDialog.newInstance();
+        editGroupMainDialog.show(getSupportFragmentManager(), EditGroupMainDialog.TAG);
     }
 
     private void setScrollingBehavior() {

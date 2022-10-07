@@ -28,7 +28,7 @@
         app:layout_constraintTop_toTopOf="@id/receiving_messages_on_off_text" />
 
     <TextView
-        android:id="@+id/edit_button"
+        android:id="@+id/edit_times_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/edit"
@@ -47,11 +47,13 @@
             android:id="@+id/daily_times_layout"
             layout="@layout/daily_times_layout"
             android:layout_width="match_parent"
-            android:layout_height="320dp" />
+            android:layout_height="320dp"
+            app:layout_constraintTop_toBottomOf="@id/edit_times_button"
+            app:layout_constraintBottom_toTopOf="@id/more_times_button"/>
 
 <!--    </ScrollView>-->
 
-    <com.google.android.material.button.MaterialButton
+    <Button
         android:id="@+id/more_times_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

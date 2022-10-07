@@ -147,25 +147,13 @@ public class FirebaseDataSource {
             g0.setGroupName("All");
             Group g1 = new Group();
             g1.setGroupId("1");
-            g1.setGroupName("General Group");
+            g1.setGroupName("Morsi's Group");
             Group g2 = new Group();
             g2.setGroupId("2");
-            g2.setGroupName("Company Clients");
-            Group g3 = new Group();
-            g3.setGroupId("3");
-            g3.setGroupName("Group Name");
-            Group g4 = new Group();
-            g4.setGroupId("4");
-            g4.setGroupName("Need A Freelancing Project?");
-            Group g5 = new Group();
-            g5.setGroupId("5");
-            g5.setGroupName("Ask Me");
+            g2.setGroupName("My Groups");
             groupList.add(g0);
             groupList.add(g1);
             groupList.add(g2);
-            groupList.add(g3);
-            groupList.add(g4);
-            groupList.add(g5);
 
             for (Group group : groupList) {
                 emitter.onNext(group);
