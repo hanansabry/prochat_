@@ -1,5 +1,6 @@
 package com.egrobots.prochat.presentation.screens.home.tabs.groups;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -22,6 +23,7 @@ import com.egrobots.prochat.model.Group;
 import com.egrobots.prochat.presentation.adapters.GroupsAdapter;
 import com.egrobots.prochat.presentation.screens.home.tabs.groups.creategroup.CreateNewGroupMainDialog;
 import com.egrobots.prochat.presentation.screens.home.tabs.groups.dialogs.GroupActionsDialog;
+import com.egrobots.prochat.presentation.screens.home.tabs.groups.groupdetails.GroupDetailsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,7 +77,7 @@ public class GroupsFragment extends Fragment {
         GroupsAdapter groupsAdapter = new GroupsAdapter(groupList, new OnGroupSelectedCallback() {
             @Override
             public void onGroupSelected(Group group) {
-                Toast.makeText(getContext(), group.getGroupName(), Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getContext(), GroupDetailsActivity.class));
             }
 
             @Override

@@ -3,14 +3,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
 
 <!--<ScrollView-->
 <!--    android:layout_width="match_parent"-->
 <!--    android:layout_height="680dp"-->
 <!--    app:behavior_peekHeight="680dp"-->
 <!--    app:behavior_hideable="true">-->
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -20,19 +20,20 @@
             android:id="@+id/close_dialog_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
             android:layout_margin="28dp"
             android:background="@null"
             android:src="@drawable/close_black_24dp_1"
-            android:tint="@color/colorSecondary" />
+            android:tint="@color/colorSecondary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <LinearLayout
             android:id="@+id/search_layout_deactivated"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/close_dialog_button"
             android:orientation="vertical"
-            android:visibility="visible">
+            android:visibility="visible"
+            app:layout_constraintTop_toBottomOf="@id/close_dialog_button">
 
             <TextView
                 android:id="@+id/search_lbl"
@@ -98,11 +99,11 @@
             android:id="@+id/search_layout_activated"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
             android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"
             android:orientation="vertical"
-            android:visibility="gone">
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:id="@+id/search_abbrev_lbl"
@@ -160,10 +161,11 @@
         <RelativeLayout
             android:id="@+id/not_searching_yet_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:visibility="visible"
             android:paddingBottom="64dp"
-            android:layout_below="@id/search_layout_deactivated">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/search_layout_deactivated">
 
             <ImageView
                 android:id="@+id/search_user_icon"
@@ -191,9 +193,10 @@
             layout="@layout/not_found_user_search_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/search_layout_activated"
             android:paddingBottom="64dp"
-            android:visibility="gone" />
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/search_layout_deactivated"/>
 
 
         <include
@@ -201,10 +204,11 @@
             layout="@layout/found_user_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/search_layout_activated"
-            android:visibility="gone" />
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/search_layout_deactivated"/>
 
 
-    </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 <!--</ScrollView>-->
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

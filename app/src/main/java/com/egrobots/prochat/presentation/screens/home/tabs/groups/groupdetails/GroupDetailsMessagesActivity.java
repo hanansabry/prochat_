@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -15,6 +16,7 @@ import com.egrobots.prochat.model.Chat;
 import com.egrobots.prochat.model.Message;
 import com.egrobots.prochat.presentation.adapters.GroupDetailsMessagesAdapter;
 import com.egrobots.prochat.presentation.screens.home.tabs.groups.groupdetails.dialogs.MessageSelectedActionsDialog;
+import com.egrobots.prochat.utils.Constants;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -60,7 +62,13 @@ public class GroupDetailsMessagesActivity extends AppCompatActivity {
         GroupDetailsMessagesAdapter adapter = new GroupDetailsMessagesAdapter("Ahmed Morsi", messageList, new OnGroupChatSelectedCallback() {
             @Override
             public void onGroupChatSelected(Chat chat) {
-                selectedMessages.remove(chat);
+                if (selectedMessages.contains(chat)) {
+                    selectedMessages.remove(chat);
+                } else {
+                    Intent intent = new Intent(GroupDetailsMessagesActivity.this, ChatActivity.class);
+                    intent.putExtra(Constants.CHAT, chat);
+                    startActivity(intent);
+                }
             }
 
             @Override

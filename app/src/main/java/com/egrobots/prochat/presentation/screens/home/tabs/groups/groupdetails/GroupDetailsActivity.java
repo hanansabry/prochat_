@@ -52,11 +52,6 @@ public class GroupDetailsActivity extends AppCompatActivity {
         setScrollingBehavior();
         setupMembersRecyclerView();
         setupMessagesRecyclerView();
-//        TextView editGroupTimes = groupTimesLayout.findViewById(R.id.edit_times_button);
-//        editGroupTimes.setOnClickListener(v -> {
-//            EditGroupMainDialog editGroupMainDialog = EditGroupMainDialog.newInstance();
-//            editGroupMainDialog.show(getSupportFragmentManager(), EditGroupMainDialog.TAG);
-//        });
     }
 
     @OnClick(R.id.add_members_button)
