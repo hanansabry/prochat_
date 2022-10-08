@@ -2,11 +2,14 @@ package com.egrobots.prochat.presentation.screens.authentication.authenticate_ap
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Handler;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.egrobots.prochat.R;
+import com.egrobots.prochat.presentation.screens.authentication.VerifyAccount;
 import com.egrobots.prochat.presentation.viewmodels.AuthenticationViewModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -36,16 +39,22 @@ public abstract class VerificationAuthentication {
     Button verifyButton;
     private String verificationId;
     private String smsCode = "123456";
+    int seconds = 60;
+    Runnable verificationRunnable;
+    private Handler verificationMailCounterHandler;
 
-    public void initializeViews( Context activity,
-                                       AuthenticationViewModel authenticationViewModel,
-                                       EditText code1EditText,
-                                       EditText code2EditText,
-                                       EditText code3EditText,
-                                       EditText code4EditText,
-                                       EditText code5EditText,
-                                       EditText code6EditText,
-                                       Button verifyButton) {
+    public void initializeViews(Context activity,
+                                AuthenticationViewModel authenticationViewModel,
+                                TextView verifyAccountDesc,
+                                TextView receiveMailSecondsCount,
+                                EditText code1EditText,
+                                EditText code2EditText,
+                                EditText code3EditText,
+                                EditText code4EditText,
+                                EditText code5EditText,
+                                EditText code6EditText,
+                                Button verifyButton,
+                                String phoneNumber) {
         this.activity = activity;
         this.authenticationViewModel = authenticationViewModel;
         this.code1EditText = code1EditText;
@@ -55,6 +64,22 @@ public abstract class VerificationAuthentication {
         this.code5EditText = code5EditText;
         this.code6EditText = code6EditText;
         this.verifyButton = verifyButton;
+
+        verifyAccountDesc.setText(String.format(activity.getString(R.string.verify_account_desc), phoneNumber));
+        //set receive code counter
+        setReceiveVerificationCodeCounter(receiveMailSecondsCount);
+    }
+
+    private void setReceiveVerificationCodeCounter(TextView receiveMailSecondsCount) {
+        verificationMailCounterHandler = new Handler();
+        verificationRunnable = () -> {
+            receiveMailSecondsCount.setText(String.format(activity.getString(R.string.verification_code_message), (seconds--)+""));
+            verificationMailCounterHandler.postDelayed(verificationRunnable, 1000);
+            if (seconds == -1) {
+                verificationMailCounterHandler.removeCallbacks(verificationRunnable);
+            }
+        };
+        verificationMailCounterHandler.postDelayed(verificationRunnable, 1000);
     }
 
     public void initializeObservers(LifecycleOwner lifecycleOwner) {
@@ -64,7 +89,6 @@ public abstract class VerificationAuthentication {
 
     private void observeSigningUpWithPhone(LifecycleOwner lifecycleOwner) {
         authenticationViewModel.observeAuthenticateState().observe(lifecycleOwner, success -> {
-            //show the user that email verification is sent
             verificationSuccessAction();
         });
     }
@@ -98,11 +122,14 @@ public abstract class VerificationAuthentication {
                         code4EditText.setText(String.valueOf(smsCode.charAt(3)));
                         code5EditText.setText(String.valueOf(smsCode.charAt(4)));
                         code6EditText.setText(String.valueOf(smsCode.charAt(5)));
+                        verificationMailCounterHandler.removeCallbacks(verificationRunnable);
                     }
 
                     @Override
                     public void onVerificationFailed(@NonNull FirebaseException e) {
                         verificationErrorAction("error: " + e.getMessage());
+                        verificationMailCounterHandler.removeCallbacks(verificationRunnable);
+                        Toast.makeText(activity, "Code must be resent", Toast.LENGTH_SHORT).show();
                     }
                 }).build();
         PhoneAuthProvider.verifyPhoneNumber(phoneAuthOptions);

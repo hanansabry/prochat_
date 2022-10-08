@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.egrobots.prochat.R;
@@ -33,6 +34,10 @@ public class VerifyAccountBottomSheetDialog extends DaggerBottomSheetDialogFragm
 
     @Inject
     ViewModelProviderFactory providerFactory;
+    @BindView(R.id.verify_account_desc)
+    TextView verifyAccountDesc;
+    @BindView(R.id.receive_mail_text)
+    TextView receiveMailSecondsCount;
     @BindView(R.id.code_1_edit_text)
     EditText code1EditText;
     @BindView(R.id.code_2_edit_text)
@@ -82,13 +87,14 @@ public class VerifyAccountBottomSheetDialog extends DaggerBottomSheetDialogFragm
         verificationAuthentication = new DialogVerificationAuthentication();
         verificationAuthentication.initializeViews(getActivity(),
                 authenticationViewModel,
-                code1EditText,
+                verifyAccountDesc, receiveMailSecondsCount, code1EditText,
                 code2EditText,
                 code3EditText,
                 code4EditText,
                 code6EditText,
                 code6EditText,
-                verifyButton);
+                verifyButton,
+                phoneNumber);
         verificationAuthentication.verifyPhoneNumber(phoneNumber);
         verificationAuthentication.initializeObservers(this);
     }

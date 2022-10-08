@@ -14,9 +14,9 @@
     <string name="sign_in">Sign In</string>
     <string name="accept_terms_conditions">Accept <font color='#99DFC3'>Terms &amp; Conditions</font> and <font color='#99DFC3'>Privacy Policy</font></string>
     <string name="verify_account">Verify Account</string>
-    <string name="verify_account_desc">Please add the 4 digits code we sent to you on the number +20 10 27 18 11111 to verify your account.</string>
+
     <string name="verify">Verify</string>
-    <string name="verification_code_message">You should receive the verification code message within <font color='#99DFC3'>60</font> seconds</string>
+    <string name="verification_code_message">You should receive the verification code message within <font color='#99DFC3'>%s</font> seconds</string>
     <string name="check_your_email">Check Your Email</string>
     <string name="check_your_email_msg">A message has been sent to your email, check the message so you can to change your password.</string>
     <string name="search_for_friends_quickly">Search For Friends Quickly</string>
@@ -114,4 +114,5 @@
     <string name="remove_messages_msg">You will delete the message, Are you sure?</string>
     <string name="edit_days_times"><![CDATA[Edit Days & Times]]></string>
     <string name="search_friends">Search Friends</string>
+    <string name="verify_account_desc">Please add the 4 digits code we sent to you on the number %s to verify your account.</string>
 </resources>
